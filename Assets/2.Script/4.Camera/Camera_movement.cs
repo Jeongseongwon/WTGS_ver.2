@@ -277,7 +277,7 @@ public class Camera_movement : MonoBehaviour
         SetTarget(View_target);
         Seq_start = true;
     }
-    public void act3() //허브
+    public void act3() //s3.3
     {
         Debug.Log("Camera way 3");
         View_target = View_target_3;
@@ -286,7 +286,7 @@ public class Camera_movement : MonoBehaviour
         SetTarget(View_target);
         Seq_start = true;
     }
-    public void act4() //피치 제어 시스템, 링
+    public void act4() //s3.3
     {
         Debug.Log("Camera way 4");
         View_target = View_target_4;
@@ -295,7 +295,7 @@ public class Camera_movement : MonoBehaviour
         SetTarget(View_target);
         Seq_start = true;
     }
-    public void act5() //증속기
+    public void act5() //s3.3
     {
         Debug.Log("Camera way 5");
         View_target = View_target_5;
