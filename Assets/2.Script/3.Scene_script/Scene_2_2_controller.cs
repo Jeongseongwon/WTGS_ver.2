@@ -33,18 +33,21 @@ public class Scene_2_2_controller : MonoBehaviour
     public GameObject Graph_power;
     public GameObject Data_velocity;
     public GameObject Data_power;
+    public GameObject Gauge_pin;
+    public GameObject Wind_direction_pin;
+    public GameObject Wind_direction_pin_target;
 
 
     //2-1 Text
     [Header("===== Text =====")]
-    public GameObject Angle_pitch_target;
-    public GameObject Angle_pitch;
+    public GameObject Angle_yaw_target;
+    public GameObject Angle_yaw;
     public GameObject Velocity_wind;
     public GameObject Power;
 
     //Value
-    private float Value_Angle_pitch;
-    private float Value_Angle_pitch_target;
+    private float Value_Angle_yaw;
+    private float Value_Angle_yaw_target;
     private float Value_Velocity_wind;
     private float Value_Power;
 
@@ -57,8 +60,8 @@ public class Scene_2_2_controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Value_Angle_pitch = 30;
-        Value_Angle_pitch_target = 0;
+        Value_Angle_yaw = 0;
+        Value_Angle_yaw_target = 0;
         Value_Velocity_wind = 100;
         Value_Power = 100;
 
@@ -112,48 +115,71 @@ public class Scene_2_2_controller : MonoBehaviour
                 Debug.Log("check_2");
                 StartCoroutine(Refresh_text_value());
             }
-            else if (BtnCount == 8)
+            else if (BtnCount == 7)
             {
                 Emergency.SetActive(true);
-                Change_graph_number(Data_velocity, 3);
+
+                Wind_particle.SetActive(true);
+                Graph_velocity.SetActive(true);
+                Change_graph_number(Data_velocity, 12);
 
             }
-            else if (BtnCount == 9)
+            else if (BtnCount == 8)
             {
                 Green_button_1.SetActive(false);
                 Green_button_2.SetActive(false);
                 red_button_1.SetActive(true);
                 red_button_2.SetActive(true);
-                StartCoroutine(Alert_value());  //목표 피치값 변경
-                Change_graph_number(Data_power, 100);
-                //타겟 : 0 /현재 : 30
 
+                Graph_power.SetActive(true);
+                StartCoroutine(Refresh_pin_value());
+                Change_graph_number(Data_power, 1900);
+
+            }
+            else if (BtnCount == 9)
+            {
+
+                Value_Power = 1900 + ((Value_Angle_yaw) / 30) * 200;
+                Change_graph_number(Data_power, Value_Power);
+                Change_value(30);
+                StartCoroutine(Alert_value());
             }
             else if (BtnCount == 10)
             {
-                START();
-                StartCoroutine(Alert_value());  //목표 피치값 변경
-                                                //풍속 값 변경 , 이 둘의 속도는 비슷하게 제어가 되는 걸로
-                Change_value(45);
-                Change_graph_number(Data_velocity, 12);
+                StopCoroutine(Alert_value());
+                Value_Angle_yaw = 30;
             }
             else if (BtnCount == 11)
             {
-                //Change_graph_number(Data_power, 100);//데이터 파워는 피치각 조절함에 따라 지속적으로 변경이 필요함
-
-                Change_graph_number(Data_velocity, 25);
+                Value_Power = 1500 + ((Value_Angle_yaw - 30) / 90) * 600;
+                Change_graph_number(Data_power, Value_Power);
+                Change_value(120);
+                StartCoroutine(Alert_value());
             }
             else if (BtnCount == 12)
             {
-                StartCoroutine(Alert_value());
-                Change_value(90);
+                Value_Angle_yaw = 120;
             }
-
             else if (BtnCount == 13)
             {
-                Change_graph_number(Data_velocity, 9);
+                //여기서 프로그램 죽음
+
+                Value_Power = 600 + ((Value_Angle_yaw - 120) / 150) * 1500;
+                Change_graph_number(Data_power, Value_Power);
+                Change_value(270);
                 StartCoroutine(Alert_value());
-                Change_value(30);
+            }
+            else if (BtnCount == 14)
+            {
+                Value_Angle_yaw = 270;
+            }
+            else if (BtnCount == 15)
+            {
+
+                Value_Power = 1000 + ((270 - Value_Angle_yaw) / 270) * 1100;
+                Change_graph_number(Data_power, Value_Power);
+                Change_value(0);
+                StartCoroutine(Alert_value());
             }
             PC_Image_Array[BtnCount].SetActive(true);
             PostCount = BtnCount;
@@ -161,20 +187,25 @@ public class Scene_2_2_controller : MonoBehaviour
             Debug.Log("FALSE");
         }
 
+        //목표 요각도, 풍향  변경
         if (flag_num == true)
         {
-            Value_Angle_pitch_target = Mathf.Lerp(Value_Angle_pitch_target, Value_max, Time.deltaTime);
+            Value_Angle_yaw_target = Mathf.Lerp(Value_Angle_yaw_target, Value_max, 1.5f * Time.deltaTime);
+            Wind_direction_pin_target.GetComponent<RectTransform>().localRotation = Quaternion.Euler(new Vector3(0, 0,
+               -1 * Mathf.Lerp(Value_Angle_yaw_target, Value_max, 1.5f * Time.deltaTime)));
 
-            if (Value_Angle_pitch_target == Value_max)
+            //Change_graph_number(Data_power, Value_Power);
+            if (Value_Angle_yaw_target - Value_max <= 0.1 && Value_Angle_yaw_target - Value_max >= -0.1)
             {
-                Debug.Log("Done");
+                //Debug.Log("Done");
                 flag_num = false;
             }
+
         }
 
         //데이터 전용 타이머?
     }
-    IEnumerator Startact() //중간 평가용으로 수정
+    IEnumerator Startact() 
     {
         yield return new WaitForSeconds(2.0f);
         Study_title_Intro_2.SetActive(true);
@@ -193,31 +224,43 @@ public class Scene_2_2_controller : MonoBehaviour
 
     private void Change_graph_number(GameObject data, float num)
     {
-        data.GetComponent<StreamingGraph>().min = (num - 0.5f) * 0.05f;
-        data.GetComponent<StreamingGraph>().max = (num + 0.5f) * 0.05f;
+        if (data == Data_velocity)
+        {
+            data.GetComponent<StreamingGraph>().min = (num - 1f) * 0.05f;
+            data.GetComponent<StreamingGraph>().max = (num + 1f) * 0.05f;
+        }
+        else if (data == Data_power)
+        {
+            data.GetComponent<StreamingGraph>().min = (num - 100f) * 0.05f;
+            data.GetComponent<StreamingGraph>().max = (num + 100f) * 0.05f;
+
+        }
     }
     IEnumerator Alert_value()
     {
         while (true)
         {
             yield return new WaitForSeconds(1.0f);
+            Debug.Log("coroutine run");
             //5초 정도 시간이 지나고 나면, 타이머 설정, 타이머 리셋
-            if (Value_Angle_pitch_target - Value_Angle_pitch > 20)
+            //변경하지 않고 바꾸게 되면 다음으로 넘어가지 못 하도록?
+            if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) > 20)
             {
                 Alert_message_caution.SetActive(false);
                 Alert_message_danger.SetActive(true);
             }
-            else if (Value_Angle_pitch_target - Value_Angle_pitch > 10)
+            else if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) > 10)
             {
                 Alert_message_caution.SetActive(true);
                 Alert_message_danger.SetActive(false);
             }
-            else if (Value_Angle_pitch_target - Value_Angle_pitch <= 3 && Value_Angle_pitch_target - Value_Angle_pitch >= -3)
+            else if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3)
             {
-                Debug.Log(Value_Angle_pitch_target - Value_Angle_pitch);
-                gameObject.GetComponent<Script_controller>().NextBtn();
+                
+                //gameObject.GetComponent<Script_controller>().NextBtn();
                 Alert_message_caution.SetActive(false);
                 Alert_message_danger.SetActive(false);
+                Debug.Log("Aleart DEAD");
                 yield break;
             }
         }
@@ -234,60 +277,109 @@ public class Scene_2_2_controller : MonoBehaviour
     {
         while (true)
         {
-            Angle_pitch_target.GetComponent<Text>().text = Value_Angle_pitch_target.ToString("F1");
-            Angle_pitch.GetComponent<Text>().text = Value_Angle_pitch.ToString("F1");
-            //Velocity_wind.GetComponent<Text>().text = Value_Velocity_wind.ToString("F1");
-            //Power.GetComponent<Text>().text = Value_Power.ToString("F1");
+            Angle_yaw_target.GetComponent<Text>().text = string.Format("{0:0}", Value_Angle_yaw_target);
+            Angle_yaw.GetComponent<Text>().text = string.Format("{0:0}", Value_Angle_yaw);
+            yield return new WaitForSeconds(0.3f);
+        }
+    }
+    IEnumerator Refresh_pin_value()
+    {
+        while (true)
+        {
+            Gauge_pin.GetComponent<RectTransform>().localRotation = Quaternion.Euler(new Vector3(0, 0, 0 - 100 * (Value_Power / 2100)));
+            Wind_direction_pin.GetComponent<RectTransform>().localRotation = Quaternion.Euler(new Vector3(0, 0, -Value_Angle_yaw));
             yield return new WaitForSeconds(0.3f);
         }
     }
     public void Set_add_pitch()
     {
-        Value_Angle_pitch += 5;
+        Value_Angle_yaw += 5;
         if (BtnCount == 9)
         {
-            Change_graph_number(Data_power, ((30 - Value_Angle_pitch) / 30) * 1000);
+            Value_Power = 1900 + ((Value_Angle_yaw) / 30) * 200;
+            Change_graph_number(Data_power, Value_Power);
+            if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3)
+            {
+                gameObject.GetComponent<Script_controller>().NextBtn();
+            }
         }
-        else if (BtnCount == 10)
+        else if (BtnCount == 11)
         {
-            Change_graph_number(Data_power, 1000 + (Value_Angle_pitch / 45) * 1100);
-        }
-        else if (BtnCount == 12)
-        {
-            Change_graph_number(Data_power, 2500 - ((Value_Angle_pitch - 45) / 45) * 400);
+
+            Value_Power = 1500 + ((Value_Angle_yaw - 30) / 90) * 600;
+            Change_graph_number(Data_power, Value_Power);
+            if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3)
+            {
+                gameObject.GetComponent<Script_controller>().NextBtn();
+            }
         }
         else if (BtnCount == 13)
         {
-            Change_graph_number(Data_power, 1800 + ((90 - Value_Angle_pitch) / 60) * 400);
+            Value_Power = 600 + ((Value_Angle_yaw - 120) / 150) * 1500;
+            Change_graph_number(Data_power, Value_Power);
+            if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3)
+            {
+                gameObject.GetComponent<Script_controller>().NextBtn();
+            }
+        }
+        else if (BtnCount == 15)
+        {
+            Value_Power = 1000 + ((270 - Value_Angle_yaw) / 270) * 1100;
+            Change_graph_number(Data_power, Value_Power);
+            if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3)
+            {
+                gameObject.GetComponent<Script_controller>().NextBtn();
+            }
         }
     }
 
     public void Set_reduce_pitch()
     {
-        Value_Angle_pitch -= 5;
-        Value_Power = 2100;
+        Value_Angle_yaw -= 5;
         if (BtnCount == 9)
         {
-            Change_graph_number(Data_power, ((30 - Value_Angle_pitch) / 30) * 1000);
+            Value_Power = 1900 + ((Value_Angle_yaw) / 30) * 200;
+            Change_graph_number(Data_power, Value_Power);
+            if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3)
+            {
+                gameObject.GetComponent<Script_controller>().NextBtn();
+            }
         }
-        else if (BtnCount == 10)
+        else if (BtnCount == 11)
         {
-            Change_graph_number(Data_power, 1000 + (Value_Angle_pitch / 45) * 1100);
-        }
-        else if (BtnCount == 12)
-        {
-            Change_graph_number(Data_power, 2500 - ((Value_Angle_pitch - 45) / 45) * 400);
+
+            Value_Power = 1500 + ((Value_Angle_yaw - 30) / 90) * 600;
+            Change_graph_number(Data_power, Value_Power);
+            if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3)
+            {
+                gameObject.GetComponent<Script_controller>().NextBtn();
+            }
         }
         else if (BtnCount == 13)
         {
-            Change_graph_number(Data_power, 1800 + ((90 - Value_Angle_pitch) / 60) * 400);
+            Value_Power = 600 + ((Value_Angle_yaw - 120) / 150) * 1500;
+            Change_graph_number(Data_power, Value_Power);
+            if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3)
+            {
+                gameObject.GetComponent<Script_controller>().NextBtn();
+            }
+        }
+
+        else if (BtnCount == 15)
+        {
+            Value_Power = 1000 + ((270 - Value_Angle_yaw) / 270) * 1100;
+            Change_graph_number(Data_power, Value_Power);
+            if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3)
+            {
+                gameObject.GetComponent<Script_controller>().NextBtn();
+            }
         }
     }
 
     public void Stop()
     {
-        Value_Angle_pitch = 30;
-        Value_Angle_pitch_target = 0;
+        Value_Angle_yaw = 0;
+        Value_Angle_yaw_target = 0;
         Value_Velocity_wind = 0;
         Value_Power = 0;
         Wind_particle.SetActive(false);
@@ -305,8 +397,5 @@ public class Scene_2_2_controller : MonoBehaviour
         Graph_velocity.SetActive(true);
         Graph_power.SetActive(true);
     }
-
-
-
 
 }
