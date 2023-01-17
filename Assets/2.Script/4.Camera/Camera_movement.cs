@@ -60,9 +60,11 @@ public class Camera_movement : MonoBehaviour
     public Transform subTarget1;
     public Transform subTarget2;
     public Transform subTarget3;
+    public Transform subTarget3_1;
     public Transform subTarget4;
     public Transform subTarget5;
     public Transform subTarget6;
+    public Transform subTarget7;
 
     /// <summary>
     /// 부드럽게 이동될 감도
@@ -94,10 +96,12 @@ public class Camera_movement : MonoBehaviour
 
     private GameObject View_target;
     public GameObject View_target_1;
-    public GameObject View_target_2;
-    public GameObject View_target_3;
-    public GameObject View_target_4;
-    public GameObject View_target_5;
+    public GameObject View_target_2;        //로터
+    public GameObject View_target_3;        //허브
+    public GameObject View_target_4;        //피치 베어링
+    public GameObject View_target_5;        //증속기
+    public GameObject View_target_6;        //요 시스템
+    public GameObject View_target_7;        //주축
 
     private bool Seq_start = false;
     private bool mouse_active = false;
@@ -286,7 +290,25 @@ public class Camera_movement : MonoBehaviour
         SetTarget(View_target);
         Seq_start = true;
     }
+    public void act3_1() //허브
+    {
+        Debug.Log("Camera way 3");
+        View_target = View_target_3;
+        mouse_active = false;
+        subTarget = subTarget3_1;
+        SetTarget(View_target);
+        Seq_start = true;
+    }
     public void act4() //피치 제어 시스템, 링
+    {
+        Debug.Log("Camera way 4");
+        View_target = View_target_4;
+        mouse_active = false;
+        subTarget = subTarget4;
+        SetTarget(View_target);
+        Seq_start = true;
+    }
+    public void act4_1() //피치 제어 시스템 멀리 이동
     {
         Debug.Log("Camera way 4");
         View_target = View_target_4;
@@ -305,11 +327,21 @@ public class Camera_movement : MonoBehaviour
         Seq_start = true;
     }
 
-    public void act6()
+    public void act6()//요 시스템
     {
         Debug.Log("Camera way 6");
         mouse_active = false;
-        subTarget = subTarget6;
+        //subTarget = subTarget6;
+        View_target = View_target_6;
+        SetTarget(View_target);
+        Seq_start = true;
+    }
+    public void act7()//주축
+    {
+        Debug.Log("Camera way 7");
+        mouse_active = false;
+        //subTarget = subTarget6;
+        View_target = View_target_7;
         SetTarget(View_target);
         Seq_start = true;
     }

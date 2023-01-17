@@ -209,7 +209,7 @@ public class Scene_1_2_controller : MonoBehaviour
             StartCoroutine(Highlight_onoff(Object_11_Mainshaft));
 
             //애니메이션
-            Camera.GetComponent<Camera_movement>().act4();
+            Camera.GetComponent<Camera_movement>().act3_1();
             StartCoroutine(Animation_play(5.2));
             Debug.Log("act8");
         }
@@ -224,7 +224,7 @@ public class Scene_1_2_controller : MonoBehaviour
             StartCoroutine(Highlight_onoff(Object_9_1_Pitch_sytem_1));
             StartCoroutine(Highlight_onoff(Object_9_Pitch_bearing));
 
-            //Camera.GetComponent<Camera_movement>().act4();
+            Camera.GetComponent<Camera_movement>().act4();
             StartCoroutine(Animation_play(7));
             Debug.Log("act9");
         }
@@ -239,7 +239,7 @@ public class Scene_1_2_controller : MonoBehaviour
             StartCoroutine(Highlight_onoff(Object_1_blade2));
             StartCoroutine(Highlight_onoff(Object_1_blade3));
 
-            //Camera.GetComponent<Camera_movement>().act4();
+            Camera.GetComponent<Camera_movement>().act7();
             StartCoroutine(Animation_play(7.1));
             Debug.Log("act10");
         }
@@ -258,7 +258,7 @@ public class Scene_1_2_controller : MonoBehaviour
             StartCoroutine(Highlight_onoff(Object_11_Mainshaft));
             StartCoroutine(Highlight_onoff(Object_14_Generator));
 
-            //Camera.GetComponent<Camera_movement>().act4();
+            Camera.GetComponent<Camera_movement>().act5();
             //5.2로 변경
             StartCoroutine(Animation_play(6));
             Debug.Log("act11");
@@ -276,6 +276,8 @@ public class Scene_1_2_controller : MonoBehaviour
             //하이라이트 효과
             StartCoroutine(Highlight_onoff(Object_11_Mainshaft));
             StartCoroutine(Animation_play(8));
+
+            Camera.GetComponent<Camera_movement>().act7();
             Debug.Log("act13");
         }
         else if (count == 14)
@@ -286,6 +288,7 @@ public class Scene_1_2_controller : MonoBehaviour
 
             //하이라이트 효과
             StartCoroutine(Highlight_onoff(Object_13_Gearbox));
+            Camera.GetComponent<Camera_movement>().act5();
             Debug.Log("act14");
 
         }
@@ -308,6 +311,7 @@ public class Scene_1_2_controller : MonoBehaviour
             StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_2));
             StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_3));
             StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_4));
+            Camera.GetComponent<Camera_movement>().act6();
             Debug.Log("act16");
         }
         else if (count == 17)
@@ -333,24 +337,53 @@ public class Scene_1_2_controller : MonoBehaviour
         {
             Debug.Log("act 19 스킵 추후 애니메이션 추가");
         }
-        else if (count == 15)
+        else if (count == 20)
         {
+            //피치 줌인 및 이전 상태에서 피치 분리된 상태로 돌아가기
 
+            //콜라이더(툴팁, 하이라이트)
+            Object_Col_Off_ALL();
+            Object_Col_On(Object_9_1_Pitch_sytem_1);
+            Object_Col_On(Object_9_Pitch_bearing);
+
+            //하이라이트 효과
+            StartCoroutine(Highlight_onoff(Object_9_1_Pitch_sytem_1));
+            StartCoroutine(Highlight_onoff(Object_9_Pitch_bearing));
+
+            StartCoroutine(Animation_play(5));
+            Camera.GetComponent<Camera_movement>().act4();
+            Debug.Log("act 20");
+        }
+        else if (count == 21)
+        {
+            StartCoroutine(Animation_play(7));
+            //피치 제어 애니메이션 재생
+        }
+        else if (count == 22)
+        {
+            //블레이드 각도 변경하기 및 가능하면 텍스트 추가
+        }
+        else if (count == 23)
+        {
+            //주축 잠금 장치, 브레이크, 요 브레이크 하이라이트, 카메라 이동
+            Camera.GetComponent<Camera_movement>().act5();
+        }
+        else if (count == 24)
+        {
+            //주축 잠금 장치
+        }
+        else if (count == 25)
+        {
+            //주축용 브레이크
+        }
+        else if (count == 26)
+        {
+            //요 브레이크
+            Camera.GetComponent<Camera_movement>().act6();
         }
     }
 
 
-
-
-    void Act19()
-    {
-        //나셀 내부부품 툴팁 추가하기
-        Object_Col_Off_ALL();
-        Object_12_Yaw.GetComponent<MeshCollider>().enabled = true;
-        Camera.GetComponent<Camera_movement>().act6();
-        Anim.Play("7_WTG_Nacelle_rotation");
-        Debug.Log("act19");
-    }
     // Update is called once per frame
     void Update()
     {
@@ -458,18 +491,22 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (num == 6.1)
         {
+            //나셀 회전
             Anim.Play("6_1_WTG_Nacelle_rotation");
         }
         else if (num == 7)
         {
+            //로터, 블레이드 분리 후 피치 베어링 회전
             Anim.Play("7_WTG_pitch_bearing(Rotation)");
         }
         else if (num == 7.1)
         {
+            //블레이드 결합 및 피치 회전
             Anim.Play("7_1_WTG_pitch_bearing,pitch(Rotation)");
         }
         else if (num == 8)
         {
+            //블레이드 주축 회전
             Anim.Play("8_WTG_mainshaft,rotor(Rotation)");
         }
         else if (num == 10)
