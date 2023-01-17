@@ -82,7 +82,7 @@ public class Scene_2_1_controller : MonoBehaviour
     {
         Refresh_text_value();
         BtnCount = gameObject.GetComponent<Script_controller>().btnCount;
-
+        
         if (PostCount != BtnCount)
         {
 
