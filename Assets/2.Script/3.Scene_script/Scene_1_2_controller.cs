@@ -449,11 +449,13 @@ public class Scene_1_2_controller : MonoBehaviour
         {
             //풍력발전기 회전
             Anim.Play("1_WTG_rotation");
+            Debug.Log("anim1");
         }
         else if (num == 2)
         {
             //각 블레이드 이동
             Anim.Play("2_WTG_blade_move");
+            Debug.Log("anim2");
         }
         else if (num == 2.1)
         {
