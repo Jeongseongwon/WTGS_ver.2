@@ -57,6 +57,7 @@ public class Scene_2_2_controller : MonoBehaviour
     int PostCount;
     private bool flag = true;
     private bool flag_num = false;
+    bool Prev_Status = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -87,7 +88,10 @@ public class Scene_2_2_controller : MonoBehaviour
 
         if (PostCount != BtnCount)
         {
-
+            if (BtnCount < PostCount)
+            {
+                Prev_Status = true;
+            }
             PC_Image_Array[PostCount].gameObject.SetActive(false);
             flag = true;
             Debug.Log("TRUE");
@@ -104,6 +108,15 @@ public class Scene_2_2_controller : MonoBehaviour
             }
             if (BtnCount == 1)
             {
+                if (Prev_Status == true)
+                {
+                    Subcamera.SetActive(false);
+                    WTGS_Panel.SetActive(false);
+                    Debug.Log("check_2");
+                    StopCoroutine(Refresh_text_value());
+                    Prev_Status = false;
+                }
+
                 Study_title_Intro_2.GetComponent<Animation>().Play("Intro_2_animation(off)");
             }
             else if (BtnCount == 2)
@@ -115,8 +128,34 @@ public class Scene_2_2_controller : MonoBehaviour
                 Debug.Log("check_2");
                 StartCoroutine(Refresh_text_value());
             }
+            else if (BtnCount == 6)
+            {
+                if (Prev_Status == true)
+                {
+                    //바꿔야할부분
+                    Emergency.SetActive(false);
+
+                    Wind_particle.SetActive(false);
+                    Graph_velocity.SetActive(false);
+                    Prev_Status = false;
+                }
+               
+
+            }
             else if (BtnCount == 7)
             {
+                if (Prev_Status == true)
+                {
+                    Green_button_1.SetActive(true);
+                    Green_button_2.SetActive(true);
+                    red_button_1.SetActive(false);
+                    red_button_2.SetActive(false);
+
+                    Graph_power.SetActive(false);
+                    StopCoroutine(Refresh_pin_value());
+                    Change_graph_number(Data_velocity, 12);
+                    Prev_Status = false;
+                }
                 Emergency.SetActive(true);
 
                 Wind_particle.SetActive(true);
@@ -126,6 +165,13 @@ public class Scene_2_2_controller : MonoBehaviour
             }
             else if (BtnCount == 8)
             {
+                if (Prev_Status == true)
+                {
+                    Change_value(0);
+                    StopCoroutine(Alert_value());
+                    Prev_Status = false;
+                }
+
                 Green_button_1.SetActive(false);
                 Green_button_2.SetActive(false);
                 red_button_1.SetActive(true);
@@ -138,7 +184,11 @@ public class Scene_2_2_controller : MonoBehaviour
             }
             else if (BtnCount == 9)
             {
-
+                if (Prev_Status == true)
+                {
+                    Value_Angle_yaw = 0;
+                    Prev_Status = false;
+                }
                 Value_Power = 1900 + ((Value_Angle_yaw) / 30) * 200;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(30);
@@ -146,11 +196,22 @@ public class Scene_2_2_controller : MonoBehaviour
             }
             else if (BtnCount == 10)
             {
+                if (Prev_Status == true)
+                {
+                    Change_value(30);
+                    StopCoroutine(Alert_value());
+                    Prev_Status = false;
+                }
                 StopCoroutine(Alert_value());
                 Value_Angle_yaw = 30;
             }
             else if (BtnCount == 11)
             {
+                if (Prev_Status == true)
+                {
+                    Value_Angle_yaw = 30;
+                    Prev_Status = false;
+                }
                 Value_Power = 1500 + ((Value_Angle_yaw - 30) / 90) * 600;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(120);
@@ -158,12 +219,22 @@ public class Scene_2_2_controller : MonoBehaviour
             }
             else if (BtnCount == 12)
             {
+                if (Prev_Status == true)
+                {
+                    Change_value(120);
+                    Prev_Status = false;
+                }
                 Value_Angle_yaw = 120;
             }
             else if (BtnCount == 13)
             {
                 //여기서 프로그램 죽음
 
+                if (Prev_Status == true)
+                {
+                    Change_value(0 );
+                    Prev_Status = false;
+                }
                 Value_Power = 600 + ((Value_Angle_yaw - 120) / 150) * 1500;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(270);
@@ -338,6 +409,7 @@ public class Scene_2_2_controller : MonoBehaviour
         Value_Angle_yaw -= 5;
         if (BtnCount == 9)
         {
+           
             Value_Power = 1900 + ((Value_Angle_yaw) / 30) * 200;
             Change_graph_number(Data_power, Value_Power);
             if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3)
@@ -347,7 +419,7 @@ public class Scene_2_2_controller : MonoBehaviour
         }
         else if (BtnCount == 11)
         {
-
+            
             Value_Power = 1500 + ((Value_Angle_yaw - 30) / 90) * 600;
             Change_graph_number(Data_power, Value_Power);
             if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3)
@@ -357,6 +429,7 @@ public class Scene_2_2_controller : MonoBehaviour
         }
         else if (BtnCount == 13)
         {
+            
             Value_Power = 600 + ((Value_Angle_yaw - 120) / 150) * 1500;
             Change_graph_number(Data_power, Value_Power);
             if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3)

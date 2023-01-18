@@ -56,6 +56,7 @@ public class Scene_2_1_controller : MonoBehaviour
     int PostCount;
     private bool flag = true;
     private bool flag_num = false;
+    bool Prev_Status = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +87,10 @@ public class Scene_2_1_controller : MonoBehaviour
         if (PostCount != BtnCount)
         {
 
+            if (BtnCount < PostCount)
+            {
+                Prev_Status = true;
+            }
             PC_Image_Array[PostCount].gameObject.SetActive(false);
             flag = true;
             Debug.Log("TRUE");
@@ -95,7 +100,7 @@ public class Scene_2_1_controller : MonoBehaviour
         //}
         if (flag == true)
         {
-            if (BtnCount == 0)
+             if (BtnCount == 0)
             {
 
 
@@ -113,8 +118,33 @@ public class Scene_2_1_controller : MonoBehaviour
                 Debug.Log("check_2");
                 StartCoroutine(Refresh_text_value());
             }
+            else if (BtnCount == 7)
+            {
+             if(Prev_Status==true)
+                {
+                    //바꿔야할부분
+                    Emergency.SetActive(false);
+
+                    Wind_particle.SetActive(false);
+                    Graph_velocity.SetActive(false);
+                    Prev_Status =false;
+                }
+
+            }
             else if (BtnCount == 8)
             {
+                if (Prev_Status == true)
+                {
+
+                    Green_button_1.SetActive(true);
+                    Green_button_2.SetActive(true);
+                    red_button_1.SetActive(false);
+                    red_button_2.SetActive(false);
+
+                    Graph_power.SetActive(false);
+                    StopCoroutine(Refresh_text_value());
+                    Prev_Status = false;
+                }
                 Emergency.SetActive(true);
 
                 Wind_particle.SetActive(true);
@@ -124,24 +154,38 @@ public class Scene_2_1_controller : MonoBehaviour
             }
             else if (BtnCount == 9)
             {
+                if (Prev_Status == true)
+                {
+                    StopCoroutine(Alert_value());
+
+                    Prev_Status = false;
+                }
                 Green_button_1.SetActive(false);
                 Green_button_2.SetActive(false);
                 red_button_1.SetActive(true);
                 red_button_2.SetActive(true);
 
                 Graph_power.SetActive(true);
-                StartCoroutine(Refresh_pin_value());
+                    ;
                 Change_graph_number(Data_power, 400);
 
             }
             else if (BtnCount == 10)
             {
+
                 Value_Power = 400 + ((30 - Value_Angle_pitch) / 30) * 600;
                 Change_graph_number(Data_power, Value_Power);
                 StartCoroutine(Alert_value());
             }
             else if (BtnCount == 11)
             {
+                if (Prev_Status == true)
+                {
+                    Change_value(0);
+
+                    Prev_Status = false;
+                }
+
                 StopCoroutine(Alert_value());
                 Value_Angle_pitch = 0;
                 Change_graph_number(Data_velocity, 12);
@@ -157,6 +201,12 @@ public class Scene_2_1_controller : MonoBehaviour
             }
             else if (BtnCount == 13)
             {
+                if (Prev_Status == true)
+                {
+                    Change_value(45);
+
+                    Prev_Status = false;
+                }
                 StopCoroutine(Alert_value());
                 Value_Angle_pitch = 45;
                 Change_graph_number(Data_velocity, 25);
@@ -172,6 +222,12 @@ public class Scene_2_1_controller : MonoBehaviour
             }
             else if (BtnCount == 15)
             {
+                if (Prev_Status == true)
+                {
+                    Change_value(90);
+
+                    Prev_Status = false;
+                }
                 StopCoroutine(Alert_value());
                 Value_Angle_pitch = 90;
                 Change_graph_number(Data_velocity, 9);
@@ -186,6 +242,8 @@ public class Scene_2_1_controller : MonoBehaviour
                 Change_value(30);
                 StartCoroutine(Alert_value());
             }
+
+
 
             PC_Image_Array[BtnCount].SetActive(true);
             PostCount = BtnCount;
@@ -236,6 +294,12 @@ public class Scene_2_1_controller : MonoBehaviour
         {
             data.GetComponent<StreamingGraph>().min = (num - 100f) * 0.05f;
             data.GetComponent<StreamingGraph>().max = (num + 100f) * 0.05f;
+
+        }
+        else if (num==0)
+        {
+            data.GetComponent<StreamingGraph>().min = 0;
+            data.GetComponent<StreamingGraph>().max = 0;
 
         }
     }
