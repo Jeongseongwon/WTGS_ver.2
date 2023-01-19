@@ -11,6 +11,8 @@ public class Scene_1_1_controller : MonoBehaviour
     public GameObject Scriptbox;
     public GameObject Top_navigation;
     public GameObject Wind_particle;
+    public GameObject Arrow_object_slow;
+    public GameObject Arrow_object_fast;
     public GameObject Study_title_Intro_2;
 
     private Text text;
@@ -37,22 +39,38 @@ public class Scene_1_1_controller : MonoBehaviour
     public GameObject Object_11_Mainshaft;
     public GameObject Object_13_Gearbox;
     public GameObject Object_14_Generator;
+    public GameObject Object_15_Power_grid;
 
+    public GameObject Object_p_line;
+
+    public GameObject Text_1;
+    public GameObject Text_2;
+
+    private Material tower_material;
+    public Material test_mat;
 
     private int BtnCount;
     private float turbine_speed;
+    private bool flag_num;
+    private float Value_alpha = 0;
+    private Color tower_alpha;
 
     void Start()
     {
         Anim = Main_object.GetComponent<Animation>();
 
         Camera.GetComponent<Camera_movement>().enabled = false;
-        StartCoroutine(StartAct());
-        Object_Col_Off_ALL();
+        tower_material = Object_5_Tower.gameObject.GetComponent<MeshRenderer>().material;
+        tower_alpha = tower_material.color;
+        Value_alpha = tower_alpha.a;
     }
     IEnumerator StartAct()
     {
-        yield return new WaitForSeconds(3.0f);
+        if (Prev_Status == false)
+        {
+            yield return new WaitForSeconds(3.0f);
+
+        }
         Study_title_Intro_2.SetActive(true);
         Study_title_Intro_2.GetComponent<Animation>().Play("Intro_2_animation(on)");
         Scriptbox.GetComponent<Animation>().Play("bannerup(1220)");
@@ -61,18 +79,28 @@ public class Scene_1_1_controller : MonoBehaviour
     }
     void Act(int count)
     {
+        if (count == 0)
+        {
+            StartCoroutine(StartAct());
+            Object_Col_Off_ALL();
+        }
         if (count == 1)
         {
+
+
+
             if (Prev_Status == true)
             {
+                StopCoroutine(Rotate_turbine());
+                Object_Col_Off_ALL();
+                Wind_particle.SetActive(false);
+                Arrow_object_slow.SetActive(false);
                 Prev_Status = false;
-                //카메라, 발전기 위치 재설정
-
             }
 
             //애니메이션
             Camera.GetComponent<Camera_movement>().enabled = true;
-            Study_title_Intro_2.GetComponent<Animation>().Play("Intro_2_animation(off)");
+            StartCoroutine(Intro_anim());
             Camera.GetComponent<Camera_movement>().act0();
             Debug.Log("act1");
         }
@@ -80,6 +108,7 @@ public class Scene_1_1_controller : MonoBehaviour
         {
             if (Prev_Status == true)
             {
+                Arrow_object_fast.SetActive(false);
                 Prev_Status = false;
                 //Camera.GetComponent<Camera_movement>().act2();
             }
@@ -97,68 +126,118 @@ public class Scene_1_1_controller : MonoBehaviour
             //애니메이션
             StartCoroutine(Rotate_turbine(1));
             Wind_particle.SetActive(true);
-
+            Arrow_object_slow.SetActive(true);
             Debug.Log("act3");
         }
         else if (count == 3)
         {
             if (Prev_Status == true)
             {
+                StartCoroutine(Animation_play(6.2));
+                Camera.GetComponent<Camera_movement>().act0();
+                //나셀 원상복구
                 Prev_Status = false;
             }
             //하이라이트 효과
+            Object_Col_Off_ALL();
+            Object_Col_On(Object_6_Rotor);
+
+            StartCoroutine(Highlight_onoff(Object_6_Rotor));
 
             //애니메이션
-            StartCoroutine(Rotate_turbine(2));
+            StartCoroutine(Rotate_turbine(4));
+            Arrow_object_slow.SetActive(false);
+            Arrow_object_fast.SetActive(true);
 
             Debug.Log("act4");
+        }
+        else if (count == 4)
+        {
+            //콜라이더(툴팁, 하이라이트)
+            Object_Col_Off_ALL();
+            Object_Col_On(Object_6_Rotor);
+            Object_Col_On(Object_11_Mainshaft);
+
+            //하이라이트 효과
+            StartCoroutine(Highlight_onoff(Object_6_Rotor));
+            StartCoroutine(Highlight_onoff(Object_11_Mainshaft));
+
+            //애니메이션
+            StartCoroutine(Animation_play(6));
+            StartCoroutine(Mainshaft_turbine(4));
+            Arrow_object_fast.SetActive(false);
+            //주축 클로즈업
+            Camera.GetComponent<Camera_movement>().Change_position();
+            Debug.Log("act5");
         }
         else if (count == 5)
         {
             //콜라이더(툴팁, 하이라이트)
-         
+            Object_Col_Off_ALL();
+            Object_Col_On(Object_13_Gearbox);
+            Object_Col_On(Object_11_Mainshaft);
 
             //하이라이트 효과
-          
+            StartCoroutine(Highlight_onoff(Object_13_Gearbox));
+            StartCoroutine(Highlight_onoff(Object_11_Mainshaft));
+
+
             //애니메이션
-        
-            //Anim.Stop();
-         
+            StartCoroutine(Animation_play(11));
+            Camera.GetComponent<Camera_movement>().act5();
+
+            //텍스트 추가 
+            Text_1.SetActive(true);
+            Text_2.SetActive(true);
             Debug.Log("act5");
         }
         else if (count == 6)
         {
-            //주축 내용 추가?
+            if (Prev_Status == true)
+            {
+
+                Color c = Object_5_Tower.gameObject.GetComponent<MeshRenderer>().material.color;
+                c.a = 1;
+                Object_5_Tower.gameObject.GetComponent<MeshRenderer>().material.color = c;
+                Prev_Status = false;
+                Camera.GetComponent<Camera_movement>().Change_position();
+            }
+            Text_2.SetActive(false);
+            Text_1.SetActive(false);
+
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
-            Object_Col_On(Object_6_Rotor);
+            Object_Col_On(Object_14_Generator);
 
             //하이라이트 효과
-            StartCoroutine(Highlight_onoff(Object_6_Rotor));
-
+            StartCoroutine(Highlight_onoff(Object_14_Generator));
 
             //애니메이션
-            //Anim.Play("5_WTG_rotor_move");
-            StartCoroutine(Animation_play(5));
-
-            Debug.Log("act6");
+            Camera.GetComponent<Camera_movement>().act8();
+            StartCoroutine(Animation_play(6.2));
+            Debug.Log("act7");
         }
         else if (count == 7)
         {
-            //콜라이더(툴팁, 하이라이트)
-         
+            //StartCoroutine(Change_alpha(60));
+            Color c = Object_5_Tower.gameObject.GetComponent<MeshRenderer>().material.color;
+            c.a = 0.3f;
+            Object_5_Tower.gameObject.GetComponent<MeshRenderer>().material.color = c;
 
-            //하이라이트 효과
-         
+            Object_Col_On(Object_15_Power_grid);
 
-            //애니메이션
-            Camera.GetComponent<Camera_movement>().act3();
-            Anim.Play("5_1_WTG_rotor_move(hub,spinner)");
-            StartCoroutine(Animation_play(5.1));
-            //StartCoroutine(Animation_play(1));
-            //Anim.Play("1_WTG_rotation");
-            Debug.Log("act7");
+            StartCoroutine(Highlight_onoff_line(Object_p_line));
+            StartCoroutine(Highlight_onoff(Object_15_Power_grid));
+            StartCoroutine(Highlight_onoff(Object_5_Tower));
+
+            Camera.GetComponent<Camera_movement>().Change_position_1();
+
         }
+        else if (count == 8)
+        {
+            Object_Col_Off_ALL();
+        }
+
     }
 
 
@@ -189,13 +268,21 @@ public class Scene_1_1_controller : MonoBehaviour
         }
         postCount = nowCount;
     }
-    IEnumerator Rotate_turbine(int num=0)
+
+    IEnumerator Intro_anim()
     {
+        Study_title_Intro_2.GetComponent<Animation>().Play("Intro_2_animation(off)");
+        yield break;
+    }
+
+    IEnumerator Rotate_turbine(int num = 0)
+    {
+        //블레이드 회전, 1,2,3 일경우 해당 값 만큼 빠르게 회전
         while (true)
         {
-            yield return new WaitForSeconds(0.1f);
-            Object_2_blade_rotation.GetComponent<Transform>().Rotate(new Vector3(20 * num * Time.deltaTime, 0, 0));
-            
+            yield return new WaitForSeconds(0.03f);
+            Object_2_blade_rotation.GetComponent<Transform>().Rotate(new Vector3(10 * num * Time.deltaTime, 0, 0));
+
             if (num == 3)
             {
                 yield break;
@@ -203,6 +290,22 @@ public class Scene_1_1_controller : MonoBehaviour
         }
         yield break;
     }
+
+    IEnumerator Mainshaft_turbine(int num = 0)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.03f);
+            Object_7_Shaft.GetComponent<Transform>().Rotate(new Vector3(10 * num * Time.deltaTime, 0, 0));
+
+            if (num == 3)
+            {
+                yield break;
+            }
+        }
+        yield break;
+    }
+
     private void Object_Col_Off_ALL()
     {
         Object_1_blade1.GetComponent<MeshCollider>().enabled = false;
@@ -212,9 +315,9 @@ public class Scene_1_1_controller : MonoBehaviour
         Object_5_Tower.GetComponent<MeshCollider>().enabled = false;
         Object_6_Rotor.GetComponent<MeshCollider>().enabled = false;
         Object_7_Shaft.GetComponent<MeshCollider>().enabled = false;
-      
+
         Object_11_Mainshaft.GetComponent<MeshCollider>().enabled = false;
-      
+
         Object_13_Gearbox.GetComponent<MeshCollider>().enabled = false;
         Object_14_Generator.GetComponent<MeshCollider>().enabled = false;
 
@@ -224,6 +327,41 @@ public class Scene_1_1_controller : MonoBehaviour
     {
         obj.GetComponent<MeshCollider>().enabled = true;
     }
+    IEnumerator Change_alpha(int num)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.03f);
+            if (num == 60)
+            {
+                Value_alpha = Mathf.Lerp(Value_alpha, 0, 1.5f * Time.deltaTime);
+                //Change_graph_number(Data_power, Value_Power);
+                if (Value_alpha < 61)
+                {
+                    tower_alpha.a = Value_alpha;
+                    tower_material.color = tower_alpha;
+                    yield break;
+                }
+            }else if (num == 255)
+            {
+                Value_alpha = Mathf.Lerp(Value_alpha, 255, 1.5f * Time.deltaTime);
+                //Change_graph_number(Data_power, Value_Power);
+                if (Value_alpha > 254)
+                {
+                    tower_alpha.a = Value_alpha;
+                    tower_material.color = tower_alpha;
+                    yield break;
+                }
+
+            }
+            else
+            {
+                Debug.Log("alpha value is wrong");
+                yield break;
+            }
+        }
+    }
+
 
     IEnumerator Animation_play(double num)
     {
@@ -281,6 +419,11 @@ public class Scene_1_1_controller : MonoBehaviour
             //나셀 회전
             Anim.Play("6_1_WTG_Nacelle_rotation");
         }
+        else if (num == 6.2)
+        {
+            //나셀 결합
+            Anim.Play("6_2_WTG_Nacelle(return)");
+        }
         else if (num == 7)
         {
             //로터, 블레이드 분리 후 피치 베어링 회전
@@ -301,33 +444,10 @@ public class Scene_1_1_controller : MonoBehaviour
             Anim.Play("6_1_WTG_Nacelle_rotation");
 
         }
-        else if (num == 10)
+        else if (num == 11)
         {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
-        }
-        else if (num == 10)
-        {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
-        }
-        else if (num == 10)
-        {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
-        }
-        else if (num == 10)
-        {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
-        }
-        else if (num == 10)
-        {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
-        }
-        else if (num == 10)
-        {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
-        }
-        else if (num == 10)
-        {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
+            //나셀 분리 후 주축 회전
+            Anim.Play("11_WTG_nacelle,mainshaft(Rotation)");
         }
         yield break;
     }
@@ -337,6 +457,19 @@ public class Scene_1_1_controller : MonoBehaviour
         obj.GetComponent<HighlightEffect>().highlighted = true;
         yield return new WaitForSeconds(3.0f);
         obj.GetComponent<HighlightEffect>().highlighted = false;
+        yield break;
+    }
+    IEnumerator Highlight_onoff_line(GameObject obj)
+    {
+        for(int i = 0; i < obj.transform.childCount ; i++)
+        {
+            obj.transform.GetChild(i).gameObject.GetComponent<HighlightEffect>().highlighted = true;
+        }
+        yield return new WaitForSeconds(3.0f);
+        for (int i = 0; i < obj.transform.childCount; i++)
+        {
+            obj.transform.GetChild(i).gameObject.GetComponent<HighlightEffect>().highlighted = false;
+        }
         yield break;
     }
 

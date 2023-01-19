@@ -116,8 +116,7 @@ public class Scene_2_2_controller : MonoBehaviour
                     StopCoroutine(Refresh_text_value());
                     Prev_Status = false;
                 }
-
-                Study_title_Intro_2.GetComponent<Animation>().Play("Intro_2_animation(off)");
+                StartCoroutine(Intro_anim());
             }
             else if (BtnCount == 2)
             {
@@ -127,6 +126,7 @@ public class Scene_2_2_controller : MonoBehaviour
                 WTGS_Panel.SetActive(true);
                 Debug.Log("check_2");
                 StartCoroutine(Refresh_text_value());
+                Subcamera.SetActive(false);
             }
             else if (BtnCount == 6)
             {
@@ -138,6 +138,7 @@ public class Scene_2_2_controller : MonoBehaviour
                     Wind_particle.SetActive(false);
                     Graph_velocity.SetActive(false);
                     Prev_Status = false;
+                    Subcamera.SetActive(true);
                 }
                
 
@@ -152,7 +153,7 @@ public class Scene_2_2_controller : MonoBehaviour
                     red_button_2.SetActive(false);
 
                     Graph_power.SetActive(false);
-                    StopCoroutine(Refresh_pin_value());
+                    //StopCoroutine(Refresh_pin_value());
                     Change_graph_number(Data_velocity, 12);
                     Prev_Status = false;
                 }
@@ -167,6 +168,14 @@ public class Scene_2_2_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 {
+                    //object 복구
+                    StopCoroutine(Alert_value());
+
+                    //value 복구
+
+                    Value_Power = 0;
+                    Change_graph_number(Data_power, Value_Power);
+
                     Change_value(0);
                     StopCoroutine(Alert_value());
                     Prev_Status = false;
@@ -178,18 +187,24 @@ public class Scene_2_2_controller : MonoBehaviour
                 red_button_2.SetActive(true);
 
                 Graph_power.SetActive(true);
-                StartCoroutine(Refresh_pin_value());
-                Change_graph_number(Data_power, 1900);
+                Value_Power = 1800;
+                Change_graph_number(Data_power, Value_Power);
+                //StartCoroutine(Refresh_pin_value());
 
             }
             else if (BtnCount == 9)
             {
                 if (Prev_Status == true)
                 {
+                    //object 복구
+                    StopCoroutine(Alert_value());
+
+                    //value 복구
                     Value_Angle_yaw = 0;
+
                     Prev_Status = false;
                 }
-                Value_Power = 1900 + ((Value_Angle_yaw) / 30) * 200;
+                Value_Power = 1800 + ((Value_Angle_yaw) / 30) * 300;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(30);
                 StartCoroutine(Alert_value());
@@ -198,20 +213,31 @@ public class Scene_2_2_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 {
-                    Change_value(30);
+                    //object 복구
                     StopCoroutine(Alert_value());
+
+                    //value 복구
+                    Value_Power = 1800;
+                    Change_graph_number(Data_power, Value_Power);
+
+                    Change_value(30);
                     Prev_Status = false;
                 }
-                StopCoroutine(Alert_value());
+                //value 변경
                 Value_Angle_yaw = 30;
+                Value_Power = 1800 + ((Value_Angle_yaw) / 30) * 300;
+                Change_graph_number(Data_power, Value_Power);
+                StopCoroutine(Alert_value());
             }
             else if (BtnCount == 11)
             {
                 if (Prev_Status == true)
                 {
+                    //value 복구
                     Value_Angle_yaw = 30;
                     Prev_Status = false;
                 }
+                Value_Angle_yaw = 30;
                 Value_Power = 1500 + ((Value_Angle_yaw - 30) / 90) * 600;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(120);
@@ -220,11 +246,22 @@ public class Scene_2_2_controller : MonoBehaviour
             else if (BtnCount == 12)
             {
                 if (Prev_Status == true)
-                {
+                { //object 복구
+                    StopCoroutine(Alert_value());
+
+                    //value 복구
+                    Value_Angle_yaw = 30;
+                    Value_Power = 1500;
+                    Change_graph_number(Data_power, Value_Power);
+
                     Change_value(120);
+
                     Prev_Status = false;
                 }
+                //value 변경
                 Value_Angle_yaw = 120;
+                Value_Power = 1500 + ((Value_Angle_yaw - 30) / 90) * 600;
+                Change_graph_number(Data_power, Value_Power);
             }
             else if (BtnCount == 13)
             {
@@ -232,7 +269,10 @@ public class Scene_2_2_controller : MonoBehaviour
 
                 if (Prev_Status == true)
                 {
-                    Change_value(0 );
+                    //value 복구
+                    Value_Angle_yaw = 120;
+                    //object 복구
+                    StopCoroutine(Alert_value());
                     Prev_Status = false;
                 }
                 Value_Power = 600 + ((Value_Angle_yaw - 120) / 150) * 1500;
@@ -242,15 +282,46 @@ public class Scene_2_2_controller : MonoBehaviour
             }
             else if (BtnCount == 14)
             {
+                if (Prev_Status == true)
+                { //object 복구
+                    StopCoroutine(Alert_value());
+
+                    //value 복구
+                    Value_Angle_yaw = 120;
+                    Value_Power = 600;
+                    Change_graph_number(Data_power, Value_Power);
+
+                    Change_value(270);
+
+                    Prev_Status = false;
+                }
+                //value 변경
                 Value_Angle_yaw = 270;
+                Value_Power = 600 + ((Value_Angle_yaw - 120) / 150) * 1500;
+                Change_graph_number(Data_power, Value_Power);
             }
             else if (BtnCount == 15)
             {
+                if (Prev_Status == true)
+                { 
+                    Change_value(270);
 
+                    Prev_Status = false;
+                }
+                Value_Angle_yaw = 270;
                 Value_Power = 1000 + ((270 - Value_Angle_yaw) / 270) * 1100;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(0);
                 StartCoroutine(Alert_value());
+            }
+            else if (BtnCount == 16)
+            {
+
+                //value 변경
+                Value_Angle_yaw = 0;
+                Change_value(0);
+                StartCoroutine(Alert_value());
+                Stop();
             }
             PC_Image_Array[BtnCount].SetActive(true);
             PostCount = BtnCount;
@@ -258,6 +329,9 @@ public class Scene_2_2_controller : MonoBehaviour
             Debug.Log("FALSE");
         }
 
+
+        Gauge_pin.GetComponent<RectTransform>().localRotation = Quaternion.Euler(new Vector3(0, 0, 0 - 100 * (Value_Power / 2100)));
+        Wind_direction_pin.GetComponent<RectTransform>().localRotation = Quaternion.Euler(new Vector3(0, 0, -Value_Angle_yaw));
         //목표 요각도, 풍향  변경
         if (flag_num == true)
         {
@@ -307,7 +381,14 @@ public class Scene_2_2_controller : MonoBehaviour
 
         }
     }
-    IEnumerator Alert_value()
+
+    IEnumerator Intro_anim()
+    {
+        Study_title_Intro_2.GetComponent<Animation>().Play("Intro_2_animation(off)");
+        yield break;
+    }
+
+        IEnumerator Alert_value()
     {
         while (true)
         {
@@ -357,7 +438,7 @@ public class Scene_2_2_controller : MonoBehaviour
     {
         while (true)
         {
-            Gauge_pin.GetComponent<RectTransform>().localRotation = Quaternion.Euler(new Vector3(0, 0, 0 - 100 * (Value_Power / 2100)));
+           // Gauge_pin.GetComponent<RectTransform>().localRotation = Quaternion.Euler(new Vector3(0, 0, 0 - 100 * (Value_Power / 2100)));
             Wind_direction_pin.GetComponent<RectTransform>().localRotation = Quaternion.Euler(new Vector3(0, 0, -Value_Angle_yaw));
             yield return new WaitForSeconds(0.3f);
         }

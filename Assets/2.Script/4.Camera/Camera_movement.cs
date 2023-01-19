@@ -65,6 +65,7 @@ public class Camera_movement : MonoBehaviour
     public Transform subTarget5;
     public Transform subTarget6;
     public Transform subTarget7;
+    public Transform subTarget8; //타워 보이는 위치
 
     /// <summary>
     /// 부드럽게 이동될 감도
@@ -102,6 +103,8 @@ public class Camera_movement : MonoBehaviour
     public GameObject View_target_5;        //증속기
     public GameObject View_target_6;        //요 시스템
     public GameObject View_target_7;        //주축
+    public GameObject View_target_8;        //발전기
+    public GameObject View_target_9;        //발전기
 
     private bool Seq_start = false;
     private bool mouse_active = false;
@@ -345,6 +348,35 @@ public class Camera_movement : MonoBehaviour
         SetTarget(View_target);
         Seq_start = true;
     }
+    public void act8()//발전기
+    {
+        Debug.Log("Camera way 8");
+        mouse_active = false;
+        View_target = View_target_8;
+        SetTarget(View_target);
+        Seq_start = true;
+    }
+
+
+    public void Change_position()//주축
+    {
+        //나셀로 시점 전환
+        mouse_active = false;
+        subTarget = subTarget5;
+
+        SetTarget(View_target);
+        Seq_start = true;
+    }
+    public void Change_position_1()//타워
+    {
+        //나셀로 시점 전환
+        mouse_active = false;
+        subTarget = subTarget8;
+        View_target = View_target_9;
+
+        SetTarget(View_target);
+        Seq_start = true;
+    }
 
     public void Clear()
     {
@@ -362,7 +394,7 @@ public class Camera_movement : MonoBehaviour
         camera_rot_z = camera_transform.rotation.eulerAngles.z;
     }
 
-    public void Reset()
+    public void Reset_1()
     {
         xmove = 0;
         ymove = 0;
