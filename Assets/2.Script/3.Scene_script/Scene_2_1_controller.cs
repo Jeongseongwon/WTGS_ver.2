@@ -13,13 +13,15 @@ public class Scene_2_1_controller : MonoBehaviour
 
     //2-1 Gameobject
     [Header("===== Gameobject =====")]
-    public GameObject Wind_particle;
     public GameObject Blade_1;
     public GameObject Blade_2;
     public GameObject Blade_3;
     public GameObject WTGS_Panel;
     public GameObject Camera;
     public GameObject Subcamera;
+    public GameObject wind_slow;
+    public GameObject wind_fast;
+    public GameObject Object_2_blade_rotation;
 
     //2-1 panel
     [Header("===== Panel obejct =====")]
@@ -113,10 +115,19 @@ public class Scene_2_1_controller : MonoBehaviour
             {
                 //카메라 움직이는거, 옆에 패널 애니메이션 추가
                 Camera.GetComponent<Animation>().Play("Camera_move(intro,2_1)");
-                Subcamera.SetActive(true);
                 WTGS_Panel.SetActive(true);
                 Debug.Log("check_2");
                 StartCoroutine(Refresh_text_value());
+            }
+            else if (BtnCount == 6)
+            {
+                if (Prev_Status == true)
+                {
+                    Subcamera.SetActive(false);
+
+                    Prev_Status = false;
+                }
+
             }
             else if (BtnCount == 7)
             {
@@ -125,10 +136,15 @@ public class Scene_2_1_controller : MonoBehaviour
                     //바꿔야할부분
                     Emergency.SetActive(false);
 
-                    Wind_particle.SetActive(false);
+                    wind_slow.SetActive(false);
                     Graph_velocity.SetActive(false);
+                    StopCoroutine(Rotate_turbine(1));
+                    Change_graph_number(Data_velocity, 0);
+
                     Prev_Status =false;
                 }
+
+                Subcamera.SetActive(true);
 
             }
             else if (BtnCount == 8)
@@ -142,14 +158,19 @@ public class Scene_2_1_controller : MonoBehaviour
                     red_button_2.SetActive(false);
 
                     Graph_power.SetActive(false);
+
                     StopCoroutine(Refresh_text_value());
+
+
                     Prev_Status = false;
                 }
                 Emergency.SetActive(true);
 
-                Wind_particle.SetActive(true);
+                wind_slow.SetActive(true);
                 Graph_velocity.SetActive(true);
                 Change_graph_number(Data_velocity, 3);
+                StartCoroutine(Rotate_turbine(1));
+                StartCoroutine(Refresh_pin_value());
 
             }
             else if (BtnCount == 9)
@@ -166,13 +187,30 @@ public class Scene_2_1_controller : MonoBehaviour
                 red_button_2.SetActive(true);
 
                 Graph_power.SetActive(true);
-                    ;
                 Change_graph_number(Data_power, 400);
 
             }
             else if (BtnCount == 10)
             {
+                if (Prev_Status == true)
+                {
+                    //object 복구
+                    StopCoroutine(Alert_value());
+                    wind_fast.SetActive(false);
+                    wind_slow.SetActive(true);
 
+                    //value 복구
+                    Value_Angle_pitch = 30;
+                    Change_graph_number(Data_velocity, 3);
+                    Value_Power = 400;
+                    Change_graph_number(Data_power, Value_Power);
+
+
+                    StopCoroutine(Rotate_turbine(4));
+                    StartCoroutine(Rotate_turbine(1));
+
+                    Prev_Status = false;
+                }
                 Value_Power = 400 + ((30 - Value_Angle_pitch) / 30) * 600;
                 Change_graph_number(Data_power, Value_Power);
                 StartCoroutine(Alert_value());
@@ -191,9 +229,26 @@ public class Scene_2_1_controller : MonoBehaviour
                 Change_graph_number(Data_velocity, 12);
                 Value_Power = 1700;
                 Change_graph_number(Data_power, Value_Power);
+
+                StartCoroutine(Rotate_turbine(4));
+                wind_fast.SetActive(true);
+                wind_slow.SetActive(false);
             }
             else if (BtnCount == 12)
             {
+                if (Prev_Status == true)
+                {
+                    //object 복구
+                    StopCoroutine(Alert_value());
+
+                    //value 복구
+                    Value_Angle_pitch = 0;
+                    Change_graph_number(Data_velocity, 12);
+                    Value_Power = 1700;
+                    Change_graph_number(Data_power, Value_Power);
+
+                    Prev_Status = false;
+                }
                 Value_Power = 1700 + ((Value_Angle_pitch) / 45) * 400;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(45);
@@ -215,6 +270,22 @@ public class Scene_2_1_controller : MonoBehaviour
             }
             else if (BtnCount == 14)
             {
+                if (Prev_Status == true)
+                {
+                    //object 복구
+                    StopCoroutine(Alert_value());
+                    wind_fast.SetActive(false);
+
+                    //value 복구
+                    Value_Angle_pitch = 45;
+                    Change_graph_number(Data_velocity, 25);
+                    Value_Power = 2500;
+                    Change_graph_number(Data_power, Value_Power);
+
+                    Prev_Status = false;
+                }
+
+
                 Value_Power = 2500 - ((Value_Angle_pitch - 45) / 45) * 400;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(90);
@@ -236,11 +307,30 @@ public class Scene_2_1_controller : MonoBehaviour
             }
             else if (BtnCount == 16)
             {
+                if (Prev_Status == true)
+                {
+                    //object 복구
+                    StopCoroutine(Alert_value());
+                    wind_fast.SetActive(false);
+
+                    //value 복구
+                    Value_Angle_pitch = 90;
+                    Change_graph_number(Data_velocity, 9);
+                    Value_Power = 700;
+                    Change_graph_number(Data_power, Value_Power);
+
+                    Prev_Status = false;
+                }
 
                 Value_Power = 700 + ((90 - Value_Angle_pitch) / 60) * 1400;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(30);
                 StartCoroutine(Alert_value());
+            }
+            else if (BtnCount == 17)
+            {
+                StopCoroutine(Alert_value());
+                Stop();
             }
 
 
@@ -338,6 +428,21 @@ public class Scene_2_1_controller : MonoBehaviour
         Blade_1.GetComponent<Transform>().Rotate(new Vector3(0, -10, 0));
         Blade_2.GetComponent<Transform>().Rotate(new Vector3(0, -10, 0));
         Blade_3.GetComponent<Transform>().Rotate(new Vector3(0, -10, 0));
+    }
+    IEnumerator Rotate_turbine(int num = 0)
+    {
+        //블레이드 회전, 1,2,3 일경우 해당 값 만큼 빠르게 회전
+        while (true)
+        {
+            yield return new WaitForSeconds(0.03f);
+            Object_2_blade_rotation.GetComponent<Transform>().Rotate(new Vector3(10 * num * Time.deltaTime, 0, 0));
+
+            if (num == 3)
+            {
+                yield break;
+            }
+        }
+        yield break;
     }
     IEnumerator Refresh_text_value()
     {
@@ -455,7 +560,7 @@ public class Scene_2_1_controller : MonoBehaviour
         Value_Angle_pitch_target = 0;
         Value_Velocity_wind = 0;
         Value_Power = 0; 
-        Wind_particle.SetActive(false);
+        wind_slow.SetActive(false);
         Graph_velocity.SetActive(false);
         Graph_power.SetActive(false);
         Data_power.GetComponent<StreamingGraph>().min = 0;
@@ -466,7 +571,7 @@ public class Scene_2_1_controller : MonoBehaviour
 
     public void START()
     {
-        Wind_particle.SetActive(true);
+        wind_slow.SetActive(true);
         //Graph_velocity.SetActive(true);
         //Graph_power.SetActive(true);
     }
