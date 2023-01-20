@@ -43,7 +43,7 @@ public class Loading_Percent : MonoBehaviour
     {
         Set_FillAmount(1);
         isEnded = true;
-        SceneManager.LoadSceneAsync("Main");
+        SceneManager.LoadSceneAsync("(dev)_Main");    //화면 접고 애니메이션 재생
         Debug.Log("END");
     }
 

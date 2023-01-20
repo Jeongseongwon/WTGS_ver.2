@@ -8691,7 +8691,7 @@
     "m_AlphaMode": 0,
     "m_RenderFace": 0,
     "m_AlphaClip": false,
-    "m_CastShadows": false,
+    "m_CastShadows": true,
     "m_ReceiveShadows": true,
     "m_CustomEditorGUI": "OccaSoftware.SuperSimpleSkybox.Editor.SkyboxEditorGUI",
     "m_SupportVFX": false

@@ -37,6 +37,8 @@ public class Scene_2_1_controller : MonoBehaviour
     public GameObject Data_velocity;
     public GameObject Data_power;
     public GameObject Gauge_pin;
+    public GameObject Add_button;
+    public GameObject Reduce_button;
 
 
     //2-1 Text
@@ -116,6 +118,8 @@ public class Scene_2_1_controller : MonoBehaviour
                 //카메라 움직이는거, 옆에 패널 애니메이션 추가
                 Camera.GetComponent<Animation>().Play("Camera_move(intro,2_1)");
                 WTGS_Panel.SetActive(true);
+                Button_active_off(Add_button);
+                Button_active_off(Reduce_button);
                 Debug.Log("check_2");
                 StartCoroutine(Refresh_text_value());
             }
@@ -152,6 +156,7 @@ public class Scene_2_1_controller : MonoBehaviour
                 if (Prev_Status == true)
                 {
 
+
                     Green_button_1.SetActive(true);
                     Green_button_2.SetActive(true);
                     red_button_1.SetActive(false);
@@ -177,6 +182,8 @@ public class Scene_2_1_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 {
+                    Button_active_off(Add_button);
+                    Button_active_off(Reduce_button);
                     StopCoroutine(Alert_value());
 
                     Prev_Status = false;
@@ -211,6 +218,8 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+                Button_active_on(Add_button);
+                Button_active_on(Reduce_button);
                 Value_Power = 400 + ((30 - Value_Angle_pitch) / 30) * 600;
                 Change_graph_number(Data_power, Value_Power);
                 StartCoroutine(Alert_value());
@@ -223,7 +232,9 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
-
+                
+                Button_active_off(Add_button);
+                Button_active_off(Reduce_button);
                 StopCoroutine(Alert_value());
                 Value_Angle_pitch = 0;
                 Change_graph_number(Data_velocity, 12);
@@ -249,6 +260,8 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+                Button_active_on(Add_button);
+                Button_active_on(Reduce_button);
                 Value_Power = 1700 + ((Value_Angle_pitch) / 45) * 400;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(45);
@@ -262,6 +275,8 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+                Button_active_off(Add_button);
+                Button_active_off(Reduce_button);
                 StopCoroutine(Alert_value());
                 Value_Angle_pitch = 45;
                 Change_graph_number(Data_velocity, 25);
@@ -286,6 +301,8 @@ public class Scene_2_1_controller : MonoBehaviour
                 }
 
 
+                Button_active_on(Add_button);
+                Button_active_on(Reduce_button);
                 Value_Power = 2500 - ((Value_Angle_pitch - 45) / 45) * 400;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(90);
@@ -299,6 +316,8 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+                Button_active_off(Add_button);
+                Button_active_off(Reduce_button);
                 StopCoroutine(Alert_value());
                 Value_Angle_pitch = 90;
                 Change_graph_number(Data_velocity, 9);
@@ -322,6 +341,8 @@ public class Scene_2_1_controller : MonoBehaviour
                     Prev_Status = false;
                 }
 
+                Button_active_on(Add_button);
+                Button_active_on(Reduce_button);
                 Value_Power = 700 + ((90 - Value_Angle_pitch) / 60) * 1400;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(30);
@@ -329,6 +350,8 @@ public class Scene_2_1_controller : MonoBehaviour
             }
             else if (BtnCount == 17)
             {
+                Button_active_off(Add_button);
+                Button_active_off(Reduce_button);
                 StopCoroutine(Alert_value());
                 Stop();
             }
@@ -508,6 +531,16 @@ public class Scene_2_1_controller : MonoBehaviour
 
     }
 
+    private void Button_active_off(GameObject obj)
+    {
+        obj.GetComponent<UI_button_2_1>().enabled = false;
+        obj.GetComponent<UI_button_audio>().enabled = false;
+    }
+    private void Button_active_on(GameObject obj)
+    {
+        obj.GetComponent<UI_button_2_1>().enabled = true;
+        obj.GetComponent<UI_button_audio>().enabled = false;
+    }
 
     public void Set_reduce_pitch()
     {

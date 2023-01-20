@@ -36,6 +36,8 @@ public class Scene_2_2_controller : MonoBehaviour
     public GameObject Gauge_pin;
     public GameObject Wind_direction_pin;
     public GameObject Wind_direction_pin_target;
+    public GameObject Add_button;
+    public GameObject Reduce_button;
 
 
     //2-1 Text
@@ -122,6 +124,8 @@ public class Scene_2_2_controller : MonoBehaviour
             {
                 //카메라 움직이는거, 옆에 패널 애니메이션 추가
                 Camera.GetComponent<Animation>().Play("Camera_move(intro,2_1)");
+                Button_active_off(Add_button);
+                Button_active_off(Reduce_button);
                 Subcamera.SetActive(true);
                 WTGS_Panel.SetActive(true);
                 Debug.Log("check_2");
@@ -169,6 +173,8 @@ public class Scene_2_2_controller : MonoBehaviour
                 if (Prev_Status == true)
                 {
                     //object 복구
+                    Button_active_off(Add_button);
+                    Button_active_off(Reduce_button);
                     StopCoroutine(Alert_value());
 
                     //value 복구
@@ -204,6 +210,9 @@ public class Scene_2_2_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+
+                Button_active_on(Add_button);
+                Button_active_on(Reduce_button);
                 Value_Power = 1800 + ((Value_Angle_yaw) / 30) * 300;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(30);
@@ -214,6 +223,7 @@ public class Scene_2_2_controller : MonoBehaviour
                 if (Prev_Status == true)
                 {
                     //object 복구
+                   
                     StopCoroutine(Alert_value());
 
                     //value 복구
@@ -223,6 +233,8 @@ public class Scene_2_2_controller : MonoBehaviour
                     Change_value(30);
                     Prev_Status = false;
                 }
+                Button_active_off(Add_button);
+                Button_active_off(Reduce_button);
                 //value 변경
                 Value_Angle_yaw = 30;
                 Value_Power = 1800 + ((Value_Angle_yaw) / 30) * 300;
@@ -237,6 +249,8 @@ public class Scene_2_2_controller : MonoBehaviour
                     Value_Angle_yaw = 30;
                     Prev_Status = false;
                 }
+                Button_active_on(Add_button);
+                Button_active_on(Reduce_button);
                 Value_Angle_yaw = 30;
                 Value_Power = 1500 + ((Value_Angle_yaw - 30) / 90) * 600;
                 Change_graph_number(Data_power, Value_Power);
@@ -247,6 +261,7 @@ public class Scene_2_2_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 { //object 복구
+                    
                     StopCoroutine(Alert_value());
 
                     //value 복구
@@ -258,6 +273,8 @@ public class Scene_2_2_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+                Button_active_off(Add_button);
+                Button_active_off(Reduce_button);
                 //value 변경
                 Value_Angle_yaw = 120;
                 Value_Power = 1500 + ((Value_Angle_yaw - 30) / 90) * 600;
@@ -275,6 +292,8 @@ public class Scene_2_2_controller : MonoBehaviour
                     StopCoroutine(Alert_value());
                     Prev_Status = false;
                 }
+                Button_active_on(Add_button);
+                Button_active_on(Reduce_button);
                 Value_Power = 600 + ((Value_Angle_yaw - 120) / 150) * 1500;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(270);
@@ -284,6 +303,7 @@ public class Scene_2_2_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 { //object 복구
+                    
                     StopCoroutine(Alert_value());
 
                     //value 복구
@@ -295,6 +315,8 @@ public class Scene_2_2_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+                Button_active_off(Add_button);
+                Button_active_off(Reduce_button);
                 //value 변경
                 Value_Angle_yaw = 270;
                 Value_Power = 600 + ((Value_Angle_yaw - 120) / 150) * 1500;
@@ -308,6 +330,8 @@ public class Scene_2_2_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+                Button_active_on(Add_button);
+                Button_active_on(Reduce_button);
                 Value_Angle_yaw = 270;
                 Value_Power = 1000 + ((270 - Value_Angle_yaw) / 270) * 1100;
                 Change_graph_number(Data_power, Value_Power);
@@ -318,6 +342,8 @@ public class Scene_2_2_controller : MonoBehaviour
             {
 
                 //value 변경
+                Button_active_off(Add_button);
+                Button_active_off(Reduce_button);
                 Value_Angle_yaw = 0;
                 Change_value(0);
                 StartCoroutine(Alert_value());
@@ -442,6 +468,17 @@ public class Scene_2_2_controller : MonoBehaviour
             Wind_direction_pin.GetComponent<RectTransform>().localRotation = Quaternion.Euler(new Vector3(0, 0, -Value_Angle_yaw));
             yield return new WaitForSeconds(0.3f);
         }
+    }
+
+    private void Button_active_off(GameObject obj)
+    {
+        obj.GetComponent<UI_button_2_2>().enabled = false;
+        obj.GetComponent<UI_button_audio>().enabled = false;
+    }
+    private void Button_active_on(GameObject obj)
+    {
+        obj.GetComponent<UI_button_2_2>().enabled = true;
+        obj.GetComponent<UI_button_audio>().enabled = false;
     }
     public void Set_add_pitch()
     {
