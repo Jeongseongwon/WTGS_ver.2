@@ -69,6 +69,7 @@ public class Scene_2_2_controller : MonoBehaviour
         Value_Power = 100;
 
         StartCoroutine(Startact());
+        Manager_audio.instance.Get_intro();
     }
 
     private void PC_ON()

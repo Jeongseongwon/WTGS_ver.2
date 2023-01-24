@@ -69,6 +69,7 @@ public class Scene_2_1_controller : MonoBehaviour
         Value_Velocity_wind = 100;
         Value_Power = 100;
         StartCoroutine(Startact());
+        Manager_audio.instance.Get_intro();
     }
     private void PC_ON()
     {

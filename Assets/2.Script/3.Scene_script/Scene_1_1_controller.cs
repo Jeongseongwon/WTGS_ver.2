@@ -63,6 +63,7 @@ public class Scene_1_1_controller : MonoBehaviour
         tower_material = Object_5_Tower.gameObject.GetComponent<MeshRenderer>().material;
         tower_alpha = tower_material.color;
         Value_alpha = tower_alpha.a;
+        Manager_audio.instance.Get_intro();
     }
     IEnumerator StartAct()
     {

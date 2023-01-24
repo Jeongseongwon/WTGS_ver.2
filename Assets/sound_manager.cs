@@ -5,14 +5,38 @@ using UnityEngine;
 public class sound_manager : MonoBehaviour
 {
 
-    public AudioSource[] music;
+    private AudioSource Hover;
+    private AudioSource Click;
+    private AudioSource BGM;
 
-    public void SetMusicVolume(float volume)
+    private GameObject Scenecontroller;
+    //private AudioSource Hover;
+
+
+    private void OnLevelWasLoaded(int level)
     {
-        music[0].volume = volume;
+        Scenecontroller = GameObject.FindGameObjectWithTag("Scene_controller");
+        Debug.Log("씬 전환시 호출 확인");
     }
-    public void SEtNarationvolume(float volume)
+    private void Start()
     {
-        music[1].volume = volume;
+        
+    }
+    public void Set_all_sound_volume(float volume)
+    {
+        Hover.volume = volume;
+        Click.volume = volume;
+        BGM.volume = volume;
+    }
+
+    public void Set_effect_sound_volume(float volume)
+    {
+        Hover.volume = volume;
+        Click.volume = volume;
+    }
+
+    public void Set_narration_volume(float volume)
+    {
+        Scenecontroller.GetComponent<AudioSource>().volume = volume;
     }
 }

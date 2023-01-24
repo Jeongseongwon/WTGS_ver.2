@@ -58,6 +58,7 @@ public class Scene_1_2_controller : MonoBehaviour
         Camera.GetComponent<Camera_movement>().enabled = false;
         StartCoroutine(StartAct());
         Object_Col_Off_ALL();
+        Manager_audio.instance.Get_intro();
     }
     IEnumerator StartAct()
     {
