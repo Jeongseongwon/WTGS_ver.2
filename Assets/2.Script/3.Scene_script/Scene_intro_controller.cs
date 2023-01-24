@@ -58,7 +58,7 @@ public class Scene_intro_controller : MonoBehaviour
         isEnded = true;
         Loading.SetActive(false);
         StartCoroutine(Camera_animation());
-        
+        Manager_audio.instance.Get_bgm();
         Debug.Log("END");
     }
 

@@ -29,11 +29,14 @@ public class Manager_audio : MonoBehaviour
 
     void Start()
     {
-        Scenecontroller = GameObject.FindGameObjectWithTag("Scene_controller");
+        if (GameObject.FindGameObjectWithTag("Scene_controller")!=null)
+        {
+            Scenecontroller = GameObject.FindGameObjectWithTag("Scene_controller");
+            Narration = Scenecontroller.GetComponent<AudioSource>();
+        }
         Hover = this.transform.GetChild(0).gameObject.GetComponent<AudioSource>();
         Click = this.transform.GetChild(1).gameObject.GetComponent<AudioSource>();
         BGM = this.transform.GetChild(2).gameObject.GetComponent<AudioSource>();
-        Narration = Scenecontroller.GetComponent<AudioSource>();
         Intro = this.transform.GetChild(3).gameObject.GetComponent<AudioSource>();
     }
 
@@ -54,11 +57,19 @@ public class Manager_audio : MonoBehaviour
         Intro.Play();
         //Debug.Log("click");
     }
+    public void Get_bgm()
+    {
+        BGM.Play();
+        //Debug.Log("click");
+    }
 
     private void OnLevelWasLoaded(int level)
     {
-        Scenecontroller = GameObject.FindGameObjectWithTag("Scene_controller");
-        Narration = Scenecontroller.GetComponent<AudioSource>();
+        if (GameObject.FindGameObjectWithTag("Scene_controller") != null)
+        {
+            Scenecontroller = GameObject.FindGameObjectWithTag("Scene_controller");
+            Narration = Scenecontroller.GetComponent<AudioSource>();
+        }
         Hover = this.transform.GetChild(0).gameObject.GetComponent<AudioSource>();
         Click = this.transform.GetChild(1).gameObject.GetComponent<AudioSource>();
         BGM = this.transform.GetChild(2).gameObject.GetComponent<AudioSource>();
@@ -67,17 +78,18 @@ public class Manager_audio : MonoBehaviour
     }
     public void Set_all_sound_volume(float volume)
     {
-        Debug.Log("Slider_all");
         Hover.volume = volume;
         Click.volume = volume;
         BGM.volume = volume;
-        Narration.volume = volume;
+        if (Scenecontroller != null)
+        {
+            Narration.volume = volume;
+        }
         Intro.volume = volume;
     }
 
     public void Set_effect_sound_volume(float volume)
     {
-        Debug.Log("Slider_eff");
         Hover.volume = volume;
         Click.volume = volume;
         Intro.volume = volume;
@@ -85,8 +97,10 @@ public class Manager_audio : MonoBehaviour
 
     public void Set_narration_volume(float volume)
     {
-        Debug.Log("Slider_nar");
-        Narration.volume = volume;
+        if (Scenecontroller != null)
+        {
+            Narration.volume = volume;
+        }
     }
     public void Set_BGM_volume(float volume)
     {
