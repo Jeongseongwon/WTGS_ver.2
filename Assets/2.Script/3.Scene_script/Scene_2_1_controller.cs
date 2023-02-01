@@ -88,7 +88,7 @@ public class Scene_2_1_controller : MonoBehaviour
     {
         Refresh_text_value();
         BtnCount = gameObject.GetComponent<Script_controller>().btnCount;
-        
+
         if (PostCount != BtnCount)
         {
 
@@ -105,14 +105,14 @@ public class Scene_2_1_controller : MonoBehaviour
         //}
         if (flag == true)
         {
-             if (BtnCount == 0)
+            if (BtnCount == 0)
             {
 
 
             }
             if (BtnCount == 1)
             {
-                Study_title_Intro_2.GetComponent<Animation>().Play("Intro_2_animation(off)");
+                StartCoroutine(Animation_play(0));
             }
             else if (BtnCount == 2)
             {
@@ -136,7 +136,7 @@ public class Scene_2_1_controller : MonoBehaviour
             }
             else if (BtnCount == 7)
             {
-             if(Prev_Status==true)
+                if (Prev_Status == true)
                 {
                     //바꿔야할부분
                     Emergency.SetActive(false);
@@ -146,7 +146,7 @@ public class Scene_2_1_controller : MonoBehaviour
                     StopCoroutine(Rotate_turbine(1));
                     Change_graph_number(Data_velocity, 0);
 
-                    Prev_Status =false;
+                    Prev_Status = false;
                 }
 
                 Subcamera.SetActive(true);
@@ -233,7 +233,7 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
-                
+
                 Button_active_off(Add_button);
                 Button_active_off(Reduce_button);
                 StopCoroutine(Alert_value());
@@ -365,24 +365,24 @@ public class Scene_2_1_controller : MonoBehaviour
             Debug.Log("FALSE");
         }
 
-            //목표 요각도, 게이지  변경
-            if (flag_num == true)
-            {
-                Value_Angle_pitch_target = Mathf.Lerp(Value_Angle_pitch_target, Value_max, 1.5f * Time.deltaTime);
+        //목표 요각도, 게이지  변경
+        if (flag_num == true)
+        {
+            Value_Angle_pitch_target = Mathf.Lerp(Value_Angle_pitch_target, Value_max, 1.5f * Time.deltaTime);
 
             //Change_graph_number(Data_power, Value_Power);
             if (Value_Angle_pitch_target - Value_max <= 0.1 && Value_Angle_pitch_target - Value_max >= -0.1)
-                {
-                    //Debug.Log("Done");
-                    flag_num = false;
-                }
-
+            {
+                //Debug.Log("Done");
+                flag_num = false;
             }
-        
+
+        }
+
 
         //데이터 전용 타이머?
     }
-    IEnumerator Startact() 
+    IEnumerator Startact()
     {
         yield return new WaitForSeconds(2.0f);
         Study_title_Intro_2.SetActive(true);
@@ -410,14 +410,24 @@ public class Scene_2_1_controller : MonoBehaviour
             data.GetComponent<StreamingGraph>().max = (num + 100f) * 0.05f;
 
         }
-        else if (num==0)
+        else if (num == 0)
         {
             data.GetComponent<StreamingGraph>().min = 0;
             data.GetComponent<StreamingGraph>().max = 0;
 
         }
     }
-    IEnumerator  Alert_value()
+    IEnumerator Animation_play(double num)
+    {
+        if (num == 0)
+        {
+            //인트로 off
+            Study_title_Intro_2.GetComponent<Animation>().Play("Intro_2_animation(off)");
+        }
+
+        yield break;
+    }
+    IEnumerator Alert_value()
     {
         while (true)
         {
@@ -488,7 +498,7 @@ public class Scene_2_1_controller : MonoBehaviour
     }
     public void Set_add_pitch()
     {
-        Value_Angle_pitch+=5;
+        Value_Angle_pitch += 5;
         if (BtnCount == 10)
         {
             Value_Power = 400 + ((30 - Value_Angle_pitch) / 30) * 600;
@@ -545,7 +555,7 @@ public class Scene_2_1_controller : MonoBehaviour
 
     public void Set_reduce_pitch()
     {
-        Value_Angle_pitch-=5;
+        Value_Angle_pitch -= 5;
         if (BtnCount == 10)
         {
             Value_Power = 400 + ((30 - Value_Angle_pitch) / 30) * 600;
@@ -584,8 +594,8 @@ public class Scene_2_1_controller : MonoBehaviour
                 gameObject.GetComponent<Script_controller>().NextBtn();
             }
         }
-      
-        
+
+
     }
 
     public void Stop()
@@ -593,7 +603,7 @@ public class Scene_2_1_controller : MonoBehaviour
         Value_Angle_pitch = 0;
         Value_Angle_pitch_target = 0;
         Value_Velocity_wind = 0;
-        Value_Power = 0; 
+        Value_Power = 0;
         wind_slow.SetActive(false);
         Graph_velocity.SetActive(false);
         Graph_power.SetActive(false);
