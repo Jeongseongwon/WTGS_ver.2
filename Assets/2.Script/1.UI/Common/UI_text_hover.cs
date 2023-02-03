@@ -9,8 +9,8 @@ public class UI_text_hover : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     //평가화면 문항에서 쓰는 스크립트
     //호버 시 텍스트  볼드  및 스크립트 컨트롤러로 데이터 저장
     //answer true = 정답, false = 오답
-    //Evaluation 찾고, child 0 : correct, child 1 : wrong 메시지 배치
-    private string Object_name;
+    
+
     private GameObject SceneController;
     private GameObject Evaluation;
 
@@ -19,36 +19,38 @@ public class UI_text_hover : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     {
         if (Answer == true)
         {
-            Evaluation.transform.GetChild(0).gameObject.GetComponent<Animation>().Play();
-            //정답 애니메이션 재생
-            //스크립트 컨트롤러 데이터 전송
+            //Evaluation.transform.GetChild(0).gameObject.GetComponent<Animation>().Play();
+
+            SceneController.GetComponent<Scene_1_3_controller>().Clicked(true);
+            Debug.Log("정답 클릭");
+            //정답 활성화
         }
         else if(Answer == false)
         {
-            Evaluation.transform.GetChild(1).gameObject.GetComponent<Animation>().Play();
-            //오답 애니메이션 재생
-            //스크립트 컨트롤러 데이터 전송
-        }
-        //SceneController. 데이터 전송 및 메시지 애니메이션 재생
+            //Evaluation.transform.GetChild(1).gameObject.GetComponent<Animation>().Play();
 
+            SceneController.GetComponent<Scene_1_3_controller>().Clicked(false);
+
+           
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         this.GetComponent<Text>().fontStyle = FontStyle.Bold;
+        this.GetComponent<Text>().color = Color.yellow;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         this.GetComponent<Text>().fontStyle = FontStyle.Normal;
+        this.GetComponent<Text>().color = Color.white;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Object_name = this.gameObject.name;
-
-        Evaluation = GameObject.Find("Evaluation");
+        //Evaluation = GameObject.Find("Evaluation");
         SceneController = GameObject.FindGameObjectWithTag("Scene_controller");
     }
 }
