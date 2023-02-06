@@ -62,6 +62,9 @@ public class Scene_2_1_controller : MonoBehaviour
     private bool flag_num = false;
     bool Prev_Status = false;
     // Start is called before the first frame update
+    public ParticleSystem windspeed;
+    public AudioSource strong_wind;
+    public AudioSource low_wind;
     void Start()
     {
         Value_Angle_pitch = 30;
@@ -86,6 +89,7 @@ public class Scene_2_1_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var ps = windspeed.main;
         Refresh_text_value();
         BtnCount = gameObject.GetComponent<Script_controller>().btnCount;
         
@@ -128,6 +132,7 @@ public class Scene_2_1_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 {
+                    low_wind.Stop();
                     Subcamera.SetActive(false);
 
                     Prev_Status = false;
@@ -148,6 +153,7 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status =false;
                 }
+               low_wind.Play();
 
                 Subcamera.SetActive(true);
 
@@ -183,6 +189,8 @@ public class Scene_2_1_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 {
+                   
+                    ps.simulationSpeed = 1f;
                     Button_active_off(Add_button);
                     Button_active_off(Reduce_button);
                     StopCoroutine(Alert_value());
@@ -202,6 +210,7 @@ public class Scene_2_1_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 {
+                    strong_wind.Stop();
                     //object 복구
                     StopCoroutine(Alert_value());
                     wind_fast.SetActive(false);
@@ -219,6 +228,8 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+                ps.simulationSpeed = 10f;
+               
                 Button_active_on(Add_button);
                 Button_active_on(Reduce_button);
                 Value_Power = 400 + ((30 - Value_Angle_pitch) / 30) * 600;
@@ -233,7 +244,8 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
-                
+               
+               
                 Button_active_off(Add_button);
                 Button_active_off(Reduce_button);
                 StopCoroutine(Alert_value());
@@ -248,8 +260,11 @@ public class Scene_2_1_controller : MonoBehaviour
             }
             else if (BtnCount == 12)
             {
+               
                 if (Prev_Status == true)
                 {
+                    low_wind.Play();
+                    strong_wind.Stop();
                     //object 복구
                     StopCoroutine(Alert_value());
 
@@ -276,6 +291,8 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+                low_wind.Stop();
+                strong_wind.Play();
                 Button_active_off(Add_button);
                 Button_active_off(Reduce_button);
                 StopCoroutine(Alert_value());
@@ -301,7 +318,7 @@ public class Scene_2_1_controller : MonoBehaviour
                     Prev_Status = false;
                 }
 
-
+                strong_wind.Stop();
                 Button_active_on(Add_button);
                 Button_active_on(Reduce_button);
                 Value_Power = 2500 - ((Value_Angle_pitch - 45) / 45) * 400;
