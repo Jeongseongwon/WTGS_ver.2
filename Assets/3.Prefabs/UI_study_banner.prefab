@@ -29448,6 +29448,7 @@ GameObject:
   - component: {fileID: 3570069656941130676}
   - component: {fileID: 3570069656941130677}
   - component: {fileID: 3570069656941130666}
+  - component: {fileID: 9163795884227617102}
   m_Layer: 0
   m_Name: Button_prev
   m_TagString: Untagged
@@ -29592,6 +29593,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0754f2bc3bcebd640a92b27887f34a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9163795884227617102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3570069656941130665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f09c905ebbd554e9f61d0f7c182a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bannerdown_open: {fileID: 581104302554656398}
 --- !u!1 &3570069656951242917
 GameObject:
   m_ObjectHideFlags: 0
@@ -38865,6 +38879,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: e2c18a15344d25342a8613b909262b83, type: 2}
   - {fileID: 7400000, guid: 7ef0e8cf3c3ff5a4b8376337a731543e, type: 2}
+  - {fileID: 7400000, guid: 5dd5b36cb3702dd4c9a656760b203108, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -40589,6 +40604,7 @@ GameObject:
   - component: {fileID: 3570069658264761358}
   - component: {fileID: 3570069658264761359}
   - component: {fileID: 3570069658264761356}
+  - component: {fileID: 757677934014415753}
   m_Layer: 0
   m_Name: Button_next
   m_TagString: Untagged
@@ -40734,6 +40750,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0222848468868e46ad8cc64c7c8cb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &757677934014415753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3570069658264761347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f09c905ebbd554e9f61d0f7c182a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bannerdown_open: {fileID: 581104302554656398}
 --- !u!1 &3570069658270226278
 GameObject:
   m_ObjectHideFlags: 0

@@ -48,6 +48,7 @@ public class Scene_1_2_controller : MonoBehaviour
     public GameObject Object_13_Gearbox;
     public GameObject Object_14_Generator;
 
+    public AudioSource windsound;
 
     private int BtnCount;
 
@@ -124,6 +125,7 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 4)
         {
+            windsound.Play();
             if (Prev_Status == true)
             {
                 Prev_Status = false;
