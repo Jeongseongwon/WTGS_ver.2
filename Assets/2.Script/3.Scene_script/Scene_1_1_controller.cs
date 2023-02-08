@@ -54,9 +54,12 @@ public class Scene_1_1_controller : MonoBehaviour
     private bool flag_num;
     private float Value_alpha = 0;
     private Color tower_alpha;
-
+    
+    public ParticleSystem windspeed;
+    public AudioSource windsound;
     void Start()
     {
+       
         Anim = Main_object.GetComponent<Animation>();
 
         Camera.GetComponent<Camera_movement>().enabled = false;
@@ -80,16 +83,20 @@ public class Scene_1_1_controller : MonoBehaviour
     }
     void Act(int count)
     {
+        var ps = windspeed.main;
+        Scriptbox.GetComponent<Animation>().Play("banner_o");
         if (count == 0)
         {
+            windsound.Stop();
             StartCoroutine(StartAct());
             Object_Col_Off_ALL();
         }
         if (count == 1)
         {
-
-
-
+            windsound.Play();
+            windspeed.Stop();
+            ps.simulationSpeed = 10f;
+            windspeed.Play();
             if (Prev_Status == true)
             {
                 StopCoroutine(Rotate_turbine());

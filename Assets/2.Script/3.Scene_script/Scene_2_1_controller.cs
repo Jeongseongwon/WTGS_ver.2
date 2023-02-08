@@ -62,6 +62,9 @@ public class Scene_2_1_controller : MonoBehaviour
     private bool flag_num = false;
     bool Prev_Status = false;
     // Start is called before the first frame update
+    public ParticleSystem windspeed;
+    public AudioSource strong_wind;
+    public AudioSource low_wind;
     void Start()
     {
         Value_Angle_pitch = 30;
@@ -86,6 +89,7 @@ public class Scene_2_1_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var ps = windspeed.main;
         Refresh_text_value();
         BtnCount = gameObject.GetComponent<Script_controller>().btnCount;
 
@@ -116,7 +120,7 @@ public class Scene_2_1_controller : MonoBehaviour
             }
             else if (BtnCount == 2)
             {
-                //ƒ´∏ﬁ∂Û øÚ¡˜¿Ã¥¬∞≈, ø∑ø° ∆–≥Œ æ÷¥œ∏ﬁ¿Ãº« √ﬂ∞°
+                //Ïπ¥Î©îÎùº ÏõÄÏßÅÏù¥ÎäîÍ±∞, ÏòÜÏóê Ìå®ÎÑê Ïï†ÎãàÎ©îÏù¥ÏÖò Ï∂îÍ∞Ä
                 Camera.GetComponent<Animation>().Play("Camera_move(intro,2_1)");
                 WTGS_Panel.SetActive(true);
                 Button_active_off(Add_button);
@@ -128,6 +132,7 @@ public class Scene_2_1_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 {
+                    low_wind.Stop();
                     Subcamera.SetActive(false);
 
                     Prev_Status = false;
@@ -138,7 +143,7 @@ public class Scene_2_1_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 {
-                    //πŸ≤„æﬂ«“∫Œ∫–
+                    //Î∞îÍøîÏïºÌï†Î∂ÄÎ∂Ñ
                     Emergency.SetActive(false);
 
                     wind_slow.SetActive(false);
@@ -148,6 +153,7 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+               low_wind.Play();
 
                 Subcamera.SetActive(true);
 
@@ -183,6 +189,8 @@ public class Scene_2_1_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 {
+                   
+                    ps.simulationSpeed = 1f;
                     Button_active_off(Add_button);
                     Button_active_off(Reduce_button);
                     StopCoroutine(Alert_value());
@@ -202,12 +210,13 @@ public class Scene_2_1_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 {
-                    //object ∫π±∏
+                    strong_wind.Stop();
+                    //object Î≥µÍµ¨
                     StopCoroutine(Alert_value());
                     wind_fast.SetActive(false);
                     wind_slow.SetActive(true);
 
-                    //value ∫π±∏
+                    //value Î≥µÍµ¨
                     Value_Angle_pitch = 30;
                     Change_graph_number(Data_velocity, 3);
                     Value_Power = 400;
@@ -219,6 +228,8 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+                ps.simulationSpeed = 10f;
+               
                 Button_active_on(Add_button);
                 Button_active_on(Reduce_button);
                 Value_Power = 400 + ((30 - Value_Angle_pitch) / 30) * 600;
@@ -233,7 +244,6 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
-
                 Button_active_off(Add_button);
                 Button_active_off(Reduce_button);
                 StopCoroutine(Alert_value());
@@ -248,12 +258,15 @@ public class Scene_2_1_controller : MonoBehaviour
             }
             else if (BtnCount == 12)
             {
+               
                 if (Prev_Status == true)
                 {
-                    //object ∫π±∏
+                    low_wind.Play();
+                    strong_wind.Stop();
+                    //object Î≥µÍµ¨
                     StopCoroutine(Alert_value());
 
-                    //value ∫π±∏
+                    //value Î≥µÍµ¨
                     Value_Angle_pitch = 0;
                     Change_graph_number(Data_velocity, 12);
                     Value_Power = 1700;
@@ -276,6 +289,8 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+                low_wind.Stop();
+                strong_wind.Play();
                 Button_active_off(Add_button);
                 Button_active_off(Reduce_button);
                 StopCoroutine(Alert_value());
@@ -288,11 +303,11 @@ public class Scene_2_1_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 {
-                    //object ∫π±∏
+                    //object Î≥µÍµ¨
                     StopCoroutine(Alert_value());
                     wind_fast.SetActive(false);
 
-                    //value ∫π±∏
+                    //value Î≥µÍµ¨
                     Value_Angle_pitch = 45;
                     Change_graph_number(Data_velocity, 25);
                     Value_Power = 2500;
@@ -301,7 +316,7 @@ public class Scene_2_1_controller : MonoBehaviour
                     Prev_Status = false;
                 }
 
-
+                strong_wind.Stop();
                 Button_active_on(Add_button);
                 Button_active_on(Reduce_button);
                 Value_Power = 2500 - ((Value_Angle_pitch - 45) / 45) * 400;
@@ -329,11 +344,11 @@ public class Scene_2_1_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 {
-                    //object ∫π±∏
+                    //object Î≥µÍµ¨
                     StopCoroutine(Alert_value());
                     wind_fast.SetActive(false);
 
-                    //value ∫π±∏
+                    //value Î≥µÍµ¨
                     Value_Angle_pitch = 90;
                     Change_graph_number(Data_velocity, 9);
                     Value_Power = 700;
@@ -365,7 +380,7 @@ public class Scene_2_1_controller : MonoBehaviour
             Debug.Log("FALSE");
         }
 
-        //∏Ò«• ø‰∞¢µµ, ∞‘¿Ã¡ˆ  ∫Ø∞Ê
+        //Î™©Ìëú ÏöîÍ∞ÅÎèÑ, Í≤åÏù¥ÏßÄ  Î≥ÄÍ≤Ω
         if (flag_num == true)
         {
             Value_Angle_pitch_target = Mathf.Lerp(Value_Angle_pitch_target, Value_max, 1.5f * Time.deltaTime);
@@ -380,7 +395,7 @@ public class Scene_2_1_controller : MonoBehaviour
         }
 
 
-        //µ•¿Ã≈Õ ¿¸øÎ ≈∏¿Ã∏”?
+        //Îç∞Ïù¥ÌÑ∞ Ï†ÑÏö© ÌÉÄÏù¥Î®∏?
     }
     IEnumerator Startact()
     {
@@ -421,7 +436,7 @@ public class Scene_2_1_controller : MonoBehaviour
     {
         if (num == 0)
         {
-            //¿Œ∆Æ∑Œ off
+            //Ïù∏Ìä∏Î°ú off
             Study_title_Intro_2.GetComponent<Animation>().Play("Intro_2_animation(off)");
         }
 
@@ -432,7 +447,7 @@ public class Scene_2_1_controller : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1.0f);
-            //5√  ¡§µµ Ω√∞£¿Ã ¡ˆ≥™∞Ì ≥™∏È, ≈∏¿Ã∏” º≥¡§, ≈∏¿Ã∏” ∏Æº¬
+            //5Ï¥à Ï†ïÎèÑ ÏãúÍ∞ÑÏù¥ ÏßÄÎÇòÍ≥† ÎÇòÎ©¥, ÌÉÄÏù¥Î®∏ ÏÑ§Ï†ï, ÌÉÄÏù¥Î®∏ Î¶¨ÏÖã
             if (Mathf.Abs(Value_Angle_pitch_target - Value_Angle_pitch) > 20)
             {
                 Alert_message_caution.SetActive(false);
@@ -465,7 +480,7 @@ public class Scene_2_1_controller : MonoBehaviour
     }
     IEnumerator Rotate_turbine(int num = 0)
     {
-        //∫Ì∑π¿ÃµÂ »∏¿¸, 1,2,3 ¿œ∞ÊøÏ «ÿ¥Á ∞™ ∏∏≈≠ ∫¸∏£∞‘ »∏¿¸
+        //Î∏îÎ†àÏù¥Îìú ÌöåÏ†Ñ, 1,2,3 ÏùºÍ≤ΩÏö∞ Ìï¥Îãπ Í∞í ÎßåÌÅº Îπ†Î•¥Í≤å ÌöåÏ†Ñ
         while (true)
         {
             yield return new WaitForSeconds(0.03f);
