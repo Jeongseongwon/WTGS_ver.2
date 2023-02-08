@@ -31,7 +31,11 @@ public class Script_controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Read_txt();
+        if (Scene_number != null)
+        {
+            Read_txt();
+        }
+            
         status_UI_script_auto = false;
         First_status_UI = true;
 

@@ -91,7 +91,7 @@ public class Scene_1_2_controller : MonoBehaviour
 
             //애니메이션
             Camera.GetComponent<Camera_movement>().enabled = true;
-            Study_title_Intro_2.GetComponent<Animation>().Play("Intro_2_animation(off)");
+            StartCoroutine(Animation_play(0));
             //Anim.Play("1_WTG_rotation");
             StartCoroutine(Animation_play(1));
             Wind_particle.SetActive(true);
@@ -448,6 +448,11 @@ public class Scene_1_2_controller : MonoBehaviour
 
     IEnumerator Animation_play(double num)
     {
+        if (num == 0)
+        {
+            //인트로 off
+            Study_title_Intro_2.GetComponent<Animation>().Play("Intro_2_animation(off)");
+        }
         if (num == 1)
         {
             //풍력발전기 회전
