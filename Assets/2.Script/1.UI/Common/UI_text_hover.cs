@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class UI_text_hover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -13,39 +12,26 @@ public class UI_text_hover : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     
 
     private GameObject SceneController;
+    private GameObject Evaluation;
 
     public bool Answer;
-    private string Scene_name;
     public void OnPointerClick(PointerEventData eventData)
     {
         if (Answer == true)
         {
             //Evaluation.transform.GetChild(0).gameObject.GetComponent<Animation>().Play();
-            if (Scene_name == "(dev)_Chapter_1_3")
-            {
-                SceneController.GetComponent<Scene_1_3_controller>().Clicked(true);
-            }
-            else if (Scene_name == "(dev)_Chapter_2_3")
-            {
-                SceneController.GetComponent<Scene_2_3_controller>().Clicked(true);
-            }
-            this.GetComponent<Text>().fontStyle = FontStyle.Bold;
-            this.GetComponent<Text>().color = Color.yellow;
+
+            SceneController.GetComponent<Scene_1_3_controller>().Clicked(true);
             Debug.Log("정답 클릭");
             //정답 활성화
         }
         else if(Answer == false)
         {
             //Evaluation.transform.GetChild(1).gameObject.GetComponent<Animation>().Play();
-            if (Scene_name == "(dev)_Chapter_1_3")
-            {
-                SceneController.GetComponent<Scene_1_3_controller>().Clicked(false);
-            }
-            else if (Scene_name == "(dev)_Chapter_2_3")
-            {
-                SceneController.GetComponent<Scene_2_3_controller>().Clicked(false);
-            }
 
+            SceneController.GetComponent<Scene_1_3_controller>().Clicked(false);
+
+           
         }
     }
 
@@ -66,6 +52,5 @@ public class UI_text_hover : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     {
         //Evaluation = GameObject.Find("Evaluation");
         SceneController = GameObject.FindGameObjectWithTag("Scene_controller");
-        Scene_name = SceneManager.GetActiveScene().name;
     }
 }

@@ -9,14 +9,14 @@ public class Fader : MonoBehaviour
     [Range(0.01f, 10f)]
     private float fadeTime;
     private Image image;
+    public bool DoFadeIn = true;
     private void Awake()
     {
         image = GetComponent<Image>();
-    }
-    private void Start()
-    {
-        StartCoroutine(Fade(1, 0));
 
+        //»≠∏È¿Ã ¡°¡° π‡æ∆¡¸
+        if (DoFadeIn == true)
+            StartCoroutine(Fade(1, 0));
     }
     public void FadeIn(float fTime)
     {
@@ -32,8 +32,6 @@ public class Fader : MonoBehaviour
 
     private IEnumerator Fade(float start, float end)
     {
-
-        yield return new WaitForSeconds(0.5f);
         float currentTime = 0f;
         float percent = 0f;
 
