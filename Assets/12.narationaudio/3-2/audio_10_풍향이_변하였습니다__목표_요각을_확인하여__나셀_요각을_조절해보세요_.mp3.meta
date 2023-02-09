@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/12.narationaudio/3-2/audio_10_풍향이_변하였습니다__목표_요각을_확인하여__나셀_요각을_조절해보세요_.mp3.meta
 guid: c3dd49f951c89e3419cd0629bb9f4587
 =======
 guid: 903464a81ce62d8459ad371ddc6228f3
 >>>>>>> parent of 20d0a1d (0209):Assets/12.narationaudio/3-1/audio_10_풍향이_변하였습니다__목표_요각을_확인하여__나셀_요각을_조절해보세요_.mp3.meta
+=======
+guid: 903464a81ce62d8459ad371ddc6228f3
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

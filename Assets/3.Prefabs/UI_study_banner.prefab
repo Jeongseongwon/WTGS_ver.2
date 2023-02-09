@@ -256,6 +256,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Father: {fileID: 6632215414090418668}
   m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -964,6 +965,9 @@ RectTransform:
 =======
   m_Father: {fileID: 8464973816663282608}
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
+  m_Father: {fileID: 8464973816663282608}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1566,6 +1570,7 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &2813493466219219126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1670,6 +1675,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 0}
   textthis: "\uC720\uD2F8\uB9AC\uD2F0(Utility)"
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &163868103460032313
@@ -2692,7 +2699,11 @@ MonoBehaviour:
   fractionDigits: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &283155837821150395
+=======
+--- !u!1 &297636214695505511
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2700,6 +2711,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 7012191964895075295}
   - component: {fileID: 8083751089441648587}
   - component: {fileID: 2994966525856928097}
@@ -2708,17 +2720,30 @@ GameObject:
   - component: {fileID: 5949851912552487712}
   m_Layer: 5
   m_Name: Button_next
+=======
+  - component: {fileID: 4680169877291948517}
+  - component: {fileID: 9151913089108208998}
+  - component: {fileID: 7624198683638842339}
+  - component: {fileID: 3865427021087767402}
+  m_Layer: 5
+  m_Name: "comm\u3159\u314D\u3137\u3131"
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &7012191964895075295
+=======
+--- !u!224 &4680169877291948517
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 283155837821150395}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.0011779394}
@@ -2734,19 +2759,42 @@ RectTransform:
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8083751089441648587
+=======
+  m_GameObject: {fileID: 297636214695505511}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5571758611527583745}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -651, y: -130.028}
+  m_SizeDelta: {x: 60.33, y: 77.655}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &9151913089108208998
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 283155837821150395}
   m_CullTransparentMesh: 1
 --- !u!114 &2994966525856928097
+=======
+  m_GameObject: {fileID: 297636214695505511}
+  m_CullTransparentMesh: 1
+--- !u!114 &7624198683638842339
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 283155837821150395}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -2896,6 +2944,8 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_GameObject: {fileID: 297636214695505511}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -3957,6 +4007,7 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &403571296281688605
 GameObject:
   m_ObjectHideFlags: 0
@@ -4144,6 +4195,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeInit: 100
   sizeUP: 105
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &411386207943498292
@@ -6011,6 +6064,7 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &591943128034635287
 GameObject:
   m_ObjectHideFlags: 0
@@ -6842,6 +6896,8 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &625038910557832161
 GameObject:
   m_ObjectHideFlags: 0
@@ -7065,6 +7121,7 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &639460081372864648
 GameObject:
   m_ObjectHideFlags: 0
@@ -7252,6 +7309,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 0}
   textthis: "\uBC1C\uC804 \uAC1C\uC694 \uD0ED(ACDC)"
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &664236646217065549
@@ -8246,6 +8305,7 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &742286780847753321
 GameObject:
   m_ObjectHideFlags: 0
@@ -8328,6 +8388,9 @@ MonoBehaviour:
 =======
 >>>>>>> parent of 20d0a1d (0209)
 --- !u!1 &781540623118445533
+=======
+--- !u!1 &755963082317669822
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 --- !u!1 &755963082317669822
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -10967,6 +11030,7 @@ RectTransform:
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1140507389832789876
 GameObject:
   m_ObjectHideFlags: 0
@@ -11310,6 +11374,8 @@ MonoBehaviour:
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &1162852053123801253
 GameObject:
   m_ObjectHideFlags: 0
@@ -12201,6 +12267,7 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1318406756176767395
 GameObject:
   m_ObjectHideFlags: 0
@@ -12407,6 +12474,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 0}
   textthis: "\uD658\uACBD \uC694\uC778 \uD0ED(Weather)"
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &1329640158916395513
@@ -18265,6 +18334,7 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &2159943343058224531
 GameObject:
   m_ObjectHideFlags: 0
@@ -18700,6 +18770,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 0}
   textthis: "\uC2E0\uD638 \uC0C1\uD0DC\uB97C \uD655\uC778\uD569\uB2C8\uB2E4"
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &2195124581791052114
@@ -20199,6 +20271,7 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &2361012770567778811
 GameObject:
   m_ObjectHideFlags: 0
@@ -20617,6 +20690,8 @@ Animation:
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &2383554796481690219
 GameObject:
   m_ObjectHideFlags: 0
@@ -21403,6 +21478,7 @@ MonoBehaviour:
       m_Calls: []
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &2477375132232006181
 GameObject:
   m_ObjectHideFlags: 0
@@ -22118,6 +22194,8 @@ MonoBehaviour:
   textthis: "\uAE30\uBCF8 \uD654\uBA74"
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &2497185437026757393
 GameObject:
   m_ObjectHideFlags: 0
@@ -22647,6 +22725,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 2601236515141184890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -22738,6 +22817,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2632385100425426437}
+=======
+  m_GameObject: {fileID: 2613570866421135092}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
   m_GameObject: {fileID: 2613570866421135092}
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -23037,6 +23119,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "<color=white>\uC6B0\uC218</color>"
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1 &2647229933640624873
 GameObject:
@@ -23405,6 +23488,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 0}
   textthis: "\uD648 \uD0ED(Home)"
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &2683534545087662256
@@ -26166,7 +26251,11 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &3037162355071776762
+=======
+--- !u!1 &3037979921574305120
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26174,6 +26263,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 3282209711505614203}
   - component: {fileID: 2865687144203699811}
   - component: {fileID: 67476174801002146}
@@ -26182,22 +26272,41 @@ GameObject:
   - component: {fileID: 2596189889379702475}
   m_Layer: 5
   m_Name: Text(Q5)
+=======
+  - component: {fileID: 951165997269312522}
+  - component: {fileID: 4608415149961983018}
+  - component: {fileID: 281359414330898471}
+  - component: {fileID: 1551064608337996277}
+  m_Layer: 5
+  m_Name: Text
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< HEAD
   m_IsActive: 0
 --- !u!224 &3282209711505614203
+=======
+  m_IsActive: 1
+--- !u!224 &951165997269312522
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 3037162355071776762}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+=======
+  m_GameObject: {fileID: 3037979921574305120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.4285574, y: 1.4285574, z: 1.4285574}
   m_Children: []
+<<<<<<< HEAD
   m_Father: {fileID: 8582783014444035926}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26207,27 +26316,52 @@ RectTransform:
   m_SizeDelta: {x: 1200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2865687144203699811
+=======
+  m_Father: {fileID: 2297629437784156732}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 63.2, y: -6.6}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4608415149961983018
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 3037162355071776762}
   m_CullTransparentMesh: 1
 --- !u!114 &67476174801002146
+=======
+  m_GameObject: {fileID: 3037979921574305120}
+  m_CullTransparentMesh: 1
+--- !u!114 &281359414330898471
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 3037162355071776762}
+=======
+  m_GameObject: {fileID: 3037979921574305120}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
+<<<<<<< HEAD
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+=======
+  m_Color: {r: 0.04705883, g: 0.7176471, b: 0.06666667, a: 1}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -26235,6 +26369,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
+<<<<<<< HEAD
     m_Font: {fileID: 12800000, guid: f1cd12ef093c26840bedab6d1722e4c7, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
@@ -26242,20 +26377,37 @@ MonoBehaviour:
     m_MinSize: 3
     m_MaxSize: 72
     m_Alignment: 3
+=======
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
+<<<<<<< HEAD
   m_Text: "5. \uAC15\uD48D\uC758 \uACBD\uC6B0 \uD30C\uC190 \uBC29\uC9C0\uB97C \uC704\uD574
     \uBE14\uB808\uC774\uB4DC\uAC00 \uBC14\uB78C\uACFC \uC811\uCD09\uD558\uB294 \uBA74\uC801\uC744
     \uCD5C\uC18C\uD654\uD558\uC5EC \uC81C\uC5B4\uD55C\uB2E4."
 --- !u!114 &3832107645593890817
+=======
+  m_Text: '700
+
+'
+--- !u!114 &1551064608337996277
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 3037162355071776762}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -26389,6 +26541,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674c92809656793428990fd33b402b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+  m_GameObject: {fileID: 3037979921574305120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 674c92809656793428990fd33b402b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   textsizechange: {fileID: 281359414330898471}
   sizemin: 121.0
   sizemax: 123.3
@@ -27335,7 +27495,11 @@ MonoBehaviour:
   m_Text: "\uC2DC\uC791"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &3157700188217939528
+=======
+--- !u!1 &3157274169605355410
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27343,20 +27507,34 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 2977371697837552079}
   m_Layer: 5
   m_Name: Textarray(question)
+=======
+  - component: {fileID: 6132951160483358401}
+  - component: {fileID: 2104092663861879410}
+  - component: {fileID: 731803832245261342}
+  - component: {fileID: 5683949881983902801}
+  m_Layer: 5
+  m_Name: homehover
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &2977371697837552079
+=======
+--- !u!224 &6132951160483358401
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 3157700188217939528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -27418,6 +27596,21 @@ RectTransform:
   m_AnchoredPosition: {x: -651.0033, y: 335.31}
   m_SizeDelta: {x: 60.33, y: 62.038}
   m_Pivot: {x: 0.5, y: 0.5}
+=======
+  m_GameObject: {fileID: 3157274169605355410}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5571758611527583745}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -651.0033, y: 335.31}
+  m_SizeDelta: {x: 60.33, y: 62.038}
+  m_Pivot: {x: 0.5, y: 0.5}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!222 &2104092663861879410
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27447,6 +27640,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_FontData:
     m_Font: {fileID: 12800000, guid: f1cd12ef093c26840bedab6d1722e4c7, type: 3}
     m_FontSize: 25
@@ -27464,6 +27658,8 @@ MonoBehaviour:
 <<<<<<< HEAD
 --- !u!1 &3168188135435120196
 =======
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -27489,6 +27685,9 @@ MonoBehaviour:
   texthover: {fileID: 3570069657184055779}
   textthis: "\uD648\uBC84\uD2BC"
 --- !u!1 &3169106417164001856
+<<<<<<< HEAD
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 GameObject:
   m_ObjectHideFlags: 0
@@ -27498,6 +27697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 8088272440044179567}
   - component: {fileID: 6186194821836375579}
   - component: {fileID: 2907524944317472452}
@@ -27505,19 +27705,29 @@ GameObject:
   m_Layer: 5
   m_Name: Fade
 =======
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   - component: {fileID: 2297629437784156732}
   - component: {fileID: 2051242625133093152}
   - component: {fileID: 4203945581186104391}
   m_Layer: 5
   m_Name: gt1-4 (5)
+<<<<<<< HEAD
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_IsActive: 0
 --- !u!224 &8088272440044179567
+=======
+  m_IsActive: 1
+--- !u!224 &2297629437784156732
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
   m_IsActive: 1
 --- !u!224 &2297629437784156732
@@ -27527,6 +27737,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 3168188135435120196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -27543,6 +27754,8 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6186194821836375579
 =======
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_GameObject: {fileID: 3169106417164001856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -27558,6 +27771,9 @@ RectTransform:
   m_SizeDelta: {x: 53.448, y: 20.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2051242625133093152
+<<<<<<< HEAD
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -27565,9 +27781,15 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 3168188135435120196}
   m_CullTransparentMesh: 1
 --- !u!114 &2907524944317472452
+=======
+  m_GameObject: {fileID: 3169106417164001856}
+  m_CullTransparentMesh: 1
+--- !u!114 &4203945581186104391
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
   m_GameObject: {fileID: 3169106417164001856}
   m_CullTransparentMesh: 1
@@ -27579,7 +27801,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 3168188135435120196}
+=======
+  m_GameObject: {fileID: 3169106417164001856}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
   m_GameObject: {fileID: 3169106417164001856}
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -27590,8 +27816,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Color: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 1}
   m_RaycastTarget: 0
+=======
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
@@ -27612,6 +27843,7 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &4185894707011954455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27629,6 +27861,8 @@ MonoBehaviour:
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &3171830904412573610
 GameObject:
   m_ObjectHideFlags: 0
@@ -28393,6 +28627,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+<<<<<<< HEAD
 >>>>>>> parent of 20d0a1d (0209)
 --- !u!1 &3197447101673459185
 GameObject:
@@ -28802,6 +29037,8 @@ MonoBehaviour:
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &3207927187295789010
 GameObject:
   m_ObjectHideFlags: 0
@@ -29714,7 +29951,11 @@ MonoBehaviour:
   m_Text: "\uC0C1\uD0DC\uAC10\uC2DC/\uC81C\uC5B4 \uC0C1\uD669\uC2E4"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &3312240738525102805
+=======
+--- !u!1 &3322681085802984329
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29722,20 +29963,31 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 5243017642247641741}
   m_Layer: 5
   m_Name: "\uC774\uBBF8\uC9C0"
+=======
+  - component: {fileID: 399168838814179629}
+  m_Layer: 5
+  m_Name: Number_change
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &5243017642247641741
+=======
+--- !u!224 &399168838814179629
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 3312240738525102805}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -29743,12 +29995,23 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4543051941924237947}
   m_RootOrder: 0
+=======
+  m_GameObject: {fileID: 3322681085802984329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3688830387613474543}
+  m_Father: {fileID: 7146922754525670968}
+  m_RootOrder: 3
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 20d0a1d (0209)
 --- !u!1 &3326246653656535981
@@ -29790,6 +30053,8 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &3329713320118168722
 GameObject:
   m_ObjectHideFlags: 0
@@ -31228,6 +31493,7 @@ MonoBehaviour:
   m_Text: "<color=white>\uC774\uB860_\uC694 \uC81C\uC5B4</color>"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &3522825313026679859
 GameObject:
   m_ObjectHideFlags: 0
@@ -31467,6 +31733,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 0}
   textthis: "\uBC1C\uC804 \uB3D9\uD5A5 \uD0ED(Trend)"
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &3535200521605792108
@@ -50074,7 +50342,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &3721056981135954615
+=======
+--- !u!1 &3722812002554388947
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50082,6 +50354,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 5452924470287547671}
   - component: {fileID: 1964789198085972392}
   - component: {fileID: 908966200605979120}
@@ -50090,17 +50363,30 @@ GameObject:
   - component: {fileID: 8510499380573754201}
   m_Layer: 5
   m_Name: Text(Q5)
+=======
+  - component: {fileID: 6008758513607005113}
+  - component: {fileID: 3116802253984098720}
+  - component: {fileID: 2864431706235024815}
+  m_Layer: 5
+  m_Name: gt1_2 (3)
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< HEAD
   m_IsActive: 0
 --- !u!224 &5452924470287547671
+=======
+  m_IsActive: 1
+--- !u!224 &6008758513607005113
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 3721056981135954615}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -50115,33 +50401,65 @@ RectTransform:
   m_SizeDelta: {x: 1200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1964789198085972392
+=======
+  m_GameObject: {fileID: 3722812002554388947}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7886970866063137403}
+  m_Father: {fileID: 5739301017286594724}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 181.40002, y: -318.80002}
+  m_SizeDelta: {x: 53.448, y: 20.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3116802253984098720
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 3721056981135954615}
   m_CullTransparentMesh: 1
 --- !u!114 &908966200605979120
+=======
+  m_GameObject: {fileID: 3722812002554388947}
+  m_CullTransparentMesh: 1
+--- !u!114 &2864431706235024815
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 3721056981135954615}
+=======
+  m_GameObject: {fileID: 3722812002554388947}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
+<<<<<<< HEAD
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+=======
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< HEAD
   m_FontData:
     m_Font: {fileID: 12800000, guid: f1cd12ef093c26840bedab6d1722e4c7, type: 3}
     m_FontSize: 32
@@ -50269,6 +50587,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -50411,6 +50731,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 3733587319224232119}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -50509,6 +50830,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3734975473091601944}
+=======
+  m_GameObject: {fileID: 3729534616715999516}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
   m_GameObject: {fileID: 3729534616715999516}
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -51361,6 +51685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
+<<<<<<< HEAD
   texthover: {fileID: 0}
   textthis: "\uD30C\uC6CC \uBC1C\uC0DD\uB7C9\uC744 \uBCF4\uC5EC\uC90D\uB2C8\uB2E4"
 <<<<<<< HEAD
@@ -51541,6 +51866,10 @@ MonoBehaviour:
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+  texthover: {fileID: 3570069657184055779}
+  textthis: "\uC6D0\uACA9 \uC5EC\uBD80\uB97C \uD655\uC778\uD569\uB2C8\uB2E4"
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &3902295323295461298
 GameObject:
   m_ObjectHideFlags: 0
@@ -53273,6 +53602,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "SCADA \uC2DC\uC2A4\uD15C"
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &4118522139319756967
 GameObject:
   m_ObjectHideFlags: 0
@@ -53529,6 +53859,8 @@ MonoBehaviour:
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &4126777632990081084
 GameObject:
   m_ObjectHideFlags: 0
@@ -54217,6 +54549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &4174010078365360599
 GameObject:
   m_ObjectHideFlags: 0
@@ -54379,6 +54712,8 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &4178001274906067037
 GameObject:
   m_ObjectHideFlags: 0
@@ -54458,6 +54793,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "<color=white>\uBCF4\uD1B5</color>"
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1 &4181982631583564529
 GameObject:
@@ -54727,6 +55063,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 0}
   textthis: "3\uBC88 \uB0A0\uAC1C \uAC01\uB3C4\uB97C \uBCF4\uC5EC\uC90D\uB2C8\uB2E4"
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &4193440227336887228
@@ -56983,6 +57321,7 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &4474187216527424206
 GameObject:
   m_ObjectHideFlags: 0
@@ -57393,6 +57732,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 0}
   textthis: "\uD648 \uD0ED(Home)"
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &4487810578630269464
@@ -58028,6 +58369,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "1.2 \uD48D\uB825\uBC1C\uC804\uAE30\uC758 \uAD6C\uC870"
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &4599988050870516504
 GameObject:
   m_ObjectHideFlags: 0
@@ -58458,6 +58800,8 @@ MonoBehaviour:
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &4639031018272145194
 GameObject:
   m_ObjectHideFlags: 0
@@ -59077,8 +59421,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &5281733764220789429
 =======
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &4683109049411915438
 GameObject:
   m_ObjectHideFlags: 0
@@ -59126,12 +59473,16 @@ CanvasRenderer:
   m_GameObject: {fileID: 4683109049411915438}
   m_CullTransparentMesh: 1
 --- !u!114 &4945527631344034086
+<<<<<<< HEAD
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 4680139030183706088}
   m_Enabled: 1
@@ -59140,6 +59491,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 =======
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_GameObject: {fileID: 4683109049411915438}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -59178,9 +59531,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 3570069657184055779}
   textthis: "\uD648\uBC84\uD2BC"
+<<<<<<< HEAD
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &4685866136067256138
 GameObject:
   m_ObjectHideFlags: 0
@@ -59297,6 +59653,7 @@ Animation:
   m_CullingType: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &4688552553976730561
 GameObject:
   m_ObjectHideFlags: 0
@@ -59379,6 +59736,9 @@ MonoBehaviour:
 =======
 >>>>>>> parent of 20d0a1d (0209)
 --- !u!1 &4693181247808524298
+=======
+--- !u!1 &4702529785298320268
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 --- !u!1 &4702529785298320268
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -60780,6 +61140,7 @@ RectTransform:
   - {fileID: 7794701920530739095}
   - {fileID: 4818964226028609781}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 6696019013880476107}
 <<<<<<< HEAD
   - {fileID: 5884141623116482902}
@@ -60787,6 +61148,8 @@ RectTransform:
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_Father: {fileID: 3570069657981145138}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -61399,6 +61762,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "\uD6C8\uB828 \uB0B4\uC6A9"
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &4876093369010607288
 GameObject:
   m_ObjectHideFlags: 0
@@ -61569,6 +61933,8 @@ MonoBehaviour:
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &4878064657741149697
 GameObject:
   m_ObjectHideFlags: 0
@@ -62226,6 +62592,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+<<<<<<< HEAD
 >>>>>>> parent of 20d0a1d (0209)
 --- !u!1 &4900074065729619619
 GameObject:
@@ -62426,6 +62793,8 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &4922891270841637751
 GameObject:
   m_ObjectHideFlags: 0
@@ -62620,6 +62989,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 2/4
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1 &4964615451149195316
 GameObject:
@@ -63191,6 +63561,8 @@ MonoBehaviour:
   textthis: "\uC2E0\uD638 \uC0C1\uD0DC\uB97C \uD655\uC778\uD569\uB2C8\uB2E4"
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &4999700769785691682
 GameObject:
   m_ObjectHideFlags: 0
@@ -63274,6 +63646,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
 <<<<<<< HEAD
   - component: {fileID: 5414348671858082696}
   - component: {fileID: 5053451919287813743}
@@ -63370,10 +63743,15 @@ GameObject:
   - component: {fileID: 4158214228705617967}
   - component: {fileID: 3095353120268622797}
 =======
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   - component: {fileID: 4261528236747136058}
   - component: {fileID: 5794059059640403473}
   - component: {fileID: 2120603160090203917}
   - component: {fileID: 2833533669654364585}
+<<<<<<< HEAD
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_Layer: 5
   m_Name: optionhover (9)
@@ -64311,6 +64689,7 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &4365101021731423305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64326,6 +64705,9 @@ MonoBehaviour:
   texthover: {fileID: 0}
   textthis: "\uB85C\uD130 \uC2A4\uD53C\uB4DC\uB97C \uBCF4\uC5EC\uC90D\uB2C8\uB2E4"
 --- !u!1 &5157577973478121431
+=======
+--- !u!1 &5163866621882289762
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 --- !u!1 &5163866621882289762
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -64585,6 +64967,7 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &5205626131664430332
 GameObject:
   m_ObjectHideFlags: 0
@@ -64756,6 +65139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 0}
   textthis: "\uD30C\uC6CC \uBE48\uB3C4\uB97C \uBCF4\uC5EC\uC90D\uB2C8\uB2E4"
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &5217405800081320953
@@ -64936,6 +65321,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 5237011333163912868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -65118,6 +65504,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5249983882474023541}
+=======
+  m_GameObject: {fileID: 5253115756680664093}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
   m_GameObject: {fileID: 5253115756680664093}
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -66651,6 +67040,7 @@ MonoBehaviour:
   m_HorizontalFit: 0
   m_VerticalFit: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &5398905894600975212
 GameObject:
   m_ObjectHideFlags: 0
@@ -67525,6 +67915,8 @@ MonoBehaviour:
   textthis: "1\uBC88 \uB0A0\uAC1C \uAC01\uB3C4\uB97C \uBCF4\uC5EC\uC90D\uB2C8\uB2E4"
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &5439356735813134966
 GameObject:
   m_ObjectHideFlags: 0
@@ -68014,6 +68406,7 @@ MonoBehaviour:
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &5490292496303057713
 GameObject:
   m_ObjectHideFlags: 0
@@ -68459,6 +68852,8 @@ MonoBehaviour:
   textthis: "\uC2B5\uB3C4\uB97C \uBCF4\uC5EC\uC90D\uB2C8\uB2E4"
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &5513751715719050648
 GameObject:
   m_ObjectHideFlags: 0
@@ -68817,6 +69212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &1897237064572082082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68832,6 +69228,9 @@ MonoBehaviour:
 =======
 >>>>>>> parent of 20d0a1d (0209)
 --- !u!1 &5549459754386158635
+=======
+--- !u!1 &5554636036139308674
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 --- !u!1 &5554636036139308674
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -69332,6 +69731,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1 &5577723139190750906
@@ -69945,6 +70345,8 @@ MonoBehaviour:
   textthis: "\uB85C\uD130 \uC2A4\uD53C\uB4DC\uB97C \uBCF4\uC5EC\uC90D\uB2C8\uB2E4"
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &5614462037229505583
 GameObject:
   m_ObjectHideFlags: 0
@@ -70192,7 +70594,11 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &5628327968383286138
+=======
+--- !u!1 &5628165015346508166
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 --- !u!1 &5628165015346508166
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -70204,16 +70610,22 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 8582783014444035926}
   m_Layer: 5
   m_Name: Textarray(question)
 =======
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   - component: {fileID: 5447604994883585068}
   - component: {fileID: 4662172982346750577}
   - component: {fileID: 5409098691530918067}
   - component: {fileID: 3836810395244159613}
   m_Layer: 5
   m_Name: demohover
+<<<<<<< HEAD
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70221,7 +70633,11 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!224 &8582783014444035926
+=======
+--- !u!224 &5447604994883585068
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 --- !u!224 &5447604994883585068
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -70230,6 +70646,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 5628327968383286138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -70250,6 +70667,8 @@ RectTransform:
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 =======
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_GameObject: {fileID: 5628165015346508166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -70315,9 +70734,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 3570069657184055779}
   textthis: "\uD604\uC7AC \uAE30\uAE30 \uD30C\uC6CC\uB97C \uB098\uD0C0\uB0C5\uB2C8\uB2E4"
+<<<<<<< HEAD
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &5640759211629049557
 GameObject:
   m_ObjectHideFlags: 0
@@ -70515,7 +70937,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &5642527905945063898
+=======
+--- !u!1 &5658893555213434832
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70523,22 +70949,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 7213447394283064475}
   - component: {fileID: 8831060554208833282}
   - component: {fileID: 5021586664184303374}
   m_Layer: 5
   m_Name: Panel
+=======
+  - component: {fileID: 8845145998669644132}
+  - component: {fileID: 1784599422678800271}
+  - component: {fileID: 5165873011057938577}
+  - component: {fileID: 811391882146501910}
+  m_Layer: 5
+  m_Name: optionhover (2)
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &7213447394283064475
+=======
+--- !u!224 &8845145998669644132
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 5642527905945063898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -70554,19 +70994,42 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8831060554208833282
+=======
+  m_GameObject: {fileID: 5658893555213434832}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7146922754525670968}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 372.98282, y: 351.38}
+  m_SizeDelta: {x: 125.907, y: 35.158}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1784599422678800271
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 5642527905945063898}
   m_CullTransparentMesh: 1
 --- !u!114 &5021586664184303374
+=======
+  m_GameObject: {fileID: 5658893555213434832}
+  m_CullTransparentMesh: 1
+--- !u!114 &5165873011057938577
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 5642527905945063898}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -70648,6 +71111,8 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_GameObject: {fileID: 5658893555213434832}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -70763,7 +71228,11 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &5662528149347961846
+=======
+--- !u!1 &5665448187402298768
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 --- !u!1 &5665448187402298768
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -70775,6 +71244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 5598426282953615566}
   - component: {fileID: 928450834885573068}
   - component: {fileID: 4462034332372100286}
@@ -70784,12 +71254,17 @@ GameObject:
   m_Layer: 5
   m_Name: Button_next
 =======
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   - component: {fileID: 1679698017834987200}
   - component: {fileID: 1292263525527809884}
   - component: {fileID: 506411600919646692}
   - component: {fileID: 1703448369408404835}
   m_Layer: 5
   m_Name: alermhover
+<<<<<<< HEAD
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70797,7 +71272,11 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!224 &5598426282953615566
+=======
+--- !u!224 &1679698017834987200
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 --- !u!224 &1679698017834987200
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -70806,6 +71285,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 5662528149347961846}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -70823,6 +71303,8 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &928450834885573068
 =======
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_GameObject: {fileID: 5665448187402298768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -70837,6 +71319,9 @@ RectTransform:
   m_SizeDelta: {x: 60.33, y: 60.513}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1292263525527809884
+<<<<<<< HEAD
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -70844,9 +71329,15 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 5662528149347961846}
   m_CullTransparentMesh: 1
 --- !u!114 &4462034332372100286
+=======
+  m_GameObject: {fileID: 5665448187402298768}
+  m_CullTransparentMesh: 1
+--- !u!114 &506411600919646692
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
   m_GameObject: {fileID: 5665448187402298768}
   m_CullTransparentMesh: 1
@@ -70858,7 +71349,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 5662528149347961846}
+=======
+  m_GameObject: {fileID: 5665448187402298768}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
   m_GameObject: {fileID: 5665448187402298768}
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -70869,7 +71364,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+=======
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
   m_Color: {r: 1, g: 1, b: 1, a: 0}
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -70880,7 +71379,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: fa3e6616f7cfd5843a678011ecd09945, type: 3}
+=======
+  m_Sprite: {fileID: 0}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
   m_Sprite: {fileID: 0}
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -70894,7 +71397,11 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &355872719643984785
+=======
+--- !u!114 &1703448369408404835
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 --- !u!114 &1703448369408404835
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
@@ -70903,6 +71410,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 5662528149347961846}
   m_Enabled: 1
@@ -70967,6 +71475,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 =======
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_GameObject: {fileID: 5665448187402298768}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -70975,9 +71485,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 3570069657184055779}
   textthis: "\uC54C\uB78C \uBC84\uD2BC"
+<<<<<<< HEAD
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &5670827639899229868
 GameObject:
   m_ObjectHideFlags: 0
@@ -72123,7 +72636,11 @@ MonoBehaviour:
   m_Text: Q
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &5777008492418493928
+=======
+--- !u!1 &5805669779629630290
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72131,6 +72648,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 598907950704541592}
   - component: {fileID: 1625259876364960171}
   - component: {fileID: 7722290838761532952}
@@ -72139,17 +72657,30 @@ GameObject:
   - component: {fileID: 3843843132975628092}
   m_Layer: 5
   m_Name: Text(Q4)
+=======
+  - component: {fileID: 6007235460689428211}
+  - component: {fileID: 4270720166623203476}
+  - component: {fileID: 9091518051447378991}
+  - component: {fileID: 3126238718502534277}
+  m_Layer: 5
+  m_Name: Text
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &598907950704541592
+=======
+--- !u!224 &6007235460689428211
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 5777008492418493928}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -72277,6 +72808,8 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_GameObject: {fileID: 5805669779629630290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -75507,6 +76040,7 @@ MonoBehaviour:
   m_HorizontalFit: 0
   m_VerticalFit: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &6435757019653687373
 GameObject:
   m_ObjectHideFlags: 0
@@ -75931,6 +76465,8 @@ MonoBehaviour:
   m_UseGraphicAlpha: 1
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &6464818286082561925
 GameObject:
   m_ObjectHideFlags: 0
@@ -76270,6 +76806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57faaf0ad2e9bcd4fa6bf9ac858e9c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 >>>>>>> parent of 20d0a1d (0209)
 --- !u!1 &6509559320307595349
 =======
@@ -76297,6 +76834,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57faaf0ad2e9bcd4fa6bf9ac858e9c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6508612070816221984
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
 --- !u!1 &6508612070816221984
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 GameObject:
@@ -77035,6 +77575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Answer: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1 &6570238880963753244
@@ -77776,6 +78317,8 @@ MonoBehaviour:
   sizemax: 521
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &6625456117922183330
 GameObject:
   m_ObjectHideFlags: 0
@@ -78109,6 +78652,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
 <<<<<<< HEAD
   - component: {fileID: 1265869853836127866}
   - component: {fileID: 2050834892862646395}
@@ -79069,10 +79613,15 @@ GameObject:
   - component: {fileID: 825195627583352899}
   - component: {fileID: 1288019723059194340}
 =======
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   - component: {fileID: 8022219625277495295}
   - component: {fileID: 132623813521730934}
   - component: {fileID: 1663875181052412507}
   - component: {fileID: 7295109356435045698}
+<<<<<<< HEAD
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_Layer: 5
   m_Name: optionhover (4)
@@ -79233,6 +79782,7 @@ MonoBehaviour:
   m_Text: "- \uB098\uC140 \uB0B4\uBD80 \uC804\uB825 \uCF00\uC774\uBE14\uC758 \uAF2C\uC784\uD604\uC0C1\uC744
     \uBC29\uC9C0\uD558\uAE30\uC704\uD574 \uB098\uC140 \uC694 \uAC01\uB3C4\uB294 \uD55C
     \uBC29\uD5A5 \uC81C\uC5B4\uB85C \uC81C\uD55C"
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1 &6758437219846816797
 GameObject:
@@ -79669,6 +80219,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 0}
   textthis: "\uBC1C\uC804 \uAC1C\uC694 \uD0ED(ACDC)"
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &6796039667600067659
@@ -81324,6 +81876,7 @@ MonoBehaviour:
   m_VerticalFit: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &6958055975368846808
 GameObject:
   m_ObjectHideFlags: 0
@@ -81541,6 +82094,8 @@ MonoBehaviour:
   textthis: "\uC0C1\uD0DC1"
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &6966823532957131112
 GameObject:
   m_ObjectHideFlags: 0
@@ -81667,6 +82222,7 @@ MonoBehaviour:
   Answer: 1
 =======
   Answer: 0
+<<<<<<< HEAD
 >>>>>>> parent of 20d0a1d (0209)
 --- !u!1 &6967774509054151050
 GameObject:
@@ -81878,6 +82434,8 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 =======
   Answer: 0
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &6977189961233403605
 GameObject:
@@ -83078,6 +83636,7 @@ RectTransform:
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &7154347034659785330
 GameObject:
   m_ObjectHideFlags: 0
@@ -83390,6 +83949,8 @@ RectTransform:
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &7179319535489443153
 GameObject:
   m_ObjectHideFlags: 0
@@ -83611,6 +84172,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
 <<<<<<< HEAD
   - component: {fileID: 1943208398023488583}
   - component: {fileID: 5331268401034996459}
@@ -83977,10 +84539,15 @@ GameObject:
   - component: {fileID: 4206015939666860674}
   - component: {fileID: 803293485308995268}
 =======
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   - component: {fileID: 4076480941222530141}
   - component: {fileID: 5254831584734847166}
   - component: {fileID: 445750969541987929}
   - component: {fileID: 783244350931042083}
+<<<<<<< HEAD
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_Layer: 5
   m_Name: Text
@@ -84069,7 +84636,11 @@ MonoBehaviour:
   sizemax: 53
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &7242280994118022404
+=======
+--- !u!1 &7226407205312448907
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84077,6 +84648,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 1463059024564102660}
   - component: {fileID: 1042692095912683953}
   - component: {fileID: 2913821418443294891}
@@ -84085,22 +84657,40 @@ GameObject:
   - component: {fileID: 1359227437694762981}
   m_Layer: 5
   m_Name: Text(Q5)
+=======
+  - component: {fileID: 953771337281332625}
+  - component: {fileID: 8441192836593684375}
+  - component: {fileID: 4008308067197129595}
+  - component: {fileID: 7189571078588860053}
+  m_Layer: 5
+  m_Name: achover (11)
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &1463059024564102660
+=======
+--- !u!224 &953771337281332625
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 7242280994118022404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+=======
+  m_GameObject: {fileID: 7226407205312448907}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.4285574, y: 1.4285574, z: 1.4285574}
   m_Children: []
+<<<<<<< HEAD
   m_Father: {fileID: 2977371697837552079}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -84110,19 +84700,37 @@ RectTransform:
   m_SizeDelta: {x: 1200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1042692095912683953
+=======
+  m_Father: {fileID: 5571758611527583745}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 130.205, y: -136.344}
+  m_SizeDelta: {x: 115.718, y: 105.95}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8441192836593684375
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 7242280994118022404}
   m_CullTransparentMesh: 1
 --- !u!114 &2913821418443294891
+=======
+  m_GameObject: {fileID: 7226407205312448907}
+  m_CullTransparentMesh: 1
+--- !u!114 &4008308067197129595
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 7242280994118022404}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -84250,6 +84858,8 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_GameObject: {fileID: 7226407205312448907}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -86141,6 +86751,7 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &7406717882072940858
 GameObject:
   m_ObjectHideFlags: 0
@@ -86778,6 +87389,8 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &7440550302305897375
 GameObject:
   m_ObjectHideFlags: 0
@@ -87160,6 +87773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &7468209595913261505
 GameObject:
   m_ObjectHideFlags: 0
@@ -87379,6 +87993,8 @@ MonoBehaviour:
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 20d0a1d (0209)
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &7483999097287672615
 GameObject:
   m_ObjectHideFlags: 0
@@ -91375,6 +91991,7 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &7990515689949424757
 GameObject:
   m_ObjectHideFlags: 0
@@ -92158,6 +92775,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d999148f91028c5489b80b3654adf4e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &8030486632757523397
@@ -93127,6 +93746,7 @@ MonoBehaviour:
   m_Text: 4/4
 =======
   m_Text: 3/4
+<<<<<<< HEAD
 >>>>>>> parent of 20d0a1d (0209)
 --- !u!1 &8115749298637783545
 GameObject:
@@ -93210,6 +93830,8 @@ MonoBehaviour:
   m_Text: "\uC0C1\uD0DC \uAC10\uC2DC/\uC81C\uC5B4 \uC2E4\uC2B5"
 =======
   m_Text: 3/4
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
+=======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &8120451445271996149
 GameObject:
@@ -94053,6 +94675,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &8252403322131532124
 GameObject:
   m_ObjectHideFlags: 0
@@ -94404,6 +95027,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 0}
   textthis: "Yaw\uAC01\uB3C4\uB97C \uBCF4\uC5EC\uC90D\uB2C8\uB2E4"
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &8288507293404427797
@@ -96559,6 +97184,7 @@ MonoBehaviour:
   sizeInit: 50
   sizeUP: 50
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &8437053816806444245
 GameObject:
   m_ObjectHideFlags: 0
@@ -96904,6 +97530,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texthover: {fileID: 0}
   textthis: "\uC54C\uB78C \uD0ED(Alarm)"
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &8479492458156866420
@@ -99997,6 +100625,7 @@ MonoBehaviour:
   m_Text: "1.1 \uD48D\uB825\uBC1C\uC804\uC758 \uC6D0\uB9AC"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &8750449674557529430
 GameObject:
   m_ObjectHideFlags: 0
@@ -100697,6 +101326,8 @@ MonoBehaviour:
   textsizechange: {fileID: 4394336692649403401}
   sizemin: 520
   sizemax: 521
+=======
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 =======
 >>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 --- !u!1 &8787671182175469839

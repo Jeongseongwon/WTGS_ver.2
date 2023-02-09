@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/12.narationaudio/3-2/audio_1_나셀_요_제어는_풍력발전기에_불어오는_바람의_풍향에_따라_풍력발전기_나셀의_요_각도를_제어하는_실습입니다_.mp3.meta
 guid: 0131c7f217c9e60428063c639a4ae432
 =======
 guid: 69efea35411b39045a48d9b7c3240300
 >>>>>>> parent of 20d0a1d (0209):Assets/12.narationaudio/3-1/audio_1_나셀_요_제어는_풍력발전기에_불어오는_바람의_풍향에_따라_풍력발전기_나셀의_요_각도를_제어하는_실습입니다_.mp3.meta
+=======
+guid: ffd9d75f0a77c53448b3753103169f3a
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/12.narationaudio/3-2/audio_11_잘_하셨습니다___풍력발전기를_안전하게_제어하여__목표_전력_생산량에_도달하였습니다_.mp3.meta
 guid: 2c0e2092a30cc1e439101f8c18b545f1
 =======
 guid: c3dd49f951c89e3419cd0629bb9f4587
 >>>>>>> parent of 20d0a1d (0209):Assets/12.narationaudio/3-1/audio_11_잘_하셨습니다___풍력발전기를_안전하게_제어하여__목표_전력_생산량에_도달하였습니다_.mp3.meta
+=======
+guid: c9ece57028579b2438d58c7c37af82e3
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

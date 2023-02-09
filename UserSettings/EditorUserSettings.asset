@@ -8,6 +8,7 @@ EditorUserSettings:
     RecentlyUsedScenePath-0:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 224247031146460b433d0f271e26103433215762282d307912051232e6e93a3facf238e0f323
       flags: 0
     RecentlyUsedScenePath-1:
@@ -40,6 +41,9 @@ EditorUserSettings:
 =======
 
 >>>>>>> parent of 20d0a1d (0209)
+=======
+    flags: 0
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_VCAutomaticAdd: 1
   m_VCDebugCom: 0
   m_VCDebugCmd: 0
