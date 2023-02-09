@@ -11,21 +11,22 @@ public class Scene_1_3_controller : MonoBehaviour
     public GameObject Scriptbox;
 
     //1-3 Gameobject
-    [Header("===== Gameobject =====")]
-    public GameObject Wind_particle;
-    public GameObject Blade_1;
-    public GameObject Blade_2;
-    public GameObject Blade_3;
-    public GameObject Nacelle;
-    public GameObject Arrow;
-    public GameObject WTGS_Panel;
-    public GameObject Camera;
-    public GameObject Subcamera;
+    //[Header("===== Gameobject =====")]
+    //public GameObject Wind_particle;
+    //public GameObject Blade_1;
+    //public GameObject Blade_2;
+    //public GameObject Blade_3;
+    //public GameObject Nacelle;
+    //public GameObject Arrow;
+    //public GameObject WTGS_Panel;
+    //public GameObject Camera;
+    //public GameObject Subcamera;
 
     //2-3 Text
     //Evaluation 찾고, child 0 : correct, child 1 : wrong 메시지 배치
     //Cor, Inc 메시지는 Message 오브젝트 하위 오브젝트 0,1 순으로 배치
     //공통으로 쓰는것은 미리 로드를 할 수는 없나
+    // 스크립트 컨트롤러 없이 별개 btncount로 동작
     [Header("===== Evaluation =====")]
     public GameObject Question;
     public GameObject[] Text_Answer;
@@ -38,7 +39,7 @@ public class Scene_1_3_controller : MonoBehaviour
     private GameObject Correct_answer_message;
     private GameObject Incorrect_answer_message;
     private int Score_total;
-    private int[] Score = new int [3];
+    private int[] Score = new int [4];
     private bool Clicked_question;
     private bool Answer;
     private int Answer_count = 0;
@@ -47,10 +48,13 @@ public class Scene_1_3_controller : MonoBehaviour
     private GameObject Question_panel_0;
     private GameObject Question_panel_1;
     private GameObject Question_panel_2;
+    private GameObject Question_panel_3;
     //private GameObject Question_panel_3;
 
 
-    public int BtnCount = 0;
+    private int BtnCount = 0;
+
+    private int Question_num=0;
 
     int PostCount;
     private bool flag = true;
@@ -63,14 +67,16 @@ public class Scene_1_3_controller : MonoBehaviour
         Correct_answer_message = Msg.transform.GetChild(0).gameObject;
         Incorrect_answer_message = Msg.transform.GetChild(1).gameObject;
 
-        StartCoroutine(Startact());
         Score_total = 0;
         Question_panel_0 = Question.GetComponent<Transform>().GetChild(0).gameObject;
         Question_panel_1 = Question.GetComponent<Transform>().GetChild(1).gameObject;
         Question_panel_2 = Question.GetComponent<Transform>().GetChild(2).gameObject;
-        //Question_panel_3 = Question.GetComponent<Transform>().GetChild(3).gameObject;
+        Question_panel_3 = Question.GetComponent<Transform>().GetChild(3).gameObject;
 
-        for(int i = 0; i< Question.gameObject.GetComponent<Transform>().childCount; i++)
+
+        //문제 갯수 만큼 점수 배열 초기화
+        Question_num = Question.gameObject.GetComponent<Transform>().childCount;
+        for (int i = 0; i< Question_num; i++)
         {
             Score[i] = 0;
         }
@@ -89,7 +95,7 @@ public class Scene_1_3_controller : MonoBehaviour
     void Update()
     {
 
-        if (Clicked_question == true && BtnCount<4)
+        if (Clicked_question == true && BtnCount <= Question_num)
         {
             Set_score();
             Clicked_question = false;
@@ -97,10 +103,7 @@ public class Scene_1_3_controller : MonoBehaviour
 
         if (PostCount != BtnCount)
         {
-            if (BtnCount < PostCount)
-            {
-                Prev_Status = true;
-            }
+           
             //PC_Image_Array[PostCount].gameObject.SetActive(false);
             flag = true;
             Debug.Log("TRUE");
@@ -108,56 +111,58 @@ public class Scene_1_3_controller : MonoBehaviour
 
         if (flag == true)
         {
+            //각 문항 시작시 정답 상태 초기화
+            Answer = false;
 
-            //정답 맞추게 될 경우 문항 비활성화
-            //실습 시작 전에 간단하게 설명 및 메시지 전시 후 실습 시작 하기
-            //다른 과정과 동일하게 인트로 화면에 나타나느게 좋을듯
             if (BtnCount == 0)
             {
-                //정답을 맞춰야지만 무조건 다음으로 넘어갈 수 있고
-                //다음을 누를 경우 다음 문제가 활성화
                 StartCoroutine(Startact());
+            }
+            if (BtnCount == 1)
+            {
                 if (Question_panel_0 != null)
                 {
+                    Panel_button_inactive.SetActive(false);
                     Question_panel_0.SetActive(true);
-                }
-            }
-            else if (BtnCount == 1)
-            {
-
-                if (Question_panel_1 != null)
-                {
-                    Question_panel_1.SetActive(true);
-                    Question_panel_0.SetActive(false);
                 }
             }
             else if (BtnCount == 2)
             {
-                if (Question_panel_2 != null)
+
+                if (Question_panel_1 != null)
                 {
-                    Question_panel_2.SetActive(true);
-                    Question_panel_1.SetActive(false);
+
+                    Panel_button_inactive.SetActive(false);
+                    Question_panel_1.SetActive(true);
+                    Question_panel_0.SetActive(false);
                 }
             }
             else if (BtnCount == 3)
             {
-                //if (Question_panel_3 != null)
-                //{
+                if (Question_panel_2 != null)
+                {
+                    Panel_button_inactive.SetActive(false);
+                    Question_panel_2.SetActive(true);
+                    Question_panel_1.SetActive(false);
+                }
+            }
+            else if (BtnCount == 4)
+            {
+                if (Question_panel_3 != null)
+                {
+                    Panel_button_inactive.SetActive(false);
+                    Question_panel_3.SetActive(true);
+                    Question_panel_2.SetActive(false);
 
-                //}
-                //Question_panel_3.SetActive(false);
-                Question_panel_2.SetActive(false);
+                }
+            }
+            else if (BtnCount == 5)
+            {
+                Question_panel_3.SetActive(false);
                 Result_panel.SetActive(true);
                 SetResult();
             }
-            //else if (BtnCount == 4)
-            //{
-            //    Question_panel_3.SetActive(false);
-            //    Result_panel.SetActive(true);
-            //    SetResult();
-            //}
 
-            //PC_Image_Array[BtnCount].SetActive(true);
             PostCount = BtnCount;
             flag = false;
             Debug.Log("FALSE");
@@ -167,9 +172,6 @@ public class Scene_1_3_controller : MonoBehaviour
 
     void SetResult()
     {
-        int Question_num = Question.gameObject.GetComponent<Transform>().childCount;
-        Debug.Log(Question_num);
-
         for (int i = 0; i < Question_num; i++)
         {
             Debug.Log("check_result"+ Score[i]);
@@ -209,13 +211,14 @@ public class Scene_1_3_controller : MonoBehaviour
         if (Answer == true)
         {
             //정답
+            Panel_button_inactive.SetActive(true);
             Score_add();
             StartCoroutine(Message(true));
-            Text_Answer[BtnCount].SetActive(true);
-            Score[BtnCount] = 1;
+            Text_Answer[BtnCount-1].SetActive(true);
+            Score[BtnCount-1] = 1;
             Score_total += 1;
             Answer_count = 0;           //정답시 초기화
-            //Panel_button_inactive.SetActive(true):
+            Debug.Log("RIGHT ANSWER");
         }
         else if (Answer == false)
         {
@@ -225,9 +228,11 @@ public class Scene_1_3_controller : MonoBehaviour
         }
         if (Answer_count == 3)
         {
-            Text_Answer[BtnCount].SetActive(true);
+            Panel_button_inactive.SetActive(true);
+            Text_Answer[BtnCount-1].SetActive(true);
             Answer_count = 0;
-            //Panel_button_inactive.SetActive(true):
+            Answer = true;
+            Debug.Log("ENOUGH WRONG TRY");
         }
     }
 
@@ -249,12 +254,6 @@ public class Scene_1_3_controller : MonoBehaviour
         return Answer;
     }
 
-    //문제 종료시 버튼 비활성화
-
-
-
-    //변수 활성화 될 경우 메시지 활성화 및 정답 처리 체크
-
     IEnumerator Message(bool msg)
     {
         //true - correct, false - incorrect
@@ -275,9 +274,11 @@ public class Scene_1_3_controller : MonoBehaviour
     }
     IEnumerator Startact()
     {
+        Manager_audio.instance.Get_intro();
         yield return new WaitForSeconds(2.0f);
-        Scriptbox.GetComponent<Animation>().Play("bannerup(1220)");
+        //Scriptbox.GetComponent<Animation>().Play("bannerup(1220)");
         Top_navigation.GetComponent<Animation>().Play("TN_intro_down");
+        BtnCount_add();
         yield break;
     }
 

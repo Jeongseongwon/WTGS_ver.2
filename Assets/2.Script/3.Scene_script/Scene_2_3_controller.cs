@@ -61,25 +61,47 @@ public class Scene_2_3_controller : MonoBehaviour
     private float Value_Velocity_wind;
     private float Value_Power;
 
+    private float Value_max = 0;
+
     //2-3 Text
     [Header("===== Evaluation =====")]
-    public GameObject[] Question_panel;
+    public GameObject Question;
+    public GameObject[] Text_Answer;
     public GameObject Result_panel;
+    public GameObject Result_description;
     public GameObject Result_icon;
+    public GameObject Panel_button_inactive;
+
+
+    private GameObject Correct_answer_message;
+    private GameObject Incorrect_answer_message;
     private int Score_total;
-    private int[] Score;
+    private int[] Score = new int[4];
+    private bool Clicked_question;
+    private bool Answer;
+    private int Answer_count = 0;
 
+    //총 2문항
+    private GameObject Question_panel_0;
+    private GameObject Question_panel_1;
 
-    private int BtnCount;
-    private float Value_max = 0;
+    private int BtnCount = 0;
+
+    private int Question_num = 0;
 
     int PostCount;
     private bool flag = true;
     private bool flag_num = false;
     bool Prev_Status = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        GameObject Msg = GameObject.Find("Message");
+        Correct_answer_message = Msg.transform.GetChild(0).gameObject;
+        Incorrect_answer_message = Msg.transform.GetChild(1).gameObject;
+        Question_panel_0 = Question.GetComponent<Transform>().GetChild(0).gameObject;
+        Question_panel_1 = Question.GetComponent<Transform>().GetChild(1).gameObject;
         Value_Angle_yaw = 0;
         Value_Angle_yaw_target = 0;
         Value_Angle_pitch = 0;
@@ -87,131 +109,113 @@ public class Scene_2_3_controller : MonoBehaviour
         Value_Velocity_wind = 100;
         Value_Power = 100;
 
-        StartCoroutine(Startact());
-    }
-
-    private void PC_ON()
-    {
-        
-        PC_Image.SetActive(true);
-        for (int i = 0; i < PC_Image_Array.Length; i++)
-        {
-            PC_Image_Array[i].gameObject.SetActive(false);
-        }
-        PC_Image_Array[0].gameObject.SetActive(true);
-
     }
     // Update is called once per frame
     void Update()
     {
-        BtnCount = gameObject.GetComponent<Script_controller>().btnCount;
+        BtnCount = gameObject.GetComponent<Script_controller>().btnCount;   //이 부분 대체 필요
 
+        if (Clicked_question == true && BtnCount <= Question_num)
+        {
+            Set_score();
+            Clicked_question = false;
+        }
         if (PostCount != BtnCount)
         {
-            if (BtnCount < PostCount)
-            {
-                Prev_Status = true;
-            }
-            PC_Image_Array[PostCount].gameObject.SetActive(false);
             flag = true;
             Debug.Log("TRUE");
         }
 
         if (flag == true)
         {
-
-            //정답 맞추게 될 경우 문항 비활성화
-            //실습 시작 전에 간단하게 설명 및 메시지 전시 후 실습 시작 하기
+            Answer = false;
 
             if (BtnCount == 0)
             {
-                //학습평가에 대한 얘기를 하는게 맞나?
-                //우선은 start act에서 다음으로 바로 넘김
                 StartCoroutine(Startact());
+                Debug.Log("btncount0");
             }
-            else if (BtnCount == 1)
+
+            if (BtnCount == 1)
             {
-                //정답 맞추게 될 경우 문항 비활성화
-                if (Question_panel[0] != null)
+                Debug.Log("btncount1");
+                if (Question_panel_0 != null)
                 {
-                    Question_panel[0].SetActive(true);
+                    Panel_button_inactive.SetActive(false);
+                    Question_panel_0.SetActive(true);
                 }
             }
             else if (BtnCount == 2)
             {
 
-                if (Question_panel[1] != null)
+                if (Question_panel_1 != null)
                 {
-                    Question_panel[1].SetActive(true);
-                    Question_panel[0].SetActive(false);
+
+                    Panel_button_inactive.SetActive(false);
+                    Question_panel_1.SetActive(true);
+                    Question_panel_0.SetActive(false);
                 }
             }
+            //0. 시작 버튼
+            //1. 브레이크 해제
+            //3. 피치 제어
+            //4. 요 제어
+            //5. 피치 요 동반 제어
+
+            //상황값 세팅
+            //값 변하는거 세팅 해주고
+
             else if (BtnCount == 3)
             {
-                Question_panel[1].SetActive(false);
-                Question_panel[0].SetActive(false);
-                //메시지 화면에 나타남, 패널에 나타나는 풍속 및 풍향을 보고 풍력발전기를 제어하세요
-                //나레이션 재생
-                //피치 제어 실습
+                //이론 평가 두번재 화면에 나타나기
+                //카메라 움직이는거, 옆에 패널 애니메이션 추가
+                //아래 스크립트 박스도 올라오기
+
+                //상황 제시
+                //다른 버튼 누를 경우 먼저 풍력발전 시작 및 브레이크 해제가 필요합니다 메시지 화면 나타남
+                Panel_button_inactive.SetActive(false);
+                Question_panel_1.SetActive(false);
+
+                Camera.GetComponent<Animation>().Play("Camera_move(intro,2_1)");
+                Subcamera.SetActive(true);
                 WTGS_Panel.SetActive(true);
                 StartCoroutine(Refresh_text_value());
             }
             else if (BtnCount == 4)
             {
-                //요 제어 실습
+                Emergency.SetActive(true);
+                Wind_particle.SetActive(true);
+                Graph_velocity.SetActive(true);
+                Change_graph_number(Data_velocity, 3);
 
             }
             else if (BtnCount == 5)
             {
-                Result_panel.SetActive(true);
-                SetResult();
-            }
-
-
-
-
-            if (BtnCount == 1)
-            {
-                //이론 평가 하나 화면에 나타나기
-                //애니메이션 재생
-
-                if (Prev_Status == true)
-                {
-                    Subcamera.SetActive(false);
-                    WTGS_Panel.SetActive(false);
-                    StartCoroutine(Refresh_text_value());
-                    Prev_Status = false;
-                }
-                //StartCoroutine(Intro_anim());
-            }
-            else if (BtnCount == 2)
-            {
-                //이론 평가 두번재 화면에 나타나기
-                //카메라 움직이는거, 옆에 패널 애니메이션 추가
-
-                Camera.GetComponent<Animation>().Play("Camera_move(intro,2_1)");
-                Button_active_off(Add_button_p);
-                Button_active_off(Reduce_button_p);
-                Subcamera.SetActive(true);
-                WTGS_Panel.SetActive(true);
-                Debug.Log("check_2");
-                StartCoroutine(Refresh_text_value());
-                Subcamera.SetActive(false);
+                Green_button_1.SetActive(false);
+                Green_button_2.SetActive(false);
+                red_button_1.SetActive(true);
+                red_button_2.SetActive(true);
+                Graph_power.SetActive(true);
+                Value_Power = 1800;
+                Change_graph_number(Data_power, Value_Power);
             }
             else if (BtnCount == 6)
             {
-                if (Prev_Status == true)
-                {
-                    //바꿔야할부분
-                    Emergency.SetActive(false);
-
-                    Wind_particle.SetActive(false);
-                    Graph_velocity.SetActive(false);
-                    Prev_Status = false;
-                    Subcamera.SetActive(true);
-                }
-
-
+                //풍속 바뀌었다, 제어해봐라 메시지 및 나레이션 제공
+                //값 세팅
+                Button_active_off(Add_button_y);
+                Button_active_off(Reduce_button_y);
+                Button_active_on(Add_button_p);
+                Button_active_on(Reduce_button_p);
+            }
+            else if (BtnCount == 5)
+            {
+                //풍향 바뀌었다, 제어해봐라 메시지 및 나레이션 제공
+                //값 세팅
+                Button_active_off(Add_button_p);
+                Button_active_off(Reduce_button_p);
+                Button_active_on(Add_button_y);
+                Button_active_on(Reduce_button_y);
             }
             else if (BtnCount == 7)
             {
@@ -264,8 +268,7 @@ public class Scene_2_3_controller : MonoBehaviour
                 //StartCoroutine(Refresh_pin_value());
 
             }
-           
-            PC_Image_Array[BtnCount].SetActive(true);
+
             PostCount = BtnCount;
             flag = false;
             Debug.Log("FALSE");
@@ -295,9 +298,11 @@ public class Scene_2_3_controller : MonoBehaviour
 
     void SetResult()
     {
-        for (int i = 0; i < Question_panel.Length; i++)
+        for (int i = 0; i < Question_num; i++)
         {
+            Debug.Log("check_result" + Score[i]);
             //오답일 경우 해당 번호 이미지 활성화
+            //result_icon내 위치를 직접 맞춰준 다음에 아래 순서 조절함
             if (Score[i] == 0)
             {
                 Result_icon.transform.GetChild(i + 4).gameObject.SetActive(true);
@@ -307,22 +312,95 @@ public class Scene_2_3_controller : MonoBehaviour
         //0 : 미흡, 1 : 보통, 2 : 우수
         if (Score_total == 0)
         {
-            Result_panel.transform.GetChild(0).gameObject.SetActive(true);
+            Result_description.transform.GetChild(0).gameObject.SetActive(true);
         }
         else if (Score_total == 1)
         {
-            Result_panel.transform.GetChild(1).gameObject.SetActive(true);
+            Result_description.transform.GetChild(1).gameObject.SetActive(true);
         }
         else if (Score_total == 2)
         {
-            Result_panel.transform.GetChild(2).gameObject.SetActive(true);
+            Result_description.transform.GetChild(2).gameObject.SetActive(true);
         }
+        else
+        {
+            Debug.Log(Score_total);
+        }
+        Debug.Log("check_result");
 
         //End_XAPI();
 
     }
+
+    void Set_score()
+    {
+        if (Answer == true)
+        {
+            //정답
+            Panel_button_inactive.SetActive(true);
+            Score_add();
+            StartCoroutine(Message(true));
+            Text_Answer[BtnCount - 1].SetActive(true);
+            Score[BtnCount - 1] = 1;
+            Score_total += 1;
+            Answer_count = 0;           //정답시 초기화
+            Debug.Log("RIGHT ANSWER");
+        }
+        else if (Answer == false)
+        {
+            //오답
+            StartCoroutine(Message(false));
+            Answer_count++;
+        }
+        if (Answer_count == 3)
+        {
+            Panel_button_inactive.SetActive(true);
+            Text_Answer[BtnCount - 1].SetActive(true);
+            Answer_count = 0;
+            Answer = true;
+            Debug.Log("ENOUGH WRONG TRY");
+        }
+    }
+    public void BtnCount_add()
+    {
+        BtnCount += 1;
+    }
+    public void Score_add()
+    {
+        Score_total += 1;
+    }
+    public void Clicked(bool ans)
+    {
+        Answer = ans;
+        Clicked_question = true;
+    }
+    public bool Get_status_answer()
+    {
+        return Answer;
+    }
+
+    IEnumerator Message(bool msg)
+    {
+        //true - correct, false - incorrect
+        if (msg == true)
+        {
+            Correct_answer_message.SetActive(true);
+            yield return new WaitForSeconds(2.0f);
+            Correct_answer_message.SetActive(false);
+            yield break;
+        }
+        else if (msg == false)
+        {
+            Incorrect_answer_message.SetActive(true);
+            yield return new WaitForSeconds(2.0f);
+            Incorrect_answer_message.SetActive(false);
+            yield break;
+        }
+    }
+
     IEnumerator Startact()
     {
+        Manager_audio.instance.Get_intro();
         yield return new WaitForSeconds(2.0f);
         Scriptbox.GetComponent<Animation>().Play("bannerup(1220)");
         Top_navigation.GetComponent<Animation>().Play("TN_intro_down");
@@ -436,6 +514,7 @@ public class Scene_2_3_controller : MonoBehaviour
     public void Set_add_pitch()
     {
         Value_Angle_yaw += 5;
+        //3이랑 4일 때 각각 판단해야함
         if (BtnCount == 9)
         {
             //yaw
@@ -463,7 +542,7 @@ public class Scene_2_3_controller : MonoBehaviour
     public void Set_reduce_pitch()
     {
         Value_Angle_yaw -= 5;
-        
+
         if (BtnCount == 15)
         {
             Value_Power = 1000 + ((270 - Value_Angle_yaw) / 270) * 1100;
