@@ -6,6 +6,7 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedScenePath-0:
+<<<<<<< HEAD
       value: 224247031146460b433d0f271e26103433215762282d307912051232e6e93a3facf238e0f323
       flags: 0
     RecentlyUsedScenePath-1:
@@ -32,6 +33,9 @@ EditorUserSettings:
     RecentlyUsedScenePath-8:
       value: 224247031146460b433d0f271e26103433215762282d30790e211c23f6e52607b3d865a7f234362820
       flags: 0
+=======
+    flags: 0
+>>>>>>> parent of 8131456 (Merge pull request #17 from Jeongseongwon/0129)
   m_VCAutomaticAdd: 1
   m_VCDebugCom: 0
   m_VCDebugCmd: 0
