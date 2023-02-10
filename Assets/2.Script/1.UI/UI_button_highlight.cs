@@ -24,7 +24,7 @@ public class UI_button_highlight : MonoBehaviour, IPointerClickHandler
         {
             c.a += Time.deltaTime * 0.7f;
 
-            if (c.a >= 0.6)
+            if (c.a >= 0.8)
                 pingPong = false;
         }
         else

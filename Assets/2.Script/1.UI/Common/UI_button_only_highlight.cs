@@ -21,7 +21,7 @@ public class UI_button_only_highlight : MonoBehaviour
         {
             c.a += Time.deltaTime * 0.7f;
 
-            if (c.a >= 0.6)
+            if (c.a >= 1)
                 pingPong = false;
         }
         else
