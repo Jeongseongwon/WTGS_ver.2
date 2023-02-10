@@ -22,10 +22,18 @@ public class Input_box_act : MonoBehaviour
             SceneController.GetComponent<Script_controller>().NextBtn();
         else
         {
-            ErrorMsg.GetComponent<Animation>().Play("ErrorMessage");
-            ErrorAudio.PlayDelayed(0.5f);
+            StartCoroutine(Message());
+            //ErrorMsg.GetComponent<Animation>().Play("ErrorMessage");
+            //ErrorAudio.PlayDelayed(0.5f);
+
         }
         //Debug.Log("Wrong");
     }
-
+    IEnumerator Message(int num = 0)
+    {
+        ErrorMsg.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        ErrorMsg.SetActive(false);
+         yield break;
+    }
 }

@@ -15,7 +15,7 @@ public class UI_button_2_3_next : MonoBehaviour, IPointerClickHandler
     private string Scene_name;
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (Scene_name == "(dev)_Chapter_1_3")
+        if (Scene_name == "(dev)Chapter_1_3")
         {
             bool answer = SceneController.GetComponent<Scene_1_3_controller>().Get_status_answer();
             if (answer == true)
@@ -29,12 +29,14 @@ public class UI_button_2_3_next : MonoBehaviour, IPointerClickHandler
 
             }
         }
-        else if (Scene_name == "(dev)_Chapter_2_3")
+        else if (Scene_name == "(dev)Chapter_2_3")
         {
             bool answer = SceneController.GetComponent<Scene_2_3_controller>().Get_status_answer();
             if (answer == true)
             {
                 SceneController.GetComponent<Scene_2_3_controller>().BtnCount_add();
+                Debug.Log("2_3next");
+
             }
             else if (answer == false)
             {

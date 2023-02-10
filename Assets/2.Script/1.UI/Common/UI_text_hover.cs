@@ -21,11 +21,11 @@ public class UI_text_hover : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         if (Answer == true)
         {
             //Evaluation.transform.GetChild(0).gameObject.GetComponent<Animation>().Play();
-            if (Scene_name == "(dev)_Chapter_1_3")
+            if (Scene_name == "(dev)Chapter_1_3")
             {
                 SceneController.GetComponent<Scene_1_3_controller>().Clicked(true);
             }
-            else if (Scene_name == "(dev)_Chapter_2_3")
+            else if (Scene_name == "(dev)Chapter_2_3")
             {
                 SceneController.GetComponent<Scene_2_3_controller>().Clicked(true);
             }
@@ -37,11 +37,11 @@ public class UI_text_hover : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         else if(Answer == false)
         {
             //Evaluation.transform.GetChild(1).gameObject.GetComponent<Animation>().Play();
-            if (Scene_name == "(dev)_Chapter_1_3")
+            if (Scene_name == "(dev)Chapter_1_3")
             {
                 SceneController.GetComponent<Scene_1_3_controller>().Clicked(false);
             }
-            else if (Scene_name == "(dev)_Chapter_2_3")
+            else if (Scene_name == "(dev)Chapter_2_3")
             {
                 SceneController.GetComponent<Scene_2_3_controller>().Clicked(false);
             }

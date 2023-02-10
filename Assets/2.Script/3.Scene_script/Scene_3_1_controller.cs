@@ -12,34 +12,24 @@ public class Scene_3_1_controller : MonoBehaviour
 
     private bool flag = false;
     private bool Prev_Status = false;
+    private GameObject camera;
 
     // Start is called before the first frame update
     void Start()
     {
         PostCount = -1;
-        //PC_Image_Array = PC_Image.gameObject.GetComponentsInChildren<Transform>();
-        // PC_Image_Array = GameObject.FindGameObjectsWithTag("PC_Sprite");
-        
-
-        //Invoke("Startact", 2f);    // 5초 뒤에 해당 오브젝트 화면에 투사
-        //Invoke("PC_ON", 10f);    // 5초 뒤에 해당 오브젝트 화면에 투사
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
-    private void Startact() //중간 평가용으로 수정
+   
+    IEnumerator Startact()
     {
-        Intro_2.SetActive(true);
+        camera.GetComponent<Animation>().Play();
         Scriptbox.GetComponent<Animation>().Play("bannerup(1220)");
         Top_navigation.GetComponent<Animation>().Play("TN_intro_down");
-    }
-    private void PC_ON()
-    {
-        Intro_2.GetComponent<Animation>().Play("Intro_2_animation(off)");
-
-        for (int i = 0; i < PC_Image_Array.Length; i++)
-        {
-            PC_Image_Array[i].gameObject.SetActive(false);
-        }
-        PC_Image_Array[0].gameObject.SetActive(true);
-        
+        yield return new WaitForSeconds(2f);
+        Intro_2.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        yield break;
     }
     // Update is called once per frame
     void Update()
@@ -60,13 +50,11 @@ public class Scene_3_1_controller : MonoBehaviour
 
             if (BtnCount == 0)
             {
-                Startact();
+                StartCoroutine(Startact());
             }
-            else if (BtnCount == 1)
+            if (BtnCount == 1)
             {
-                Intro_2.GetComponent<Animation>().Play("Intro_2_animation(off)");
-                Debug.Log("check_2");
-
+                Intro_2.SetActive(false);
             }
             if (Prev_Status==true)
             {
@@ -77,12 +65,13 @@ public class Scene_3_1_controller : MonoBehaviour
 
             if (BtnCount > 0)
             {
+                //첫 번째 이미지는 애니메이션 재생?
                 PC_Image_Array[BtnCount - 1].SetActive(false);
+                PC_Image_Array[BtnCount].SetActive(true);
             }
-            PC_Image_Array[BtnCount].SetActive(true);
             PostCount = BtnCount;
             flag = false;
-            Debug.Log("Image check");
+            //Debug.Log("Image check");
         }
     }
 }

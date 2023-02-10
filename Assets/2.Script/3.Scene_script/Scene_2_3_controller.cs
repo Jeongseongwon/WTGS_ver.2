@@ -102,6 +102,7 @@ public class Scene_2_3_controller : MonoBehaviour
         Incorrect_answer_message = Msg.transform.GetChild(1).gameObject;
         Question_panel_0 = Question.GetComponent<Transform>().GetChild(0).gameObject;
         Question_panel_1 = Question.GetComponent<Transform>().GetChild(1).gameObject;
+        Question_num = Question.gameObject.GetComponent<Transform>().childCount;
         Value_Angle_yaw = 0;
         Value_Angle_yaw_target = 0;
         Value_Angle_pitch = 0;
@@ -123,7 +124,6 @@ public class Scene_2_3_controller : MonoBehaviour
         if (PostCount != BtnCount)
         {
             flag = true;
-            Debug.Log("TRUE");
         }
 
         if (flag == true)
@@ -147,6 +147,7 @@ public class Scene_2_3_controller : MonoBehaviour
             }
             else if (BtnCount == 2)
             {
+                Debug.Log("btncount2");
 
                 if (Question_panel_1 != null)
                 {
@@ -168,11 +169,12 @@ public class Scene_2_3_controller : MonoBehaviour
             else if (BtnCount == 3)
             {
                 //이론 평가 두번재 화면에 나타나기
-                //카메라 움직이는거, 옆에 패널 애니메이션 추가
-                //아래 스크립트 박스도 올라오기
-
+               
                 //상황 제시
                 //다른 버튼 누를 경우 먼저 풍력발전 시작 및 브레이크 해제가 필요합니다 메시지 화면 나타남
+                //버튼 활성화
+                //아직 시작, 브레이크 누르지 않았는데 다른 버튼 누를 경우 에러 메시지
+                Scriptbox.SetActive(true);
                 Panel_button_inactive.SetActive(false);
                 Question_panel_1.SetActive(false);
 
@@ -187,6 +189,8 @@ public class Scene_2_3_controller : MonoBehaviour
                 Wind_particle.SetActive(true);
                 Graph_velocity.SetActive(true);
                 Change_graph_number(Data_velocity, 3);
+
+                //풍속만 올라가고, 버튼 누르기로 해야댐
 
             }
             else if (BtnCount == 5)
@@ -271,7 +275,6 @@ public class Scene_2_3_controller : MonoBehaviour
 
             PostCount = BtnCount;
             flag = false;
-            Debug.Log("FALSE");
         }
 
 
@@ -334,6 +337,7 @@ public class Scene_2_3_controller : MonoBehaviour
 
     void Set_score()
     {
+        Debug.Log("Setscore");
         if (Answer == true)
         {
             //정답
@@ -363,7 +367,7 @@ public class Scene_2_3_controller : MonoBehaviour
     }
     public void BtnCount_add()
     {
-        BtnCount += 1;
+        gameObject.GetComponent<Script_controller>().NextBtn();
     }
     public void Score_add()
     {
@@ -373,6 +377,7 @@ public class Scene_2_3_controller : MonoBehaviour
     {
         Answer = ans;
         Clicked_question = true;
+        //Debug.Log("Clicked");
     }
     public bool Get_status_answer()
     {
