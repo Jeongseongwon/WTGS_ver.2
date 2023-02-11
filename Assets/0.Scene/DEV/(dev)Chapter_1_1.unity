@@ -57863,6 +57863,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1299876264}
     m_Modifications:
+    - target: {fileID: 1207182919204426404, guid: c1987df1bd7804d4ca4828844c0c2f5c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 1207182919204426407, guid: c1987df1bd7804d4ca4828844c0c2f5c, type: 3}
       propertyPath: m_Text
       value: "\uACE0\uC18D-\uC800\uD1A0\uD06C \uD68C\uC804\n(100-1800RPM)"
@@ -70981,6 +70985,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1299876264}
     m_Modifications:
+    - target: {fileID: 1207182919204426404, guid: c1987df1bd7804d4ca4828844c0c2f5c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.027
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207182919204426404, guid: c1987df1bd7804d4ca4828844c0c2f5c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.022
+      objectReference: {fileID: 0}
+    - target: {fileID: 1207182919204426404, guid: c1987df1bd7804d4ca4828844c0c2f5c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.001
+      objectReference: {fileID: 0}
     - target: {fileID: 1207182919204426407, guid: c1987df1bd7804d4ca4828844c0c2f5c, type: 3}
       propertyPath: m_Text
       value: "\uC800\uC18D-\uACE0\uD1A0\uD06C \uD68C\uC804\n(30-60RPM)"

@@ -84,6 +84,7 @@ public class Scene_1_1_controller : MonoBehaviour
     void Act(int count)
     {
         var ps = windspeed.main;
+        var emmisions=windspeed.emission; 
         Scriptbox.GetComponent<Animation>().Play("banner_o");
         if (count == 0)
         {
@@ -116,6 +117,7 @@ public class Scene_1_1_controller : MonoBehaviour
         {
             if (Prev_Status == true)
             {
+                emmisions.rateOverTime = 1.3f;
                 Arrow_object_fast.SetActive(false);
                 Prev_Status = false;
                 //Camera.GetComponent<Camera_movement>().act2();
@@ -139,6 +141,7 @@ public class Scene_1_1_controller : MonoBehaviour
         }
         else if (count == 3)
         {
+            
             if (Prev_Status == true)
             {
                 StartCoroutine(Animation_play(6.2));
@@ -146,6 +149,7 @@ public class Scene_1_1_controller : MonoBehaviour
                 //나셀 원상복구
                 Prev_Status = false;
             }
+            emmisions.rateOverTime = 3;
             //하이라이트 효과
             Object_Col_Off_ALL();
             Object_Col_On(Object_6_Rotor);
