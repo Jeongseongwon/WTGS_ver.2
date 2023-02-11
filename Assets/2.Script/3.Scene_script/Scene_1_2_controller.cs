@@ -47,9 +47,9 @@ public class Scene_1_2_controller : MonoBehaviour
     public GameObject Object_12_1_Yaw_system_4;
     public GameObject Object_13_Gearbox;
     public GameObject Object_14_Generator;
-
+    public GameObject[] pitch;
     public AudioSource windsound;
-
+    public Animation core_break;
     private int BtnCount;
 
     void Start()
@@ -175,6 +175,7 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 7)
         {
+            
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
             Object_Col_On(Object_6_Rotor);
@@ -202,6 +203,14 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 8)
         {
+            if (Prev_Status == true)
+            {
+                pitch[0].SetActive(false);
+                pitch[1].SetActive(false);
+                pitch[2].SetActive(false);
+                Prev_Status = false;
+            }
+            
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
             Object_Col_On(Object_8_Hub);
@@ -218,6 +227,17 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 9)
         {
+            if (Prev_Status == true)
+            {
+                pitch[0].SetActive(true);
+                pitch[1].SetActive(true);
+                pitch[2].SetActive(true);
+                Prev_Status = false;
+            }
+            pitch[0].SetActive(true);
+            pitch[1].SetActive(true);
+            pitch[2].SetActive(true);
+
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
             Object_Col_On(Object_9_1_Pitch_sytem_1);
@@ -233,6 +253,7 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 10)
         {
+          
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
             Object_Col_On(Object_8_Hub);
@@ -248,6 +269,13 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 11)
         {
+            if (Prev_Status == true)
+            {
+                Prev_Status = false;
+            }
+            pitch[0].SetActive(false);
+            pitch[1].SetActive(false);
+            pitch[2].SetActive(false);
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
             Object_Col_On(Object_4_Nacelle);
@@ -342,6 +370,7 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 20)
         {
+            
             //피치 줌인 및 이전 상태에서 피치 분리된 상태로 돌아가기
 
             //콜라이더(툴팁, 하이라이트)
@@ -373,10 +402,12 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 24)
         {
+            core_break.Play("main_break");
             //주축 잠금 장치
         }
         else if (count == 25)
         {
+            core_break.Play("main_break_down");
             //주축용 브레이크
         }
         else if (count == 26)
