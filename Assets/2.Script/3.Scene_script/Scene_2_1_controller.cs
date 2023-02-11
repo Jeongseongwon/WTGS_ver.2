@@ -616,41 +616,33 @@ public class Scene_2_1_controller : MonoBehaviour
             Change_graph_number(Data_power, Value_Power);
             Wind_velocity_for_rot = 1 + ((30 - Value_Angle_pitch) / 30);
             //속도를 조절
-            if (Mathf.Abs(Value_Angle_pitch_target - Value_Angle_pitch) <= 3)
-            {
-                gameObject.GetComponent<Script_controller>().NextBtn();
-                Debug.Log("ACT");
-            }
+            
         }
         else if (BtnCount == 12)
         {
             Value_Power = 1700 + ((Value_Angle_pitch) / 45) * 400;
             Change_graph_number(Data_power, Value_Power);
             Wind_velocity_for_rot = 2 + 2 * ((Value_Angle_pitch) / 45);
-            if (Mathf.Abs(Value_Angle_pitch_target - Value_Angle_pitch) <= 3)
-            {
-                gameObject.GetComponent<Script_controller>().NextBtn();
-            }
+           
         }
         else if (BtnCount == 14)
         {
             Value_Power = 2500 - ((Value_Angle_pitch - 45) / 45) * 400;
             Change_graph_number(Data_power, Value_Power);
             Wind_velocity_for_rot = 8 - 4 * ((Value_Angle_pitch - 45) / 45);
-            if (Mathf.Abs(Value_Angle_pitch_target - Value_Angle_pitch) <= 3)
-            {
-                gameObject.GetComponent<Script_controller>().NextBtn();
-            }
+            
         }
         else if (BtnCount == 16)
         {
             Value_Power = 700 + ((90 - Value_Angle_pitch) / 60) * 1400;
             Change_graph_number(Data_power, Value_Power);
             Wind_velocity_for_rot = 2 + 2 * ((90 - Value_Angle_pitch) / 60);
-            if (Mathf.Abs(Value_Angle_pitch_target - Value_Angle_pitch) <= 3)
-            {
-                gameObject.GetComponent<Script_controller>().NextBtn();
-            }
+            
+        }
+        if (Mathf.Abs(Value_Angle_pitch_target - Value_Angle_pitch) <= 3)
+        {
+            gameObject.GetComponent<Script_controller>().NextBtn();
+            Debug.Log("ACT");
         }
     }
     
