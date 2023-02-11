@@ -20,12 +20,10 @@ public class UI_button_2_2 : MonoBehaviour, IPointerClickHandler
             if (Object_name == "Button_+")
             {
                 SceneController.GetComponent<Scene_2_2_controller>().Set_add_pitch();
-                SceneController.GetComponent<Scene_2_2_controller>().Rotate_blade_up();
             }
             else if (Object_name == "Button_-")
             {
                 SceneController.GetComponent<Scene_2_2_controller>().Set_reduce_pitch();
-                SceneController.GetComponent<Scene_2_2_controller>().Rotate_blade_down();
             }
             else if (Object_name == "Button_Stop")
             {
@@ -40,13 +38,11 @@ public class UI_button_2_2 : MonoBehaviour, IPointerClickHandler
         {
             if (Object_name == "Button_+")
             {
-                SceneController.GetComponent<Scene_2_3_controller>().Set_add_pitch();
-                SceneController.GetComponent<Scene_2_3_controller>().Rotate_blade_up();
+                SceneController.GetComponent<Scene_2_3_controller>().Set_add_pitch('y');
             }
             else if (Object_name == "Button_-")
             {
-                SceneController.GetComponent<Scene_2_3_controller>().Set_reduce_pitch();
-                SceneController.GetComponent<Scene_2_3_controller>().Rotate_blade_down();
+                SceneController.GetComponent<Scene_2_3_controller>().Set_reduce_pitch('y');
             }
             else if (Object_name == "Button_Stop")
             {
