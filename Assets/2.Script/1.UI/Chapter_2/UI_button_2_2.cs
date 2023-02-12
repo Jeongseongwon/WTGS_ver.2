@@ -51,6 +51,7 @@ public class UI_button_2_2 : MonoBehaviour, IPointerClickHandler
             else if (Object_name == "Button_Start")
             {
                 SceneController.GetComponent<Script_controller>().NextBtn();
+                this.GetComponent<UI_button_2_2>().enabled = false;
             }
 
         }

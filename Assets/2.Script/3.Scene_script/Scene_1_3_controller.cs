@@ -82,15 +82,6 @@ public class Scene_1_3_controller : MonoBehaviour
         }
     }
 
-    private void PC_ON()
-    {
-        PC_Image.SetActive(true);
-        for (int i = 0; i < PC_Image_Array.Length; i++)
-        {
-            PC_Image_Array[i].gameObject.SetActive(false);
-        }
-        PC_Image_Array[0].gameObject.SetActive(true);
-    }
     // Update is called once per frame
     void Update()
     {
@@ -103,10 +94,7 @@ public class Scene_1_3_controller : MonoBehaviour
 
         if (PostCount != BtnCount)
         {
-           
-            //PC_Image_Array[PostCount].gameObject.SetActive(false);
             flag = true;
-            Debug.Log("TRUE");
         }
 
         if (flag == true)
@@ -165,7 +153,7 @@ public class Scene_1_3_controller : MonoBehaviour
 
             PostCount = BtnCount;
             flag = false;
-            Debug.Log("FALSE");
+            
         }
 
     }
@@ -179,7 +167,7 @@ public class Scene_1_3_controller : MonoBehaviour
             //result_icon내 위치를 직접 맞춰준 다음에 아래 순서 조절함
             if (Score[i] == 0)
             {
-                Result_icon.transform.GetChild(i + 4).gameObject.SetActive(true);
+                Result_icon.transform.GetChild(i + 5).gameObject.SetActive(true);
             }
         }
 
@@ -188,19 +176,18 @@ public class Scene_1_3_controller : MonoBehaviour
         {
             Result_description.transform.GetChild(0).gameObject.SetActive(true);
         }
-        else if (Score_total == 1)
+        else if (Score_total<=2)
         {
             Result_description.transform.GetChild(1).gameObject.SetActive(true);
         }
-        else if (Score_total == 2)
+        else if (Score_total==3)
         {
             Result_description.transform.GetChild(2).gameObject.SetActive(true);
         }
         else
         {
-            Debug.Log(Score_total);
+            //Debug.Log(Score_total);
         }
-        Debug.Log("check_result");
 
         //End_XAPI();
 
@@ -212,13 +199,13 @@ public class Scene_1_3_controller : MonoBehaviour
         {
             //정답
             Panel_button_inactive.SetActive(true);
-            Score_add();
+           // Score_add();
             StartCoroutine(Message(true));
             Text_Answer[BtnCount-1].SetActive(true);
             Score[BtnCount-1] = 1;
             Score_total += 1;
             Answer_count = 0;           //정답시 초기화
-            Debug.Log("RIGHT ANSWER");
+           
         }
         else if (Answer == false)
         {
@@ -232,7 +219,7 @@ public class Scene_1_3_controller : MonoBehaviour
             Text_Answer[BtnCount-1].SetActive(true);
             Answer_count = 0;
             Answer = true;
-            Debug.Log("ENOUGH WRONG TRY");
+           
         }
     }
 

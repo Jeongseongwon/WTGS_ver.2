@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/nacel_break.anim.meta
 guid: beb15b1eb354d8c46af5dfca72008339
 NativeFormatImporter:
+========
+guid: e89d047532c430243a24aef5f3f9d1a2
+DefaultImporter:
+>>>>>>>> Stashed changes:Assets/11.Addon/Chart And Graph/TextEffects3D/3d Text Integration.unitypackage.meta
   externalObjects: {}
   mainObjectFileID: 7400000
   userData: 
