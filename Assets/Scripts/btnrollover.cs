@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class btnrollover : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class btnrollover : MonoBehaviour,  IPointerEnterHandler, IPointerExitHandler
 {
     public float sizeInit;
     public float sizeUP;
@@ -51,18 +51,7 @@ public class btnrollover : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         //tooltip.SetActive(false);
         tooltip_text.SetActive(false);
     }
-    public void OnPointerClick(PointerEventData eventData)
-    {
-
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-
-
-        }
-
-        Debug.Log("Mouse Position : " + eventData.position);
-        Debug.Log("Mouse Click Count : " + eventData.clickCount);
-    }
+   
     public void OnPointerExit(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)

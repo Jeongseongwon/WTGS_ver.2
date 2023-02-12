@@ -162,6 +162,7 @@ public class Scene_2_2_controller : MonoBehaviour
                 Wind_particle.SetActive(true);
                 Graph_velocity.SetActive(true);
                 Change_graph_number(Data_velocity, 12);
+                Manager_audio.instance.Get_Low_wind();
 
             }
             else if (BtnCount == 8)

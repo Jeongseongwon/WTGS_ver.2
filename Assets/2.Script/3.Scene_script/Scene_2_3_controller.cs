@@ -128,11 +128,7 @@ public class Scene_2_3_controller : MonoBehaviour
     {
         BtnCount = gameObject.GetComponent<Script_controller>().btnCount;   //이 부분 대체 필요
 
-        //if (Clicked_question == true && BtnCount <= Question_num)
-        //{
-        //    Set_score();
-        //    Clicked_question = false;
-        //}
+        
         if (PostCount != BtnCount)
         {
             flag = true;
@@ -140,12 +136,6 @@ public class Scene_2_3_controller : MonoBehaviour
 
         if (flag == true)
         {
-            Answer = false;
-
-            if (BtnCount == 0)
-            {
-                StartCoroutine(Startact());
-            }
             //if (BtnCount == 1)
             //{
             //    Debug.Log("btncount1");
@@ -167,10 +157,9 @@ public class Scene_2_3_controller : MonoBehaviour
             //        Question_panel_0.SetActive(false);
             //    }
             //}
-
-            else if (BtnCount == 1)
+            if (BtnCount == 0)
             {
-
+                StartCoroutine(Startact());
             }
             if (BtnCount == 1)
             {
@@ -211,6 +200,7 @@ public class Scene_2_3_controller : MonoBehaviour
                 Seq_array[1].SetActive(true);
                 Score[0] = 1;
                 Score_total += 1;
+                Manager_audio.instance.Get_Low_wind();
 
                 Limit_angle_p = 0;
                 init_angle_limit_p = 0;
@@ -232,7 +222,8 @@ public class Scene_2_3_controller : MonoBehaviour
             }
             else if (BtnCount == 5)
             {
-
+                Manager_audio.instance.Stop_Low_wind();
+                Manager_audio.instance.Get_Strong_wind();
                 Seq_array[2].SetActive(true);
                 Wind_velocity_for_rot = 11;
 
@@ -245,25 +236,10 @@ public class Scene_2_3_controller : MonoBehaviour
                 Change_value(90, 'p');
                 StartCoroutine(Alert_value_p());
             }
-            else if (BtnCount == 4)
+            else if (BtnCount == 6)
             {
-
-                Wind_velocity_for_rot = 11;
-
-                //전부 값 리셋 
-                //다시 나레이션 재생 및 시작 버튼 클릭 유도
-                Limit_angle_p = 35;
-                init_angle_limit_p = 45;
-
-                //풍속 변경
-                Value_Power = 2500 - ((Value_Angle_pitch - 45) / 45) * 400;
-                Change_graph_number(Data_power, Value_Power);
-                Change_value(90, 'p');
-
-
-            }
-            else if (BtnCount == 5)
-            {
+                Manager_audio.instance.Stop_Strong_wind();
+                Manager_audio.instance.Get_Low_wind();
                 Seq_array[3].SetActive(true);
                 Wind_velocity_for_rot = 2;
 
@@ -277,21 +253,6 @@ public class Scene_2_3_controller : MonoBehaviour
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(45, 'p');
                 Change_value(270, 'y');
-            }
-            else if (BtnCount == 6)
-            {
-                Wind_velocity_for_rot = 2;
-
-                Limit_angle_p = 55;
-                init_angle_limit_p = 45;
-                Limit_angle_y = 280;
-                init_angle_limit_y = 270;
-
-                //풍속 변경
-                Value_Power = 600;
-                Change_graph_number(Data_power, Value_Power);
-                Change_value(30, 'p');
-                Change_value(10, 'y');
             }
             else if (BtnCount == 7)
             {
@@ -577,16 +538,16 @@ public class Scene_2_3_controller : MonoBehaviour
     }
     public void Rotate_blade_up()
     {
-        Blade_1.GetComponent<Transform>().Rotate(new Vector3(0, 5, 0));
-        Blade_2.GetComponent<Transform>().Rotate(new Vector3(0, 5, 0));
-        Blade_3.GetComponent<Transform>().Rotate(new Vector3(0, 5, 0));
+        Blade_1.GetComponent<Transform>().Rotate(new Vector3(0, 2.5f, 0));
+        Blade_2.GetComponent<Transform>().Rotate(new Vector3(0, 2.5f, 0));
+        Blade_3.GetComponent<Transform>().Rotate(new Vector3(0, 2.5f, 0));
     }
     public void Rotate_blade_down()
     {
 
-        Blade_1.GetComponent<Transform>().Rotate(new Vector3(0, -5, 0));
-        Blade_2.GetComponent<Transform>().Rotate(new Vector3(0, -5, 0));
-        Blade_3.GetComponent<Transform>().Rotate(new Vector3(0, -5, 0));
+        Blade_1.GetComponent<Transform>().Rotate(new Vector3(0, -2.5f, 0));
+        Blade_2.GetComponent<Transform>().Rotate(new Vector3(0, -2.5f, 0));
+        Blade_3.GetComponent<Transform>().Rotate(new Vector3(0, -2.5f, 0));
     }
     public void Rotate_yaw_up()
     {

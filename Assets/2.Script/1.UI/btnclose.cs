@@ -10,9 +10,6 @@ public class btnclose : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     public void OnPointerClick(PointerEventData eventData)
     {
-
-
-
         if (eventData.button == PointerEventData.InputButton.Left)
         {
 
@@ -24,38 +21,22 @@ public class btnclose : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
             {
                 off();
             }
-
-
         }
-
-
-        Debug.Log("Mouse Position : " + eventData.position);
-        Debug.Log("Mouse Click Count : " + eventData.clickCount);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            Debug.Log("soundplay");
-
-
-
+            
         }
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            Debug.Log("soundplay");
-
-
-
-        }
+      
     }
     public void on()
     {
         edpopup.SetActive(true);
-
         menubar = true;
 
     }

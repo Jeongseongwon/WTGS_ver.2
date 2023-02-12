@@ -67,8 +67,6 @@ public class Scene_2_1_controller : MonoBehaviour
     bool Prev_Status = false;
     // Start is called before the first frame update
     public ParticleSystem windspeed;
-    public AudioSource strong_wind;
-    public AudioSource low_wind;
 
     void Start()
     {
@@ -137,7 +135,7 @@ public class Scene_2_1_controller : MonoBehaviour
             {
                 if (Prev_Status == true)
                 {
-                    low_wind.Stop();
+                    Manager_audio.instance.Stop_Low_wind();
                     Subcamera.SetActive(false);
                     Subcamera_frame.SetActive(false);
 
@@ -160,7 +158,8 @@ public class Scene_2_1_controller : MonoBehaviour
                     Prev_Status = false;
                     StopCoroutine(Rotate_turbine());
                 }
-                 low_wind.Play();
+                
+                Manager_audio.instance.Get_Low_wind();
 
                 Subcamera.SetActive(true);
                 Subcamera_frame.SetActive(true);
@@ -222,7 +221,6 @@ public class Scene_2_1_controller : MonoBehaviour
 
                 if (Prev_Status == true)
                 {
-                    strong_wind.Stop();
                     //object 복구
                     StopCoroutine(Alert_value());
                     wind_fast.SetActive(false);
@@ -283,8 +281,8 @@ public class Scene_2_1_controller : MonoBehaviour
                     ps.simulationSpeed = 2f;
                     emmisions.rateOverTime = 1f;
                     Wind_velocity_for_rot =4;
-                    low_wind.Play();
-                    strong_wind.Stop();
+                    Manager_audio.instance.Get_Low_wind();
+                    Manager_audio.instance.Stop_Strong_wind();
                     //object 복구
                     StopCoroutine(Alert_value());
 
@@ -316,8 +314,8 @@ public class Scene_2_1_controller : MonoBehaviour
                     Prev_Status = false;
                 }
                 Wind_velocity_for_rot = 8;
-                low_wind.Stop();
-                strong_wind.Play();
+                Manager_audio.instance.Stop_Low_wind();
+                Manager_audio.instance.Get_Strong_wind();
                 Button_active_off(Add_button);
                 Button_active_off(Reduce_button);
                 StopCoroutine(Alert_value());
@@ -349,7 +347,6 @@ public class Scene_2_1_controller : MonoBehaviour
                     Prev_Status = false;
                 }
 
-                strong_wind.Stop();
                 Button_active_on(Add_button);
                 Button_active_on(Reduce_button);
                 Value_Power = 2500 - ((Value_Angle_pitch - 45) / 45) * 400;
@@ -367,6 +364,8 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
+
+                Manager_audio.instance.Stop_Strong_wind();
                 Button_active_off(Add_button);
                 Button_active_off(Reduce_button);
                 StopCoroutine(Alert_value());

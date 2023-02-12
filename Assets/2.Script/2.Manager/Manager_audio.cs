@@ -10,7 +10,11 @@ public class Manager_audio : MonoBehaviour
     private AudioSource BGM;
     private AudioSource Narration;
     private AudioSource Intro;
-
+    private AudioSource Error;
+    private AudioSource Correct_answer;
+    private AudioSource strong_wind;
+    private AudioSource low_wind;
+        
     private GameObject Scenecontroller;
     // Start is called before the first frame update
     private void Awake()
@@ -38,6 +42,12 @@ public class Manager_audio : MonoBehaviour
         Click = this.transform.GetChild(1).gameObject.GetComponent<AudioSource>();
         BGM = this.transform.GetChild(2).gameObject.GetComponent<AudioSource>();
         Intro = this.transform.GetChild(3).gameObject.GetComponent<AudioSource>();
+
+        Error = this.transform.GetChild(6).gameObject.GetComponent<AudioSource>();
+        Correct_answer = this.transform.GetChild(7).gameObject.GetComponent<AudioSource>();
+        strong_wind = this.transform.GetChild(8).gameObject.GetComponent<AudioSource>();
+        low_wind = this.transform.GetChild(9).gameObject.GetComponent<AudioSource>();
+
     }
 
     public void Get_hover()
@@ -63,6 +73,38 @@ public class Manager_audio : MonoBehaviour
         //Debug.Log("click");
     }
 
+    public void Get_Error()
+    {
+        Error.Play();
+        //Debug.Log("click");
+    }
+
+    public void Get_Correct_answer()
+    {
+        Correct_answer.Play();
+        //Debug.Log("click");
+    }
+
+    public void Get_Strong_wind()
+    {
+        strong_wind.Play();
+        //Debug.Log("click");
+    }
+    public void Get_Low_wind()
+    {
+        low_wind.Play();
+        //Debug.Log("click");
+    }
+    public void Stop_Strong_wind()
+    {
+        strong_wind.Stop();
+        //Debug.Log("click");
+    }
+    public void Stop_Low_wind()
+    {
+        low_wind.Stop();
+        //Debug.Log("click");
+    }
     private void OnLevelWasLoaded(int level)
     {
         if (GameObject.FindGameObjectWithTag("Scene_controller") != null)
@@ -74,6 +116,11 @@ public class Manager_audio : MonoBehaviour
         Click = this.transform.GetChild(1).gameObject.GetComponent<AudioSource>();
         BGM = this.transform.GetChild(2).gameObject.GetComponent<AudioSource>();
         Intro = this.transform.GetChild(3).gameObject.GetComponent<AudioSource>();
+
+        Error = this.transform.GetChild(6).gameObject.GetComponent<AudioSource>();
+        Correct_answer = this.transform.GetChild(7).gameObject.GetComponent<AudioSource>();
+        strong_wind = this.transform.GetChild(8).gameObject.GetComponent<AudioSource>();
+        low_wind = this.transform.GetChild(9).gameObject.GetComponent<AudioSource>();
         Debug.Log("씬 전환시 호출 확인");
     }
     public void Set_all_sound_volume(float volume)
@@ -86,6 +133,10 @@ public class Manager_audio : MonoBehaviour
             Narration.volume = volume;
         }
         Intro.volume = volume;
+        Error.volume = volume;
+        Correct_answer.volume = volume;
+        strong_wind.volume = volume;
+        low_wind.volume = volume;
     }
 
     public void Set_effect_sound_volume(float volume)
@@ -93,6 +144,11 @@ public class Manager_audio : MonoBehaviour
         Hover.volume = volume;
         Click.volume = volume;
         Intro.volume = volume;
+        Intro.volume = volume;
+        Error.volume = volume;
+        Correct_answer.volume = volume;
+        strong_wind.volume = volume;
+        low_wind.volume = volume;
     }
 
     public void Set_narration_volume(float volume)
