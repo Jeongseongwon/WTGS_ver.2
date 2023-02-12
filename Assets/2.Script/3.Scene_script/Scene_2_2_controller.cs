@@ -512,7 +512,7 @@ public class Scene_2_2_controller : MonoBehaviour
             Debug.Log("+ 클릭 비정상");
             if (Value_Angle_yaw < Limit_angle)
             {
-                Value_Angle_yaw += 5;
+                Value_Angle_yaw += 10;
                 Rotate_blade_up();
             }
             else if (Value_Angle_yaw < Limit_angle)
@@ -523,7 +523,7 @@ public class Scene_2_2_controller : MonoBehaviour
         }//+가 정상
         else if (Limit_angle <= init_angle_limit)
         {
-            Value_Angle_yaw += 5;
+            Value_Angle_yaw += 10;
             Rotate_blade_up();
         }
         Change_power_ws();
@@ -534,7 +534,7 @@ public class Scene_2_2_controller : MonoBehaviour
         //-가 정상
         if (Limit_angle > init_angle_limit)
         {
-            Value_Angle_yaw -= 5;
+            Value_Angle_yaw -= 10;
             Rotate_blade_down();
         }
         else if (Limit_angle <= init_angle_limit)
@@ -542,7 +542,7 @@ public class Scene_2_2_controller : MonoBehaviour
             Debug.Log("- 클릭 비정상");
             if (Value_Angle_yaw > Limit_angle)
             {
-                Value_Angle_yaw -= 5;
+                Value_Angle_yaw -= 10;
                 Rotate_blade_down();
             }
             else if (Value_Angle_yaw == Limit_angle)

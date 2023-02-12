@@ -31,19 +31,20 @@ public class UI_button_2_3_next : MonoBehaviour, IPointerClickHandler
         }
         else if (Scene_name == "(dev)Chapter_2_3")
         {
-            bool answer = SceneController.GetComponent<Scene_2_3_controller>().Get_status_answer();
-            if (answer == true)
-            {
-                SceneController.GetComponent<Scene_2_3_controller>().BtnCount_add();
-                Debug.Log("2_3next");
+            //bool answer = SceneController.GetComponent<Scene_2_3_controller>().Get_status_answer();
+            //if (answer == true)
+            //{
+            //    SceneController.GetComponent<Scene_2_3_controller>().BtnCount_add();
+            //    Debug.Log("2_3next");
 
-            }
-            else if (answer == false)
-            {
-                //정답을 클릭해달라고 메시지 띄우기
-                Debug.Log("정답을 클릭해주세요");
+            //}
+            //else if (answer == false)
+            //{
+            //    //정답을 클릭해달라고 메시지 띄우기
+            //    Debug.Log("정답을 클릭해주세요");
 
-            }
+            //}
+            SceneController.GetComponent<Script_controller>().NextBtn();
         }
     }
 

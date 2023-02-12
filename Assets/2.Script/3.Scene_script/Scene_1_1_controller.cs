@@ -57,6 +57,7 @@ public class Scene_1_1_controller : MonoBehaviour
     
     public ParticleSystem windspeed;
     public AudioSource windsound;
+    public float Wind_velocity_for_rot;
     void Start()
     {
        
@@ -94,10 +95,6 @@ public class Scene_1_1_controller : MonoBehaviour
         }
         if (count == 1)
         {
-            windsound.Play();
-            windspeed.Stop();
-            ps.simulationSpeed = 10f;
-            windspeed.Play();
             if (Prev_Status == true)
             {
                 StopCoroutine(Rotate_turbine());
@@ -117,11 +114,16 @@ public class Scene_1_1_controller : MonoBehaviour
         {
             if (Prev_Status == true)
             {
-                emmisions.rateOverTime = 1.3f;
                 Arrow_object_fast.SetActive(false);
                 Prev_Status = false;
                 //Camera.GetComponent<Camera_movement>().act2();
             }
+
+            windsound.Play();
+            windspeed.Stop();
+            windspeed.Play();
+            ps.simulationSpeed = 2f;
+            emmisions.rateOverTime = 1f;
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
             Object_Col_On(Object_1_blade1);
@@ -134,7 +136,8 @@ public class Scene_1_1_controller : MonoBehaviour
             StartCoroutine(Highlight_onoff(Object_1_blade3));
 
             //애니메이션
-            StartCoroutine(Rotate_turbine(1));
+            StartCoroutine(Rotate_turbine());
+            Wind_velocity_for_rot = 1f;
             Wind_particle.SetActive(true);
             Arrow_object_slow.SetActive(true);
             Debug.Log("act3");
@@ -149,15 +152,15 @@ public class Scene_1_1_controller : MonoBehaviour
                 //나셀 원상복구
                 Prev_Status = false;
             }
-            emmisions.rateOverTime = 3;
+            ps.simulationSpeed = 4f;
+            emmisions.rateOverTime = 2f;
             //하이라이트 효과
             Object_Col_Off_ALL();
             Object_Col_On(Object_6_Rotor);
-
             StartCoroutine(Highlight_onoff(Object_6_Rotor));
 
             //애니메이션
-            StartCoroutine(Rotate_turbine(4));
+            Wind_velocity_for_rot = 4f;
             Arrow_object_slow.SetActive(false);
             Arrow_object_fast.SetActive(true);
 
@@ -287,18 +290,14 @@ public class Scene_1_1_controller : MonoBehaviour
         yield break;
     }
 
-    IEnumerator Rotate_turbine(int num = 0)
+
+    IEnumerator Rotate_turbine()
     {
         //블레이드 회전, 1,2,3 일경우 해당 값 만큼 빠르게 회전
         while (true)
         {
             yield return new WaitForSeconds(0.03f);
-            Object_2_blade_rotation.GetComponent<Transform>().Rotate(new Vector3(10 * num * Time.deltaTime, 0, 0));
-
-            if (num == 3)
-            {
-                yield break;
-            }
+            Object_2_blade_rotation.GetComponent<Transform>().Rotate(new Vector3(10 * Wind_velocity_for_rot * Time.deltaTime, 0, 0));
         }
         yield break;
     }

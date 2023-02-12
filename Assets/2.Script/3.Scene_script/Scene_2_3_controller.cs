@@ -9,6 +9,7 @@ public class Scene_2_3_controller : MonoBehaviour
     public GameObject[] PC_Image_Array;
     public GameObject Scriptbox;
     public GameObject Top_navigation;
+    public GameObject[] Seq_array;
 
     //2-3 Gameobject
     [Header("===== Gameobject =====")]
@@ -127,11 +128,11 @@ public class Scene_2_3_controller : MonoBehaviour
     {
         BtnCount = gameObject.GetComponent<Script_controller>().btnCount;   //이 부분 대체 필요
 
-        if (Clicked_question == true && BtnCount <= Question_num)
-        {
-            Set_score();
-            Clicked_question = false;
-        }
+        //if (Clicked_question == true && BtnCount <= Question_num)
+        //{
+        //    Set_score();
+        //    Clicked_question = false;
+        //}
         if (PostCount != BtnCount)
         {
             flag = true;
@@ -144,9 +145,8 @@ public class Scene_2_3_controller : MonoBehaviour
             if (BtnCount == 0)
             {
                 StartCoroutine(Startact());
-                Debug.Log("btncount0");
-            }
 
+<<<<<<< Updated upstream
             //if (BtnCount == 1)
             //{
             //    Debug.Log("btncount1");
@@ -171,6 +171,17 @@ public class Scene_2_3_controller : MonoBehaviour
 
             else if (BtnCount == 1)
             {
+=======
+            }
+            if (BtnCount == 1)
+            {
+                PC_Image_Array[0].SetActive(false);
+                PC_Image_Array[1].SetActive(true);
+            }
+            else if (BtnCount == 2)
+            {
+                PC_Image_Array[1].SetActive(false);
+>>>>>>> Stashed changes
                 Scriptbox.SetActive(true);
                 Panel_button_inactive.SetActive(false);
                 Question_panel_1.SetActive(false);
@@ -188,14 +199,28 @@ public class Scene_2_3_controller : MonoBehaviour
                 //시작버튼 클릭 유도
 
             }
+<<<<<<< Updated upstream
             else if (BtnCount == 2)
+=======
+            else if (BtnCount == 3)
+>>>>>>> Stashed changes
             {
+
+                Seq_array[0].SetActive(true);
                 Emergency.SetActive(true);
                 //시작 버튼 활성화, 브레이크 버튼 클릭유도
+<<<<<<< Updated upstream
 
             }
             else if (BtnCount == 3)
             {
+=======
+            }
+            else if (BtnCount == 4)
+            {
+
+                Seq_array[1].SetActive(true);
+>>>>>>> Stashed changes
                 Score[0] = 1;
                 Score_total += 1;
 
@@ -216,11 +241,25 @@ public class Scene_2_3_controller : MonoBehaviour
                 StartCoroutine(Alert_value_p());
 
                 Wind_velocity_for_rot = 1;
-                //회전 변수 설정
-                //전력 생산량 값 올라가고 풍속 올리기
+            }
+            else if (BtnCount == 5)
+            {
+
+                Seq_array[2].SetActive(true);
+                Wind_velocity_for_rot = 11;
+
+                Limit_angle_p = 35;
+                init_angle_limit_p = 45;
+
+                //풍속 변경
+                Value_Power = 2500 - ((Value_Angle_pitch - 45) / 45) * 400;
+                Change_graph_number(Data_power, Value_Power);
+                Change_value(90, 'p');
+                StartCoroutine(Alert_value_p());
             }
             else if (BtnCount == 4)
             {
+<<<<<<< Updated upstream
 
                 Wind_velocity_for_rot = 11;
 
@@ -238,6 +277,9 @@ public class Scene_2_3_controller : MonoBehaviour
             }
             else if (BtnCount == 5)
             {
+=======
+                Seq_array[3].SetActive(true);
+>>>>>>> Stashed changes
                 Wind_velocity_for_rot = 2;
 
                 Limit_angle_p = 100;
@@ -250,6 +292,7 @@ public class Scene_2_3_controller : MonoBehaviour
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(45, 'p');
                 Change_value(270, 'y');
+<<<<<<< Updated upstream
             }
             else if (BtnCount == 6)
             {
@@ -269,10 +312,35 @@ public class Scene_2_3_controller : MonoBehaviour
             else if (BtnCount == 7)
             {
                 SetResult();
-
+=======
             }
+            else if (BtnCount == 7)
+            {
+                Seq_array[4].SetActive(true);
+                Wind_velocity_for_rot = 2;
+
+                Limit_angle_p = 55;
+                init_angle_limit_p = 45;
+                Limit_angle_y = 280;
+                init_angle_limit_y = 270;
+>>>>>>> Stashed changes
+
+                //풍속 변경
+                Value_Power = 600;
+                Change_graph_number(Data_power, Value_Power);
+                Change_value(30, 'p');
+                Change_value(10, 'y');
+            }
+<<<<<<< Updated upstream
 
 
+=======
+            else if (BtnCount == 8)
+            {
+                Seq_array[5].SetActive(true);
+                SetResult();
+            }
+>>>>>>> Stashed changes
             PostCount = BtnCount;
             flag = false;
         }
@@ -443,7 +511,7 @@ public class Scene_2_3_controller : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         Scriptbox.GetComponent<Animation>().Play("bannerup(1220)");
         Top_navigation.GetComponent<Animation>().Play("TN_intro_down");
-        gameObject.GetComponent<Script_controller>().NextBtn();
+        PC_Image_Array[0].SetActive(true);
         yield break;
     }
 
@@ -536,16 +604,16 @@ public class Scene_2_3_controller : MonoBehaviour
     }
     public void Rotate_blade_up()
     {
-        Blade_1.GetComponent<Transform>().Rotate(new Vector3(0, 10, 0));
-        Blade_2.GetComponent<Transform>().Rotate(new Vector3(0, 10, 0));
-        Blade_3.GetComponent<Transform>().Rotate(new Vector3(0, 10, 0));
+        Blade_1.GetComponent<Transform>().Rotate(new Vector3(0, 5, 0));
+        Blade_2.GetComponent<Transform>().Rotate(new Vector3(0, 5, 0));
+        Blade_3.GetComponent<Transform>().Rotate(new Vector3(0, 5, 0));
     }
     public void Rotate_blade_down()
     {
 
-        Blade_1.GetComponent<Transform>().Rotate(new Vector3(0, -10, 0));
-        Blade_2.GetComponent<Transform>().Rotate(new Vector3(0, -10, 0));
-        Blade_3.GetComponent<Transform>().Rotate(new Vector3(0, -10, 0));
+        Blade_1.GetComponent<Transform>().Rotate(new Vector3(0, -5, 0));
+        Blade_2.GetComponent<Transform>().Rotate(new Vector3(0, -5, 0));
+        Blade_3.GetComponent<Transform>().Rotate(new Vector3(0, -5, 0));
     }
     public void Rotate_yaw_up()
     {
@@ -609,7 +677,7 @@ public class Scene_2_3_controller : MonoBehaviour
                 Debug.Log("+ 클릭 비정상");
                 if (Value_Angle_yaw < Limit_angle_y)
                 {
-                    Value_Angle_yaw += 5;
+                    Value_Angle_yaw += 10;
                     Rotate_yaw_up();
                 }
                 else if (Value_Angle_yaw < Limit_angle_y)
@@ -620,7 +688,7 @@ public class Scene_2_3_controller : MonoBehaviour
             }//+가 정상
             else if (Limit_angle_y <= init_angle_limit_y)
             {
-                Value_Angle_yaw += 5;
+                Value_Angle_yaw += 10;
                 Rotate_yaw_up();
             }
         }
@@ -646,6 +714,7 @@ public class Scene_2_3_controller : MonoBehaviour
                     Rotate_blade_down();
                 }
                 else if (Value_Angle_pitch == Limit_angle_p)
+<<<<<<< Updated upstream
                 {
                     Debug.Log(" 제어 각도를 확인해주세요 메시지");
                 }
@@ -667,22 +736,54 @@ public class Scene_2_3_controller : MonoBehaviour
                     Rotate_yaw_down();
                 }
                 else if (Value_Angle_yaw == Limit_angle_y)
+=======
+>>>>>>> Stashed changes
                 {
                     Debug.Log(" 제어 각도를 확인해주세요 메시지");
                 }
             }
         }
+<<<<<<< Updated upstream
+=======
+        else if (mode == 'y')
+        {
+            if (Limit_angle_y > init_angle_limit_y)
+            {
+                Value_Angle_yaw -= 10;
+                Rotate_yaw_down();
+            }
+            else if (Limit_angle_y <= init_angle_limit_y)
+            {
+                Debug.Log("- 클릭 비정상");
+                if (Value_Angle_yaw > Limit_angle_y)
+                {
+                    Value_Angle_yaw -= 10;
+                    Rotate_yaw_down();
+                }
+                else if (Value_Angle_yaw == Limit_angle_y)
+                {
+                    Debug.Log(" 제어 각도를 확인해주세요 메시지");
+                }
+            }
+        }
+>>>>>>> Stashed changes
         Change_power_ws();
     }
 
     private void Change_power_ws()
     {
+<<<<<<< Updated upstream
         if (BtnCount == 3)
         {//피치
+=======
+        if (BtnCount == 4)
+        {
+>>>>>>> Stashed changes
             Value_Power = 1700 + ((Value_Angle_pitch) / 45) * 400;
             Change_graph_number(Data_power, Value_Power);
             Wind_velocity_for_rot = 1 + 4 * ((Value_Angle_pitch) / 45);
         }
+<<<<<<< Updated upstream
         else if (BtnCount == 4)
         {//피치
             Value_Power = 2500 - ((Value_Angle_pitch - 45) / 45) * 400;
@@ -704,11 +805,35 @@ public class Scene_2_3_controller : MonoBehaviour
             Change_graph_number(Data_power, Value_Power);
             Wind_velocity_for_rot = 2 + 2 * ((45 - Value_Angle_pitch) / 15) + ((270 - Value_Angle_pitch) / 260);
           
+=======
+        else if (BtnCount == 5)
+        {
+            Value_Power = 2500 - ((Value_Angle_pitch - 45) / 45) * 400;
+            Change_graph_number(Data_power, Value_Power);
+            Wind_velocity_for_rot = 11 - 6 * ((Value_Angle_pitch - 45) / 45);
+
+        }
+        else if (BtnCount == 6)
+        {
+            Value_Power = 600 + (((90 - Value_Angle_pitch) / 45) * 900) + (((Value_Angle_pitch) / 270) * 600);
+            Change_graph_number(Data_power, Value_Power);
+            Wind_velocity_for_rot = 2 + 2 * ((90 - Value_Angle_pitch) / 45) + ((Value_Angle_pitch) / 270);
+        }
+        else if (BtnCount == 7)
+        {
+            Value_Power = 600 + (((45 - Value_Angle_pitch) / 15) * 900) + (((270 - Value_Angle_pitch) / 260) * 600);
+            Change_graph_number(Data_power, Value_Power);
+            Wind_velocity_for_rot = 2 + 2 * ((45 - Value_Angle_pitch) / 15) + ((270 - Value_Angle_pitch) / 260);
+>>>>>>> Stashed changes
         }
         if ((Mathf.Abs(Value_Angle_pitch_target - Value_Angle_pitch) <= 3 && Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3))
         {
             gameObject.GetComponent<Script_controller>().NextBtn();
+<<<<<<< Updated upstream
             Score[BtnCount - 2] = 1;
+=======
+            Score[BtnCount - 4] = 1;
+>>>>>>> Stashed changes
             Score_total += 1;
         }
     }

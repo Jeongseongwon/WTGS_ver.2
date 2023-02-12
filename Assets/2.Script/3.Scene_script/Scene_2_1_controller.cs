@@ -95,6 +95,7 @@ public class Scene_2_1_controller : MonoBehaviour
     void Update()
     {
         var ps = windspeed.main;
+        var emmisions = windspeed.emission;
         Refresh_text_value();
         BtnCount = gameObject.GetComponent<Script_controller>().btnCount;
 
@@ -159,7 +160,7 @@ public class Scene_2_1_controller : MonoBehaviour
                     Prev_Status = false;
                     StopCoroutine(Rotate_turbine());
                 }
-               low_wind.Play();
+                 low_wind.Play();
 
                 Subcamera.SetActive(true);
                 Subcamera_frame.SetActive(true);
@@ -196,6 +197,7 @@ public class Scene_2_1_controller : MonoBehaviour
                 if (Prev_Status == true)
                 {
                     ps.simulationSpeed = 1f;
+                    emmisions.rateOverTime = 1f;
                     Button_active_off(Add_button);
                     Button_active_off(Reduce_button);
                     StopCoroutine(Alert_value());
@@ -236,8 +238,9 @@ public class Scene_2_1_controller : MonoBehaviour
 
                     Prev_Status = false;
                 }
-                ps.simulationSpeed = 10f;
-               
+                ps.simulationSpeed = 1f;
+                emmisions.rateOverTime = 1f;
+
                 Button_active_on(Add_button);
                 Button_active_on(Reduce_button);
                 Value_Power = 400 + ((30 - Value_Angle_pitch) / 30) * 600;
@@ -249,6 +252,7 @@ public class Scene_2_1_controller : MonoBehaviour
 
                 //12m/s
                 ps.simulationSpeed = 2f;
+                emmisions.rateOverTime = 1f;
                 if (Prev_Status == true)
                 {
                     Change_value(0);
@@ -276,7 +280,9 @@ public class Scene_2_1_controller : MonoBehaviour
                 init_angle_limit = 0;
                 if (Prev_Status == true)
                 {
-                    Wind_velocity_for_rot=4;
+                    ps.simulationSpeed = 2f;
+                    emmisions.rateOverTime = 1f;
+                    Wind_velocity_for_rot =4;
                     low_wind.Play();
                     strong_wind.Stop();
                     //object 복구
@@ -302,6 +308,7 @@ public class Scene_2_1_controller : MonoBehaviour
             {
                 //20m/s
                 ps.simulationSpeed = 4f;
+                emmisions.rateOverTime = 2f;
                 if (Prev_Status == true)
                 {
                     Change_value(45);
@@ -326,6 +333,8 @@ public class Scene_2_1_controller : MonoBehaviour
                 init_angle_limit = 45;
                 if (Prev_Status == true)
                 {
+                    ps.simulationSpeed = 4f;
+                    emmisions.rateOverTime = 2f;
                     //object 복구
                     StopCoroutine(Alert_value());
                     wind_fast.SetActive(false);
@@ -351,6 +360,7 @@ public class Scene_2_1_controller : MonoBehaviour
             else if (BtnCount == 15)
             {   //12m/s
                 ps.simulationSpeed = 2f;
+                emmisions.rateOverTime = 1f;
                 if (Prev_Status == true)
                 {
                     Change_value(90);
@@ -384,6 +394,8 @@ public class Scene_2_1_controller : MonoBehaviour
                     Value_Power = 700;
                     Change_graph_number(Data_power, Value_Power);
                     Wind_velocity_for_rot =2;
+                    ps.simulationSpeed = 2f;
+                    emmisions.rateOverTime = 1f;
 
                     Prev_Status = false;
                 }
@@ -502,15 +514,15 @@ public class Scene_2_1_controller : MonoBehaviour
     }
     public void Rotate_blade_up()
     {
-        Blade_1.GetComponent<Transform>().Rotate(new Vector3(0, 10, 0));
-        Blade_2.GetComponent<Transform>().Rotate(new Vector3(0, 10, 0));
-        Blade_3.GetComponent<Transform>().Rotate(new Vector3(0, 10, 0));
+        Blade_1.GetComponent<Transform>().Rotate(new Vector3(0, 5, 0));
+        Blade_2.GetComponent<Transform>().Rotate(new Vector3(0, 5, 0));
+        Blade_3.GetComponent<Transform>().Rotate(new Vector3(0, 5, 0));
     }
     public void Rotate_blade_down()
     {
-        Blade_1.GetComponent<Transform>().Rotate(new Vector3(0, -10, 0));
-        Blade_2.GetComponent<Transform>().Rotate(new Vector3(0, -10, 0));
-        Blade_3.GetComponent<Transform>().Rotate(new Vector3(0, -10, 0));
+        Blade_1.GetComponent<Transform>().Rotate(new Vector3(0, -5, 0));
+        Blade_2.GetComponent<Transform>().Rotate(new Vector3(0, -5, 0));
+        Blade_3.GetComponent<Transform>().Rotate(new Vector3(0, -5, 0));
     }
     IEnumerator Rotate_turbine()
     {
