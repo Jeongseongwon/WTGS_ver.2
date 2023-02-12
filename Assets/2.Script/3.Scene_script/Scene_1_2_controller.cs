@@ -586,26 +586,6 @@ public class Scene_1_2_controller : MonoBehaviour
         {
             Anim.Play("6_1_WTG_Nacelle_rotation");
         }
-        else if (num == 10)
-        {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
-        }
-        else if (num == 10)
-        {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
-        }
-        else if (num == 10)
-        {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
-        }
-        else if (num == 10)
-        {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
-        }
-        else if (num == 10)
-        {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
-        }
         yield break;
     }
 
