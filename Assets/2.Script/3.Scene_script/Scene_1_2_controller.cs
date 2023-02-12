@@ -51,7 +51,9 @@ public class Scene_1_2_controller : MonoBehaviour
     public AudioSource windsound;
     public Animation core_break;
     private int BtnCount;
-
+    public GameObject[] turnoffthis;
+    public GameObject newmodel;
+    public GameObject[] higligt;
     void Start()
     {
         Anim = Main_object.GetComponent<Animation>();
@@ -203,13 +205,7 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 8)
         {
-            if (Prev_Status == true)
-            {
-                pitch[0].SetActive(false);
-                pitch[1].SetActive(false);
-                pitch[2].SetActive(false);
-                Prev_Status = false;
-            }
+            
             
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
@@ -229,14 +225,11 @@ public class Scene_1_2_controller : MonoBehaviour
         {
             if (Prev_Status == true)
             {
-                pitch[0].SetActive(true);
-                pitch[1].SetActive(true);
-                pitch[2].SetActive(true);
+                pitch[0].SetActive(false);
+                pitch[1].SetActive(false);
+                pitch[2].SetActive(false);
                 Prev_Status = false;
             }
-            pitch[0].SetActive(true);
-            pitch[1].SetActive(true);
-            pitch[2].SetActive(true);
 
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
@@ -253,7 +246,17 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 10)
         {
-          
+            if (Prev_Status == true)
+            {
+                pitch[0].SetActive(true);
+                pitch[1].SetActive(true);
+                pitch[2].SetActive(true);
+                Prev_Status = false;
+            }
+            pitch[0].SetActive(true);
+            pitch[1].SetActive(true);
+            pitch[2].SetActive(true);
+
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
             Object_Col_On(Object_8_Hub);
@@ -393,25 +396,45 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 22)
         {
+            if (Prev_Status == true)
+            {
+                for (int i = 0; i <= 12; i++)
+                {
+                    turnoffthis[i].gameObject.SetActive(true);
+                    newmodel.SetActive(false);
+                }
+                Prev_Status = false;
+            }
             //블레이드 각도 변경하기 및 가능하면 텍스트 추가
         }
         else if (count == 23)
-        {
+        {  for(int i = 0;i<=12;i++)
+            {
+                turnoffthis[i].gameObject.SetActive(false);
+                newmodel.SetActive(true);
+            }
+
             //주축 잠금 장치, 브레이크, 요 브레이크 하이라이트, 카메라 이동
             Camera.GetComponent<Camera_movement>().act5();
         }
         else if (count == 24)
         {
-            core_break.Play("main_break");
+            StartCoroutine(Highlight_onoff(higligt[0]));
+            newmodel.GetComponent<Animation>().Play("yo_break");
+
             //주축 잠금 장치
         }
         else if (count == 25)
         {
-            core_break.Play("main_break_down");
+
+            newmodel.GetComponent<Animation>().Play("nacel_break");
+            //core_break.Play("main_break_down");
             //주축용 브레이크
         }
         else if (count == 26)
         {
+            newmodel.GetComponent<Animation>().Stop("nacel_break");
+            newmodel.GetComponent<Animation>().Play("main_lockup");
             //요 브레이크
             Camera.GetComponent<Camera_movement>().act6();
         }
