@@ -19,7 +19,6 @@ public class Script_controller : MonoBehaviour
 
     private float Time_limit;
     private bool status_UI_script_auto;
-    private bool First_status_UI;
 
     private int Max_num_script=0;
     private int Num_script;
@@ -35,38 +34,20 @@ public class Script_controller : MonoBehaviour
         {
             Read_txt();
         }
-            
-        status_UI_script_auto = false;
-        First_status_UI = true;
 
-        Time_limit = 20f;
+        status_UI_script_auto = false;
+        
+        Time_limit = 10f;
         script_time_now = Time_limit;
 
         //if (Manager_audio.instance != null) , BGM �κ�
 
-        //scene_controller = 
-        if (Manager_scene.instance != null)
-        {
-            status_UI_script_auto = Manager_scene.instance.Status_Check_script_auto_over();
-
-        }
         //Fader = GameObject.Find("Fader");   
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Manager_scene.instance!= null)
-        {
-            status_UI_script_auto = Manager_scene.instance.Status_Check_script_auto_over();
-           
-        }
-        if (status_UI_script_auto == true && First_status_UI == true)
-        {
-            Timer_set();
-            First_status_UI = false;
-            //Debug.Log("auto button timer start" + script_time_now);
-        }
         if (status_UI_script_auto == true)
         {
             script_time_now -= Time.deltaTime;
@@ -80,7 +61,6 @@ public class Script_controller : MonoBehaviour
 
     public void NextBtn()
     {
-        Debug.Log("NEXTBUTTON");
         if (status_UI_script_auto == true)
         {
             Timer_set();
@@ -89,25 +69,17 @@ public class Script_controller : MonoBehaviour
         ScriptCount();
         this.GetComponent<Narration_controller>().EffectReset();    //next button 이펙트 추가용
         
-        //if (TextPanel != null)
-        ////next, prev ������ �� �ִϸ��̼� ��� �Ǵ� �κ�
-        //{
-        //    TextPanel.GetComponent<Scriptopen>().OpenPanel();
-        //}
+       
     }
     public void PrevBtn()
     {
-        Debug.Log("PREVBUTTON");
         if (status_UI_script_auto == true)
         {
             Timer_set();
         }
         btnCount--;
         ScriptCount();
-        //if (TextPanel != null)
-        //{
-        //    TextPanel.GetComponent<Scriptopen>().OpenPanel();
-        //}
+        
     }
     public void ScriptCount()
     {
@@ -133,15 +105,7 @@ public class Script_controller : MonoBehaviour
             //Debug.Log("check_1");
         }
     }
-    void InvokeAct()
-    {
-        text.text = textList[btnCount];
-    }
-    void InvokeNextScene()
-    {
-        this.GetComponent<Dual_scene_loader>().LoadNextScene();
-    }
-
+   
     void Timer_set()
     {
         script_time_now = Time_limit;
@@ -172,6 +136,23 @@ public class Script_controller : MonoBehaviour
         //첫번째 스크립트 텍스트 연결
         text.text = textList[0];
         //Debug.Log(Max_num_script);
+    }
+
+    void InvokeAct()
+    {
+        text.text = textList[btnCount];
+    }
+    void InvokeNextScene()
+    {
+        this.GetComponent<Dual_scene_loader>().LoadNextScene();
+    }
+    public void Script_auto_on()
+    {
+        status_UI_script_auto = true;
+    }
+    public void Script_auto_off()
+    {
+        status_UI_script_auto = false;
     }
 
 }

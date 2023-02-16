@@ -56,7 +56,6 @@ public class Scene_1_1_controller : MonoBehaviour
     private Color tower_alpha;
     
     public ParticleSystem windspeed;
-    public AudioSource windsound;
     public float Wind_velocity_for_rot;
     void Start()
     {
@@ -89,7 +88,8 @@ public class Scene_1_1_controller : MonoBehaviour
         Scriptbox.GetComponent<Animation>().Play("banner_o");
         if (count == 0)
         {
-            windsound.Stop();
+            Manager_audio.instance.Stop_Low_wind();
+                
             StartCoroutine(StartAct());
             Object_Col_Off_ALL();
         }
@@ -118,8 +118,7 @@ public class Scene_1_1_controller : MonoBehaviour
                 Prev_Status = false;
                 //Camera.GetComponent<Camera_movement>().act2();
             }
-
-            windsound.Play();
+            Manager_audio.instance.Get_Low_wind();
             windspeed.Stop();
             windspeed.Play();
             ps.simulationSpeed = 2f;

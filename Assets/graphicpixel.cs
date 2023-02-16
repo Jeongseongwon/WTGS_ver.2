@@ -35,6 +35,7 @@ public class graphicpixel : MonoBehaviour {
         if(windowstate==false)
         {
             screenmode = FullScreenMode.Windowed;
+            Screen.SetResolution(1920, 1080, screenmode);
             windowstate = true;
             Debug.Log("window");
         }

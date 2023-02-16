@@ -47,6 +47,16 @@ public class Scene_1_2_controller : MonoBehaviour
     public GameObject Object_12_1_Yaw_system_4;
     public GameObject Object_13_Gearbox;
     public GameObject Object_14_Generator;
+
+
+    public GameObject Arrow_a1;
+    public GameObject Arrow_b1;
+    public GameObject Arrow_c1;
+
+    public GameObject Arrow_a2;
+    public GameObject Arrow_b2;
+    public GameObject Arrow_c2;
+
     public GameObject[] pitch;
     public AudioSource windsound;
     public Animation core_break;
@@ -54,6 +64,36 @@ public class Scene_1_2_controller : MonoBehaviour
     public GameObject[] turnoffthis;
     public GameObject newmodel;
     public GameObject[] higligt;
+
+    IEnumerator Arrow_on_off()
+    {
+        Arrow_a2.SetActive(true);
+        Arrow_b2.SetActive(true);
+        Arrow_c2.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        Arrow_a2.SetActive(false);
+        Arrow_b2.SetActive(false);
+        Arrow_c2.SetActive(false);
+        Arrow_a1.SetActive(true);
+        Arrow_b1.SetActive(true);
+        Arrow_c1.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        Arrow_a1.SetActive(false);
+        Arrow_b1.SetActive(false);
+        Arrow_c1.SetActive(false);
+        yield break;
+    }
+
+    void Arrow_off()
+    {
+        Arrow_a2.SetActive(false);
+        Arrow_b2.SetActive(false);
+        Arrow_c2.SetActive(false);
+        Arrow_a1.SetActive(false);
+        Arrow_b1.SetActive(false);
+        Arrow_c1.SetActive(false);
+    }
+
     void Start()
     {
         Anim = Main_object.GetComponent<Animation>();
@@ -137,6 +177,8 @@ public class Scene_1_2_controller : MonoBehaviour
             StartCoroutine(Highlight_onoff(Object_1_blade2));
             StartCoroutine(Highlight_onoff(Object_1_blade3));
 
+            StartCoroutine(Arrow_on_off());
+            //화살표 추가
             //애니메이션
             //Anim.Play("3_2_WTG_blade_pitch");
             StartCoroutine(Animation_play(3.2));
@@ -147,6 +189,9 @@ public class Scene_1_2_controller : MonoBehaviour
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
             Object_Col_On(Object_6_Rotor);
+
+            Arrow_off();
+
 
             //하이라이트 효과
             StartCoroutine(Highlight_onoff(Object_6_Rotor));
@@ -160,14 +205,12 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 6)
         {
-            //주축 내용 추가?
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
             Object_Col_On(Object_6_Rotor);
 
             //하이라이트 효과
             StartCoroutine(Highlight_onoff(Object_6_Rotor));
-
 
             //애니메이션
             //Anim.Play("5_WTG_rotor_move");
@@ -196,8 +239,8 @@ public class Scene_1_2_controller : MonoBehaviour
             StartCoroutine(Highlight_onoff(Object_9_1_Pitch_sytem_1));
 
             //애니메이션
-            Camera.GetComponent<Camera_movement>().act3();
-            Anim.Play("5_1_WTG_rotor_move(hub,spinner)");
+            //Camera.GetComponent<Camera_movement>().act3();
+            //Anim.Play("5_1_WTG_rotor_move(hub,spinner)");
             StartCoroutine(Animation_play(5.1));
             //StartCoroutine(Animation_play(1));
             //Anim.Play("1_WTG_rotation");
@@ -219,17 +262,20 @@ public class Scene_1_2_controller : MonoBehaviour
             //애니메이션
             Camera.GetComponent<Camera_movement>().act3_1();
             StartCoroutine(Animation_play(5.2));
+            //주축 회전
+
+            newmodel.GetComponent<Animation>().Play("NM_mainshaft_rotation");
+
             Debug.Log("act8");
         }
         else if (count == 9)
         {
             if (Prev_Status == true)
             {
-                pitch[0].SetActive(false);
-                pitch[1].SetActive(false);
-                pitch[2].SetActive(false);
+               
                 Prev_Status = false;
             }
+            newmodel.GetComponent<Animation>().Stop();
 
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
@@ -248,14 +294,9 @@ public class Scene_1_2_controller : MonoBehaviour
         {
             if (Prev_Status == true)
             {
-                pitch[0].SetActive(true);
-                pitch[1].SetActive(true);
-                pitch[2].SetActive(true);
+                
                 Prev_Status = false;
             }
-            pitch[0].SetActive(true);
-            pitch[1].SetActive(true);
-            pitch[2].SetActive(true);
 
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
@@ -267,6 +308,7 @@ public class Scene_1_2_controller : MonoBehaviour
             StartCoroutine(Highlight_onoff(Object_1_blade3));
 
             Camera.GetComponent<Camera_movement>().act7();
+            //0213_화살표 추가
             StartCoroutine(Animation_play(7.1));
             Debug.Log("act10");
         }
@@ -329,7 +371,7 @@ public class Scene_1_2_controller : MonoBehaviour
         else if (count == 15)
         {
             Debug.Log("act 15 스킵 추후 애니메이션 추가");
-
+            //텍스트 추가 및 양옆에 회전하는 애니메이션 추가하기
         }
         else if (count == 16)
         {
@@ -561,7 +603,8 @@ public class Scene_1_2_controller : MonoBehaviour
         else if (num == 7)
         {
             //로터, 블레이드 분리 후 피치 베어링 회전
-            Anim.Play("7_WTG_pitch_bearing(Rotation)");
+            Anim.Play("7_WTG_pitch_bearing(rotation)");
+            
         }
         else if (num == 7.1)
         {
