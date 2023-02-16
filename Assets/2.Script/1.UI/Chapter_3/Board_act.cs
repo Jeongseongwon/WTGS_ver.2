@@ -19,6 +19,11 @@ public class Board_act : MonoBehaviour
     // Start is called before the first frame update
     private void OnEnable()
     {
+        for (int i = 0; i < Frame_text_set.Length; i++)
+        {
+                Frame_text_set[i].SetActive(false);
+        }
+        Frame_text_set[0].SetActive(true);
         StartCoroutine(Act());
     }
 
@@ -30,12 +35,18 @@ public class Board_act : MonoBehaviour
     
     IEnumerator Act()
     {
-        for (int i=0;i< Frame_text_set.Length-1;i++)
+        for (int i=0;i< Frame_text_set.Length;i++)
         {
             yield return new WaitForSeconds(3.0f);
             //전환 하기 위해서 사용
-            Frame_text_set[i].SetActive(false);
-            Frame_text_set[i+1].SetActive(true);
+            if(i< Frame_text_set.Length - 1)
+            {
+                Frame_text_set[i].SetActive(false);
+                Frame_text_set[i + 1].SetActive(true);
+            }else if (i == Frame_text_set.Length - 1)
+            {
+                Frame_text_set[i].SetActive(false);
+            }
             Debug.Log(i);
         }
         yield break;

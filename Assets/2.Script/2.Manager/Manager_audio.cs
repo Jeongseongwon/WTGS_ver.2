@@ -9,8 +9,9 @@ public class Manager_audio : MonoBehaviour
     private AudioSource Click;
     private AudioSource BGM;
     private AudioSource Narration;
+    public AudioSource Narration_End;
     private AudioSource Intro;
-    private AudioSource Error;
+    public AudioSource Error;
     private AudioSource Correct_answer;
     private AudioSource strong_wind;
     private AudioSource low_wind;
@@ -43,6 +44,7 @@ public class Manager_audio : MonoBehaviour
         BGM = this.transform.GetChild(2).gameObject.GetComponent<AudioSource>();
         Intro = this.transform.GetChild(3).gameObject.GetComponent<AudioSource>();
 
+        Narration_End = this.transform.GetChild(5).gameObject.GetComponent<AudioSource>();
         Error = this.transform.GetChild(6).gameObject.GetComponent<AudioSource>();
         Correct_answer = this.transform.GetChild(7).gameObject.GetComponent<AudioSource>();
         strong_wind = this.transform.GetChild(8).gameObject.GetComponent<AudioSource>();
@@ -70,6 +72,11 @@ public class Manager_audio : MonoBehaviour
     public void Get_bgm()
     {
         BGM.Play();
+        //Debug.Log("click");
+    }
+    public void Get_Narration_end()
+    {
+        Narration_End.Play();
         //Debug.Log("click");
     }
 
@@ -117,6 +124,7 @@ public class Manager_audio : MonoBehaviour
         BGM = this.transform.GetChild(2).gameObject.GetComponent<AudioSource>();
         Intro = this.transform.GetChild(3).gameObject.GetComponent<AudioSource>();
 
+        Narration_End = this.transform.GetChild(5).gameObject.GetComponent<AudioSource>();
         Error = this.transform.GetChild(6).gameObject.GetComponent<AudioSource>();
         Correct_answer = this.transform.GetChild(7).gameObject.GetComponent<AudioSource>();
         strong_wind = this.transform.GetChild(8).gameObject.GetComponent<AudioSource>();
@@ -137,6 +145,7 @@ public class Manager_audio : MonoBehaviour
         Correct_answer.volume = volume;
         strong_wind.volume = volume;
         low_wind.volume = volume;
+        Narration_End.volume = volume;
     }
 
     public void Set_effect_sound_volume(float volume)
@@ -149,6 +158,7 @@ public class Manager_audio : MonoBehaviour
         Correct_answer.volume = volume;
         strong_wind.volume = volume;
         low_wind.volume = volume;
+        Narration_End.volume = volume;
     }
 
     public void Set_narration_volume(float volume)

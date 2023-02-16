@@ -14,15 +14,4 @@
 <color=cyan>주축</color>은 <color=cyan>로터</color>와 나셀 내부의 <color=cyan>증속기</color>를 <color=cyan>연결</color>해주며 블레이드-로터 순으로 전달 받은 기계에너지를 나셀 내부의 증속기 또는 발전기에 전달하는 역할을 합니다.
 <color=cyan>증속기</color>는 주축을 통해 전달받은 기계에너지를 발전기에 전달하여 전기에너지를 생성하기 위해 <color=cyan>회전속도</color>를 <color=cyan>증속</color>시키는 장치입니다.
 <color=cyan>증속기</color> 내부에는 내부 기어를 통해 <color=cyan>저속-고토크(15~40rpm) 입력동력</color>을 발전기를 구동시키기 위한 <color=cyan>고속-저토크(100~1800rpm) 출력동력</color>으로 증속시켜 <color=cyan>변환</color>할 수 있습니다.
-<color=cyan>요 제어 시스템</color>은 나셀하부에 탑재되어 풍력발전기 <color=cyan>나셀</color>을 <color=cyan>회전</color>시키는 역할을 하며 요 시스템은 효율을 최대로 하기 위해 <color=cyan>바람의 방향</color>과 나셀의 방향이 <color=cyan>수직</color>이 되도록 제어합니다.
-<color=cyan>요 제어 시스템</color>은 <color=cyan>요 베어링, 기어 링, 요 드라이브, 요 브레이크 디스크, 요 브레이크 캘리퍼</color>로 구성됩니다.
-요 시스템은 나셀을 회전시키기 위해 <color=cyan>요 드라이브</color>를 작동시켜 기어링을 따라 나셀이 회전해 <color=cyan>나셀</color>의 방향이 <color=cyan>풍향</color>에 <color=cyan>수직</color>이 되도록 제어합니다.
-풍력발전기가 동작을 하지 않거나 오랜시간 정지시킬 때는 <color=cyan>요 브레이크 캘리퍼</color>와 <color=cyan>요 브레이크 디스크</color>를 통해 나셀이 회전하지 않도록 <color=cyan>완전 정지</color>시킬 수 있습니다.
-<color=cyan>피치 제어 시스템</color>은 로터 내부에 탑재되어 블레이드를 회전시키는 역할을 하며 피치 제어 시스템은 블레이드의 <color=cyan>피치각</color>을 <color=cyan>제어</color>하여 출력이 일정하게 유지되도록 제어하는 장치입니다.
-피치 제어 시스템은 블레이드의 피치각을 조절하기 위해 유압 실린더를 작동시키며 블레이드와 결합된 허브시스템에 연결된 블레이드를 회전시킬 수 있습니다.
-블레이드의 피치는 풍속에 따라 피치각을 제어하며 <color=cyan>시동풍속</color>의 경우에는 <color=cyan>0도</color>, <color=cyan>정격 풍속</color>일 경우 <color=cyan>30~ 60도</color>, <color=cyan>정격 풍속 이상</color>일 경우 풍향과 평행이 되도록 <color=cyan>90도</color>에 가깝게 제어하게 됩니다.
-풍력발전기의 브레이크 시스템은 주축의 회전을 정지 시키기 위한 <color=cyan>주축 잠금장치</color>, 주축의 회전 속도를 감소 시키는 <color=cyan>주축용 브레이크</color>, 그리고 나셀을 정지시킬 수 있는 <color=cyan>요 브레이크</color>가 사용됩니다.
-<color=cyan>주축 잠금장치</color>는 주축에 탑재되어있는 고정 홈이 있는 고정 디스크에 고정 핀을 삽입하여 <color=cyan>주축을 고정</color>할 수 있는 장치입니다. 
-<color=cyan>주축용 브레이크</color>는 나셀 내부의 회전 하는 주축을 브레이크 패드로 압착하여 <color=cyan>회전 속도를 감소</color>시킬 수 있는 장치입니다. (애니메이션 추가 예정)
-<color=cyan>요 브레이크</color>는 브레이크 캘리퍼의 브레이크 패드로 압착하여 풍력발전기의 <color=cyan>나셀을 완전 고정</color>할 수 있는 장치입니다. (애니메이션 추가 예정)
-여기까지 전체 풍력발전기의 각 장치에 대해 알아보았습니다. 풍력발전기 구조 학습과정을 완료 하였습니다.
+이후 내용 구현 중입니다.

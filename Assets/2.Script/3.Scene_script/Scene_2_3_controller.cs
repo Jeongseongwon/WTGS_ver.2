@@ -273,6 +273,7 @@ public class Scene_2_3_controller : MonoBehaviour
             else if (BtnCount == 8)
             {
                 Seq_array[5].SetActive(true);
+                Result_panel.SetActive(true);
                 SetResult();
             }
             PostCount = BtnCount;
