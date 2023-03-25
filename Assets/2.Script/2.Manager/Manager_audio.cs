@@ -18,6 +18,17 @@ public class Manager_audio : MonoBehaviour
         
     private GameObject Scenecontroller;
     // Start is called before the first frame update
+    // 각 볼륨 값 정의하고
+    // 팝업이 열릴 때 마다 한 번 값을 가져와서 슬라이더를 조절해준다
+
+    //각 사운드의 볼륨을 일괄적으로 지정해주고 그것에 맞춰서 될지 한 번 확인해보자
+
+
+    private float All_volume=0f;
+    private float Effect_volume = 0f;
+    private float Narr_volume = 0f;
+    private float BGM_volume = 0f;
+
     private void Awake()
     {
         if (instance == null) //instance�� null. ��, �ý��ۻ� �����ϰ� ���� ������
@@ -50,6 +61,23 @@ public class Manager_audio : MonoBehaviour
         strong_wind = this.transform.GetChild(8).gameObject.GetComponent<AudioSource>();
         low_wind = this.transform.GetChild(9).gameObject.GetComponent<AudioSource>();
 
+    }
+
+    public float Get_all_volume()
+    {
+        return All_volume;
+    }
+    public float Get_Effect_volume()
+    {
+        return Effect_volume;
+    }
+    public float Get_Narr_volume()
+    {
+        return Narr_volume;
+    }
+    public float Get_BGM_volume()
+    {
+        return BGM_volume;
     }
 
     public void Get_hover()

@@ -65,7 +65,10 @@ public class Camera_movement : MonoBehaviour
     public Transform subTarget5;
     public Transform subTarget6;
     public Transform subTarget7;
-    public Transform subTarget8; //타워 보이는 위치
+    public Transform subTarget8; 
+    public Transform subTarget9;
+    public Transform subTarget23;
+    public Transform subTarget24;
 
     /// <summary>
     /// 부드럽게 이동될 감도
@@ -348,7 +351,7 @@ public class Camera_movement : MonoBehaviour
         SetTarget(View_target);
         Seq_start = true;
     }
-    public void act8()//발전기
+    public void act8()//주축 잠금장치
     {
         Debug.Log("Camera way 8");
         mouse_active = false;
@@ -357,7 +360,54 @@ public class Camera_movement : MonoBehaviour
         Seq_start = true;
     }
 
+    public void act9()//주축용 브레이크
+    {
+        Debug.Log("Camera way 8");
+        mouse_active = false;
+        View_target = View_target_9;
+        SetTarget(View_target);
+        Seq_start = true;
+    }
 
+    public void act18()//요 베어링 부분
+    {
+        Debug.Log("Camera way 18");
+        mouse_active = false;
+        View_target = View_target_6;
+        SetTarget(View_target);
+        subTarget = subTarget6;
+        Seq_start = true;
+    }
+    public void act22()//브레이크 시스템
+    {
+        Debug.Log("Camera way 8");
+        mouse_active = false;
+        View_target = View_target_5;
+        SetTarget(View_target);
+        subTarget = subTarget9;
+        Seq_start = true;
+    }
+    public void act23()//주축 잠금장치 확대 부분
+    {
+        Debug.Log("Camera way 8");
+        mouse_active = false;
+        View_target = View_target_8;
+        SetTarget(View_target);
+        subTarget = subTarget23;
+        Seq_start = true;
+    }
+    public void act24()//주축 잠금장치 확대 부분
+    {
+        Debug.Log("Camera way 8");
+        mouse_active = false;
+        View_target = View_target_9;
+        SetTarget(View_target);
+        subTarget = subTarget24;
+        Seq_start = true;
+    }
+
+
+    //1.1
     public void Change_position()//주축
     {
         //나셀로 시점 전환
@@ -367,6 +417,7 @@ public class Camera_movement : MonoBehaviour
         SetTarget(View_target);
         Seq_start = true;
     }
+
     public void Change_position_1()//타워
     {
         //나셀로 시점 전환

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 26f55ddef4057d341bb944e97b32d31c, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: af0dc69a1aa3f504c9c9e971a05ab367, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -8937,6 +8937,9 @@ MonoBehaviour:
   subTarget6: {fileID: 1930012860}
   subTarget7: {fileID: 224912588}
   subTarget8: {fileID: 1534324733}
+  subTarget9: {fileID: 0}
+  subTarget23: {fileID: 0}
+  subTarget24: {fileID: 0}
   smoothTime: 0.1
   Zoomin: -20
   View_target_1: {fileID: 1350358015}
@@ -20421,15 +20424,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AudioFiles:
-  - {fileID: 8300000, guid: 6505b9bd1289912408867291dbe9e17f, type: 3}
-  - {fileID: 8300000, guid: 9e651d3871fb9e648afdb82ec07b717d, type: 3}
-  - {fileID: 8300000, guid: ba0d42e3724138443bdfe10be8e52933, type: 3}
-  - {fileID: 8300000, guid: 92b6653aea746ea439e5fc9f1f978210, type: 3}
-  - {fileID: 8300000, guid: 4345238c6242d9442bda02ff58f3ae4a, type: 3}
-  - {fileID: 8300000, guid: b8a01947cb4fafa418a01a9f4d31a17f, type: 3}
-  - {fileID: 8300000, guid: afccc84f4b06a524f8ba03620e1a178f, type: 3}
-  - {fileID: 8300000, guid: 71ce860d875db414aa90744c44de8608, type: 3}
-  - {fileID: 8300000, guid: bec7f60555619e64eb0de7b083e06cee, type: 3}
+  - {fileID: 8300000, guid: d02486c6e48945047925574f99ff913c, type: 3}
+  - {fileID: 8300000, guid: 70ae632a7fa742d4a904c62277a6db28, type: 3}
+  - {fileID: 8300000, guid: 855b9daa64e87554c9816227cbde9cc8, type: 3}
+  - {fileID: 8300000, guid: aa373614a51c6de4da202f9ee36249ac, type: 3}
+  - {fileID: 8300000, guid: 7b5af9cff7de3f5459f7eb5991a25f63, type: 3}
+  - {fileID: 8300000, guid: f343a111c409603469fc0a45262cb478, type: 3}
+  - {fileID: 8300000, guid: b4719463432ec074c911833350fd7bf4, type: 3}
+  - {fileID: 8300000, guid: 2b83bc29a5ad89e42bace9435202432d, type: 3}
+  - {fileID: 8300000, guid: bddf28509dfcca446837405522684e1d, type: 3}
   FirstNarrationDelay: 3
   Audio: {fileID: 0}
 --- !u!4 &496505506
@@ -21254,6 +21257,9 @@ MonoBehaviour:
   subTarget6: {fileID: 0}
   subTarget7: {fileID: 0}
   subTarget8: {fileID: 0}
+  subTarget9: {fileID: 0}
+  subTarget23: {fileID: 0}
+  subTarget24: {fileID: 0}
   smoothTime: 0.1
   Zoomin: -20
   View_target_1: {fileID: 0}
@@ -34510,8 +34516,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825644468}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -502.90656, y: -140.6738, z: -528.1973}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -502.90656, y: -140.58, z: -528.1973}
+  m_LocalScale: {x: 5, y: 5, z: 2}
   m_Children: []
   m_Father: {fileID: 1824108554}
   m_RootOrder: 0
@@ -34537,7 +34543,7 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: ade495601a5973a43bbb5343207ef21f, type: 2}
-  m_TreeDistance: 5000
+  m_TreeDistance: 0
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
@@ -54992,7 +54998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1366413082
 Transform:
   m_ObjectHideFlags: 0
@@ -55028,7 +55034,7 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: ade495601a5973a43bbb5343207ef21f, type: 2}
-  m_TreeDistance: 5000
+  m_TreeDistance: 0
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
@@ -60681,7 +60687,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1498409145
 Transform:
   m_ObjectHideFlags: 0
@@ -60717,7 +60723,7 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: ade495601a5973a43bbb5343207ef21f, type: 2}
-  m_TreeDistance: 5000
+  m_TreeDistance: 0
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
@@ -76564,7 +76570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1903543841
 Transform:
   m_ObjectHideFlags: 0
@@ -76600,7 +76606,7 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: ade495601a5973a43bbb5343207ef21f, type: 2}
-  m_TreeDistance: 5000
+  m_TreeDistance: 0
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
@@ -82298,7 +82304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2028855277
 Transform:
   m_ObjectHideFlags: 0
@@ -90317,7 +90323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2098708814
 Transform:
   m_ObjectHideFlags: 0
@@ -90353,7 +90359,7 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: ade495601a5973a43bbb5343207ef21f, type: 2}
-  m_TreeDistance: 5000
+  m_TreeDistance: 0
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50

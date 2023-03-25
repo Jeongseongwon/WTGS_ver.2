@@ -23,6 +23,36 @@ public class UI_slider_setting : MonoBehaviour
     void Start()
     {
         volume_slider = this.gameObject.GetComponent<Slider>();
+        //volume = volume_slider.value;
+        //if (tmp_volume != volume)
+        //{
+        //    if (All_sound == true)
+        //    {
+        //        Manager_audio.instance.Set_all_sound_volume(volume_slider.value);
+        //    }
+        //    else if (Effect == true)
+        //    {
+        //        Manager_audio.instance.Set_effect_sound_volume(volume_slider.value);
+        //    }
+        //    else if (Narration == true)
+        //    {
+        //        Manager_audio.instance.Set_narration_volume(volume_slider.value);
+        //    }
+        //    else if (BGM == true)
+        //    {
+        //        Manager_audio.instance.Set_BGM_volume(volume_slider.value);
+        //    }
+        //}
+        //초기 값을 가져오는게 필요할 듯?
+    }
+    private void OnLevelWasLoaded(int level)
+    {
+        //if (GameObject.FindGameObjectWithTag("Scene_controller") != null)
+        //{
+        //    Scenecontroller = GameObject.FindGameObjectWithTag("Scene_controller");
+        //    Narration = Scenecontroller.GetComponent<AudioSource>();
+        //}
+        //매니저 오디오에 저장되어있는 볼륨 값을 가져와서 슬라이더를 바꿔주자
     }
 
     // Update is called once per frame

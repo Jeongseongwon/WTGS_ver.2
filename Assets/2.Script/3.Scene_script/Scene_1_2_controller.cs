@@ -11,6 +11,8 @@ public class Scene_1_2_controller : MonoBehaviour
     public GameObject Scriptbox;
     public GameObject Top_navigation;
     public GameObject Wind_particle;
+    public ParticleSystem windspeed;
+
     public GameObject Study_title_Intro_2;
 
     private Text text;
@@ -19,6 +21,7 @@ public class Scene_1_2_controller : MonoBehaviour
     int postCount;
     bool Prev_Status = false;
     private int phase = 0;
+    private bool Timer_check = false;
 
     private List<string> anim_list = new List<string>();
     // Start is called before the first frame update
@@ -45,8 +48,18 @@ public class Scene_1_2_controller : MonoBehaviour
     public GameObject Object_12_1_Yaw_system_2;
     public GameObject Object_12_1_Yaw_system_3;
     public GameObject Object_12_1_Yaw_system_4;
+    public GameObject Object_12_2_Yaw_bearing;
+    public GameObject Object_12_3_Yaw_Gearing;
+    public GameObject Object_12_4_Brake_disc;
+    public GameObject Object_12_5_Brake_cal;
+    public GameObject Object_12_6_Brake_cal_2;
     public GameObject Object_13_Gearbox;
     public GameObject Object_14_Generator;
+
+    public GameObject Object_17_shaft_brake_disc;
+    public GameObject Object_21_shaft_brake_pad;
+    public GameObject Object_22_brake_shaft;
+
 
 
     public GameObject Arrow_a1;
@@ -65,12 +78,19 @@ public class Scene_1_2_controller : MonoBehaviour
     public GameObject newmodel;
     public GameObject[] higligt;
 
-    IEnumerator Arrow_on_off()
+    IEnumerator Arrow_on_off(float time_1 = 0f, float time_2 = 4f)
     {
+        var ps = windspeed.main;
+        var emmisions = windspeed.emission;
+        ps.simulationSpeed = 2f;
+        emmisions.rateOverTime = 1f;
+        yield return new WaitForSeconds(time_1);
         Arrow_a2.SetActive(true);
         Arrow_b2.SetActive(true);
         Arrow_c2.SetActive(true);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(time_2);
+        ps.simulationSpeed = 4f;
+        emmisions.rateOverTime = 2f;
         Arrow_a2.SetActive(false);
         Arrow_b2.SetActive(false);
         Arrow_c2.SetActive(false);
@@ -81,7 +101,24 @@ public class Scene_1_2_controller : MonoBehaviour
         Arrow_a1.SetActive(false);
         Arrow_b1.SetActive(false);
         Arrow_c1.SetActive(false);
+        ps.simulationSpeed = 2f;
+        emmisions.rateOverTime = 1f;
         yield break;
+    }
+    IEnumerator Arrow_low(float time = 0f)
+    {
+        yield return new WaitForSeconds(time);
+        Arrow_a1.SetActive(true);
+        Arrow_b1.SetActive(true);
+        Arrow_c1.SetActive(true);
+    }
+
+    IEnumerator Arrow_high(float time = 0f)
+    {
+        yield return new WaitForSeconds(time);
+        Arrow_a2.SetActive(true);
+        Arrow_b2.SetActive(true);
+        Arrow_c2.SetActive(true);
     }
 
     void Arrow_off()
@@ -114,6 +151,8 @@ public class Scene_1_2_controller : MonoBehaviour
     }
     void Act(int count)
     {
+        var ps = windspeed.main;
+        var emmisions = windspeed.emission;
         if (count == 1)
         {
             if (Prev_Status == true)
@@ -177,6 +216,7 @@ public class Scene_1_2_controller : MonoBehaviour
             StartCoroutine(Highlight_onoff(Object_1_blade2));
             StartCoroutine(Highlight_onoff(Object_1_blade3));
 
+            Wind_particle.SetActive(true);
             StartCoroutine(Arrow_on_off());
             //화살표 추가
             //애니메이션
@@ -190,14 +230,14 @@ public class Scene_1_2_controller : MonoBehaviour
             Object_Col_Off_ALL();
             Object_Col_On(Object_6_Rotor);
 
+            Object_Highlight_Off_ALL();
+            StopAllCoroutines();
             Arrow_off();
 
-
             //하이라이트 효과
-            StartCoroutine(Highlight_onoff(Object_6_Rotor));
+            StartCoroutine(Highlight_onoff(Object_6_Rotor, 3f));
 
             //애니메이션
-            Wind_particle.SetActive(true);
             Camera.GetComponent<Camera_movement>().act2();
             //Anim.Stop();
             StartCoroutine(Animation_play(2.1));    //재조립 및 회전
@@ -207,22 +247,24 @@ public class Scene_1_2_controller : MonoBehaviour
         {
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
+            Object_Highlight_Off_ALL();
             Object_Col_On(Object_6_Rotor);
 
             //하이라이트 효과
-            StartCoroutine(Highlight_onoff(Object_6_Rotor));
+            StartCoroutine(Highlight_onoff(Object_6_Rotor, 1.5f));
 
             //애니메이션
             //Anim.Play("5_WTG_rotor_move");
-            StartCoroutine(Animation_play(5));
+           // StartCoroutine(Animation_play(5));
 
             Debug.Log("act6");
         }
         else if (count == 7)
         {
-            
+
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
+            Object_Highlight_Off_ALL();
             Object_Col_On(Object_6_Rotor);
             Object_Col_On(Object_8_Hub);
             Object_Col_On(Object_9_Pitch_bearing);
@@ -232,11 +274,11 @@ public class Scene_1_2_controller : MonoBehaviour
             Object_Col_On(Object_9_1_Pitch_sytem_3);
 
             //하이라이트 효과
-            StartCoroutine(Highlight_onoff(Object_6_Rotor));
-            StartCoroutine(Highlight_onoff(Object_8_Hub));
-            StartCoroutine(Highlight_onoff(Object_9_Pitch_bearing));
-            StartCoroutine(Highlight_onoff(Object_10_Spinner));
-            StartCoroutine(Highlight_onoff(Object_9_1_Pitch_sytem_1));
+            // StartCoroutine(Highlight_onoff(Object_6_Rotor,6f));
+            StartCoroutine(Highlight_onoff(Object_8_Hub, 7f));
+            StartCoroutine(Highlight_onoff(Object_9_Pitch_bearing, 9f));
+            StartCoroutine(Highlight_onoff(Object_10_Spinner, 6f));
+            StartCoroutine(Highlight_onoff(Object_9_1_Pitch_sytem_1, 9f));
 
             //애니메이션
             //Camera.GetComponent<Camera_movement>().act3();
@@ -248,19 +290,20 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 8)
         {
-            
-            
+
+
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
+            Object_Highlight_Off_ALL();
             Object_Col_On(Object_8_Hub);
             Object_Col_On(Object_11_Mainshaft);
 
             //하이라이트 효과
-            StartCoroutine(Highlight_onoff(Object_8_Hub));
-            StartCoroutine(Highlight_onoff(Object_11_Mainshaft));
+            StartCoroutine(Highlight_onoff(Object_8_Hub, 2f));
+            //StartCoroutine(Highlight_onoff(Object_11_Mainshaft));
 
             //애니메이션
-            Camera.GetComponent<Camera_movement>().act3_1();
+            Camera.GetComponent<Camera_movement>().act5();
             StartCoroutine(Animation_play(5.2));
             //주축 회전
 
@@ -272,13 +315,14 @@ public class Scene_1_2_controller : MonoBehaviour
         {
             if (Prev_Status == true)
             {
-               
+                Arrow_off();
                 Prev_Status = false;
             }
             newmodel.GetComponent<Animation>().Stop();
 
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
+            Object_Highlight_Off_ALL();
             Object_Col_On(Object_9_1_Pitch_sytem_1);
             Object_Col_On(Object_9_Pitch_bearing);
 
@@ -294,23 +338,8 @@ public class Scene_1_2_controller : MonoBehaviour
         {
             if (Prev_Status == true)
             {
-                
                 Prev_Status = false;
             }
-
-            //콜라이더(툴팁, 하이라이트)
-            Object_Col_Off_ALL();
-            Object_Col_On(Object_8_Hub);
-            Object_Col_On(Object_11_Mainshaft);
-
-            StartCoroutine(Highlight_onoff(Object_1_blade1));
-            StartCoroutine(Highlight_onoff(Object_1_blade2));
-            StartCoroutine(Highlight_onoff(Object_1_blade3));
-
-            Camera.GetComponent<Camera_movement>().act7();
-            //0213_화살표 추가
-            StartCoroutine(Animation_play(7.1));
-            Debug.Log("act10");
         }
         else if (count == 11)
         {
@@ -318,6 +347,59 @@ public class Scene_1_2_controller : MonoBehaviour
             {
                 Prev_Status = false;
             }
+
+            //콜라이더(툴팁, 하이라이트)
+            Camera.GetComponent<Camera_movement>().act1();
+            StartCoroutine(Highlight_onoff(Object_1_blade1, 1f));
+            StartCoroutine(Highlight_onoff(Object_1_blade2, 1f));
+            StartCoroutine(Highlight_onoff(Object_1_blade3, 1f));
+
+
+            ps.simulationSpeed = 2f;
+            emmisions.rateOverTime = 1f;
+            StartCoroutine(Animation_play(22, 0f));
+            StartCoroutine(Arrow_high(4f));
+            //StartCoroutine(Animation_play(5.3));
+            //원상복구하는 애니메이션?
+
+            //카메라 뷰 이동
+            Debug.Log("act10");
+        }
+        else if (count == 12)
+        {
+            if (Prev_Status == true)
+            {
+                Wind_particle.SetActive(true);
+                Camera.GetComponent<Camera_movement>().act1();
+                Prev_Status = false;
+            }
+
+            //콜라이더(툴팁, 하이라이트)
+
+            //위로 회전하는 애니메이션
+            //화살표 일부 활성화
+
+            //카메라 뷰 이동
+            Debug.Log("act10");
+            Arrow_off();
+            Object_Highlight_Off_ALL();
+            ps.simulationSpeed = 4f;
+            emmisions.rateOverTime = 2f;
+            StartCoroutine(Animation_play(21, 2f));
+            StartCoroutine(Arrow_low(2f));
+        }
+        else if (count == 13)
+        {
+            if (Prev_Status == true)
+            {
+                Prev_Status = false;
+            }
+
+            Wind_particle.SetActive(false);
+            Object_Highlight_Off_ALL();
+            StopAllCoroutines();
+            Arrow_off();
+
             pitch[0].SetActive(false);
             pitch[1].SetActive(false);
             pitch[2].SetActive(false);
@@ -335,150 +417,239 @@ public class Scene_1_2_controller : MonoBehaviour
             StartCoroutine(Highlight_onoff(Object_14_Generator));
 
             Camera.GetComponent<Camera_movement>().act5();
-            //5.2로 변경
-            StartCoroutine(Animation_play(6));
-            Debug.Log("act11");
-        }
-        else if (count == 12)
-        {
-            Debug.Log("act12");
         }
         else if (count == 13)
         {
-            //콜라이더(툴팁, 하이라이트)
-            Object_Col_Off_ALL();
-            Object_Col_On(Object_11_Mainshaft);
 
-            //하이라이트 효과
-            StartCoroutine(Highlight_onoff(Object_11_Mainshaft));
-            StartCoroutine(Animation_play(8));
-
-            Camera.GetComponent<Camera_movement>().act7();
-            Debug.Log("act13");
         }
         else if (count == 14)
         {
             //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
-            Object_Col_On(Object_13_Gearbox);
 
             //하이라이트 효과
-            StartCoroutine(Highlight_onoff(Object_13_Gearbox));
-            Camera.GetComponent<Camera_movement>().act5();
-            Debug.Log("act14");
+            StartCoroutine(Animation_play(6));
+            newmodel.GetComponent<Animation>().Play("NM_mainshaft_rotation");
 
+            Camera.GetComponent<Camera_movement>().act7();
         }
         else if (count == 15)
         {
-            Debug.Log("act 15 스킵 추후 애니메이션 추가");
-            //텍스트 추가 및 양옆에 회전하는 애니메이션 추가하기
+            if (Prev_Status == true)
+            {
+                Prev_Status = false;
+            }
+            //콜라이더(툴팁, 하이라이트)
+            Object_Col_Off_ALL();
+            Object_Col_On(Object_13_Gearbox);
+            Object_Col_On(Object_11_Mainshaft);
+            Object_Col_On(Object_6_Rotor);
+
+            //하이라이트 효과
+            StartCoroutine(Highlight_onoff(Object_11_Mainshaft));
+
+            Camera.GetComponent<Camera_movement>().act5();
+            newmodel.GetComponent<Animation>().Play("NM_mainshaft_rotation");
         }
         else if (count == 16)
         {
-            //카메라 시점 변환 요 제어 시스템 하이라이트
+            if (Prev_Status == true)
+            {
+                Object_13_Gearbox.SetActive(true);
+                Prev_Status = false;
+            }
             Object_Col_Off_ALL();
-            Object_Col_On(Object_12_1_Yaw_system_1);
-            Object_Col_On(Object_12_1_Yaw_system_2);
-            Object_Col_On(Object_12_1_Yaw_system_3);
-            Object_Col_On(Object_12_1_Yaw_system_4);
+            Object_Col_On(Object_13_Gearbox);
+            Object_Col_On(Object_11_Mainshaft);
 
-            //하이라이트 효과
-            StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_1));
-            StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_2));
-            StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_3));
-            StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_4));
-            Camera.GetComponent<Camera_movement>().act6();
-            Debug.Log("act16");
+            StartCoroutine(Highlight_onoff(Object_13_Gearbox));
         }
         else if (count == 17)
         {
-            //카메라 시점 변환 요 제어 시스템 구성요소 하이라이트
+            if (Prev_Status == true)
+            {
+                Camera.GetComponent<Camera_movement>().act5();
+                Prev_Status = false;
+                Object_13_Gearbox.SetActive(false);
+            }
+
+            Object_13_Gearbox.SetActive(false);
+            Object_Col_Off_ALL();
+            Object_11_Mainshaft.GetComponent<Object_mouseover_withouthighlight>().Tooltip_text = "저속-고토크 입력동력";
+            Object_Col_On(Object_11_Mainshaft);
+            Object_Col_On(Object_17_shaft_brake_disc);
+            StartCoroutine(Highlight_onoff(Object_11_Mainshaft));
+            StartCoroutine(Highlight_onoff(Object_17_shaft_brake_disc));
+            newmodel.GetComponent<Animation>().Play("NM_gear,shaft_rotation");
+            StartCoroutine(Animation_play(17));
+
+        }
+        else if (count == 18)
+        {
+            if (Prev_Status == true)
+            {
+                Prev_Status = false;
+            }
+            Object_Col_Off_ALL();
+            newmodel.GetComponent<Animation>().Stop();
+            Anim.Stop();
+            Camera.GetComponent<Camera_movement>().act18();
+            //StartCoroutine(Animation_play(6.2));
+            Object_13_Gearbox.SetActive(true);
+            Object_4_Nacelle.SetActive(false);
+            
+        }
+        else if (count == 19)
+        {
+            if (Prev_Status == true)
+            {
+                Prev_Status = false;
+            }
+            Object_Col_Off_ALL();
             Object_Col_On(Object_12_1_Yaw_system_1);
             Object_Col_On(Object_12_1_Yaw_system_2);
             Object_Col_On(Object_12_1_Yaw_system_3);
             Object_Col_On(Object_12_1_Yaw_system_4);
-            Object_Col_On(Object_12_Yaw);
-
-
-            StartCoroutine(Highlight_onoff(Object_12_Yaw));
-            Debug.Log("act17");
-        }
-        else if (count == 18)
-        {
-            //요 제어 애니메이션
-            StartCoroutine(Animation_play(6.1));
-            Debug.Log("act18");
-        }
-        else if (count == 19)
-        {
-            Debug.Log("act 19 스킵 추후 애니메이션 추가");
+            Object_Col_On(Object_12_2_Yaw_bearing);
+            Object_Col_On(Object_12_3_Yaw_Gearing);
+            Object_Col_On(Object_12_4_Brake_disc);
+            Object_Col_On(Object_12_5_Brake_cal);
+            Object_Col_On(Object_12_6_Brake_cal_2);
+            StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_1, 1f));
+            StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_2, 1f));
+            StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_3, 1f));
+            StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_4, 1f));
+            StartCoroutine(Highlight_onoff(Object_12_2_Yaw_bearing, 2.5f));
+            StartCoroutine(Highlight_onoff(Object_12_3_Yaw_Gearing, 4f));
+            StartCoroutine(Highlight_onoff(Object_12_4_Brake_disc, 5.5f));
+            StartCoroutine(Highlight_onoff(Object_12_5_Brake_cal, 7f));
+            StartCoroutine(Highlight_onoff(Object_12_6_Brake_cal_2, 7f));
         }
         else if (count == 20)
         {
-            
-            //피치 줌인 및 이전 상태에서 피치 분리된 상태로 돌아가기
-
-            //콜라이더(툴팁, 하이라이트)
             Object_Col_Off_ALL();
-            Object_Col_On(Object_9_1_Pitch_sytem_1);
-            Object_Col_On(Object_9_Pitch_bearing);
+            Object_Col_On(Object_12_1_Yaw_system_1);
+            Object_Col_On(Object_12_1_Yaw_system_2);
+            Object_Col_On(Object_12_1_Yaw_system_3);
+            Object_Col_On(Object_12_1_Yaw_system_4);
+            Object_Col_On(Object_12_3_Yaw_Gearing);
+            StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_1, 1f));
+            StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_2, 1f));
+            StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_3, 1f));
+            StartCoroutine(Highlight_onoff(Object_12_1_Yaw_system_4, 1f));
+            StartCoroutine(Highlight_onoff(Object_12_3_Yaw_Gearing, 4f));
 
-            //하이라이트 효과
-            StartCoroutine(Highlight_onoff(Object_9_1_Pitch_sytem_1));
-            StartCoroutine(Highlight_onoff(Object_9_Pitch_bearing));
-
-            StartCoroutine(Animation_play(5));
-            Camera.GetComponent<Camera_movement>().act4();
-            Debug.Log("act 20");
+            //애니메이션 자체 대기시간 추가함, 4f
+            StartCoroutine(Animation_play(6.1));
         }
         else if (count == 21)
         {
-            StartCoroutine(Animation_play(7));
-            //피치 제어 애니메이션 재생
+
+            if (Prev_Status == true)
+            {
+
+                Prev_Status = false;
+            }
+
+
+            //콜라이더(툴팁, 하이라이트)
+            Object_Col_Off_ALL();
+            Object_Col_On(Object_12_5_Brake_cal);
+            Object_Col_On(Object_12_4_Brake_disc);
+            Object_Col_On(Object_12_6_Brake_cal_2);
+            StartCoroutine(Highlight_onoff(Object_12_4_Brake_disc));
+            StartCoroutine(Highlight_onoff(Object_12_5_Brake_cal, 2f));
+            StartCoroutine(Highlight_onoff(Object_12_6_Brake_cal_2, 2f));
+
+            //애니메이션 자체 대기시간 추가함, 4f
+            StartCoroutine(Animation_play(51));
+
+            Camera.GetComponent<Camera_movement>().act18();
         }
         else if (count == 22)
         {
+
             if (Prev_Status == true)
             {
-                for (int i = 0; i <= 12; i++)
-                {
-                    turnoffthis[i].gameObject.SetActive(true);
-                    newmodel.SetActive(false);
-                }
+
                 Prev_Status = false;
             }
-            //블레이드 각도 변경하기 및 가능하면 텍스트 추가
+            Camera.GetComponent<Camera_movement>().act22();
+            Object_Col_Off_ALL();
+            Object_Col_On(Object_22_brake_shaft);
+            Object_Col_On(Object_17_shaft_brake_disc);
+            Object_Col_On(Object_12_4_Brake_disc);
+            StartCoroutine(Highlight_onoff(Object_22_brake_shaft, 6f));
+            StartCoroutine(Highlight_onoff(Object_17_shaft_brake_disc, 4f));
+            StartCoroutine(Highlight_onoff(Object_12_5_Brake_cal, 2f));
         }
         else if (count == 23)
-        {  for(int i = 0;i<=12;i++)
+        {
+            if (Prev_Status == true)
             {
-                turnoffthis[i].gameObject.SetActive(false);
-                newmodel.SetActive(true);
+                Object_13_Gearbox.SetActive(true);
+                Prev_Status = false;
             }
+            Camera.GetComponent<Camera_movement>().act23();
+            Camera.GetComponent<Camera_movement>().distance = 5f;
+            Object_Col_Off_ALL();
+            Object_Col_On(Object_22_brake_shaft);
+            newmodel.GetComponent<Animation>().Play("NM_gear,shaft_rotation");
+            StartCoroutine(Animation_play(17));
+            StartCoroutine(Highlight_onoff(Object_22_brake_shaft, 1f));
 
-            //주축 잠금 장치, 브레이크, 요 브레이크 하이라이트, 카메라 이동
-            Camera.GetComponent<Camera_movement>().act5();
+            //애니메이션 자체 대기시간 추가함, 4f
+            StartCoroutine(Animation_play(52));
+
         }
         else if (count == 24)
         {
-            StartCoroutine(Highlight_onoff(higligt[0]));
-            newmodel.GetComponent<Animation>().Play("yo_break");
+            if (Prev_Status == true)
+            {
 
-            //주축 잠금 장치
+                Prev_Status = false;
+            }
+            Camera.GetComponent<Camera_movement>().act24();
+            Object_Col_Off_ALL();
+            Object_Col_On(Object_21_shaft_brake_pad);
+            StartCoroutine(Highlight_onoff(Object_21_shaft_brake_pad, 1f));
+
+
+            Object_13_Gearbox.SetActive(false);
+            newmodel.GetComponent<Animation>().Play("NM_gear,shaft_rotation");
+            StartCoroutine(Animation_play(17));
+
+
+            //애니메이션 자체 대기시간 추가함, 4f
+            StartCoroutine(Animation_play(24));//주축, 패드 작동 후 정지
+            StartCoroutine(Animation_play(53));//기어 정지
+            
+
         }
         else if (count == 25)
         {
+            if (Prev_Status == true)
+            {
 
-            newmodel.GetComponent<Animation>().Play("nacel_break");
-            //core_break.Play("main_break_down");
-            //주축용 브레이크
+                Prev_Status = false;
+            }
+            Object_13_Gearbox.SetActive(true);
+            Anim.Stop();
+            Camera.GetComponent<Camera_movement>().act18();
+            Object_Col_On(Object_12_5_Brake_cal);
+            Object_Col_On(Object_12_4_Brake_disc);
+            Object_Col_On(Object_12_6_Brake_cal_2);
+            StartCoroutine(Highlight_onoff(Object_12_4_Brake_disc));
+            StartCoroutine(Highlight_onoff(Object_12_5_Brake_cal, 2f));
+            StartCoroutine(Highlight_onoff(Object_12_6_Brake_cal_2, 2f));
+
+            //애니메이션 자체 대기시간 추가함, 4f
+            StartCoroutine(Animation_play(51));
+            StartCoroutine(Animation_play(25));
         }
         else if (count == 26)
         {
-            newmodel.GetComponent<Animation>().Stop("nacel_break");
-            newmodel.GetComponent<Animation>().Play("main_lockup");
-            //요 브레이크
-            Camera.GetComponent<Camera_movement>().act6();
+            //최종 애니메이션 추가 부분
         }
     }
 
@@ -494,7 +665,6 @@ public class Scene_1_2_controller : MonoBehaviour
             toggle = false;
         }
     }
-
     void BtnCountToggle()
     {
         nowCount = gameObject.GetComponent<Script_controller>().btnCount;
@@ -510,40 +680,15 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         postCount = nowCount;
     }
-    private void Object_Col_Off_ALL()
-    {
-        Object_1_blade1.GetComponent<MeshCollider>().enabled = false;
-        Object_1_blade2.GetComponent<MeshCollider>().enabled = false;
-        Object_1_blade3.GetComponent<MeshCollider>().enabled = false;
-        Object_4_Nacelle.GetComponent<MeshCollider>().enabled = false;
-        Object_5_Tower.GetComponent<MeshCollider>().enabled = false;
-        Object_6_Rotor.GetComponent<MeshCollider>().enabled = false;
-        Object_7_Shaft.GetComponent<MeshCollider>().enabled = false;
-        Object_8_Hub.GetComponent<MeshCollider>().enabled = false;
-        Object_9_Pitch_bearing.GetComponent<MeshCollider>().enabled = false;
-        Object_10_Spinner.GetComponent<MeshCollider>().enabled = false;
-        Object_11_Mainshaft.GetComponent<MeshCollider>().enabled = false;
-        Object_12_Yaw.GetComponent<MeshCollider>().enabled = false;
-        Object_13_Gearbox.GetComponent<MeshCollider>().enabled = false;
-        Object_14_Generator.GetComponent<MeshCollider>().enabled = false;
-
-        Object_9_1_Pitch_sytem_1.GetComponent<MeshCollider>().enabled = false;
-        Object_9_1_Pitch_sytem_2.GetComponent<MeshCollider>().enabled = false;
-        Object_9_1_Pitch_sytem_3.GetComponent<MeshCollider>().enabled = false;
-
-        Object_12_1_Yaw_system_1.GetComponent<MeshCollider>().enabled = false;
-        Object_12_1_Yaw_system_2.GetComponent<MeshCollider>().enabled = false;
-        Object_12_1_Yaw_system_3.GetComponent<MeshCollider>().enabled = false;
-        Object_12_1_Yaw_system_4.GetComponent<MeshCollider>().enabled = false;
-    }
-
+   
     private void Object_Col_On(GameObject obj)
     {
         obj.GetComponent<MeshCollider>().enabled = true;
     }
 
-    IEnumerator Animation_play(double num)
+    IEnumerator Animation_play(double num, float time = 0f)
     {
+        yield return new WaitForSeconds(time);
         if (num == 0)
         {
             //인트로 off
@@ -590,6 +735,11 @@ public class Scene_1_2_controller : MonoBehaviour
             //로터, 스피너,허브 재조립 및 나셀 분리
             Anim.Play("5_2_WTG_rotor_move_(return)+nacelle_open");
         }
+        else if (num == 5.3)
+        {
+            //로터, 스피너,허브 재조립 및 나셀 분리
+            Anim.Play("5_3_WTG_rotor_move_(return)+no_nacelle");
+        }
         else if (num == 6)
         {
             //나셀 분리
@@ -600,11 +750,15 @@ public class Scene_1_2_controller : MonoBehaviour
             //나셀 회전
             Anim.Play("6_1_WTG_Nacelle_rotation");
         }
+        else if (num == 6.2)
+        {
+            //나셀 회전
+            Anim.Play("6_2_WTG_Nacelle(return)");
+        }
         else if (num == 7)
         {
             //로터, 블레이드 분리 후 피치 베어링 회전
             Anim.Play("7_WTG_pitch_bearing(rotation)");
-            
         }
         else if (num == 7.1)
         {
@@ -621,42 +775,132 @@ public class Scene_1_2_controller : MonoBehaviour
             Anim.Play("6_1_WTG_Nacelle_rotation");
 
         }
-        else if (num == 10)
+        else if (num == 14)
         {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
+            Anim.Play("14_WTG_nacelle_close");
+
         }
-        else if (num == 10)
+        else if (num == 21)
         {
-            Anim.Play("6_1_WTG_Nacelle_rotation");
+            Anim.Play("A10_WTG_pitch_high");
+        }
+        else if (num == 22)
+        {
+            Anim.Play("A10_WTG_pitch_low");
+        }
+
+        else if (num == 17)
+        {
+            Anim.Play("17_WTG_Gearbox_rotation");
+        }
+
+        else if (num == 24)
+        {
+            Anim.Play("24_WTG_Gearbox_stop");
+
+        }
+
+        else if (num == 25)
+        {
+            Anim.Play("25_WTG_Nacelle_rotation");
+
+        }
+
+        else if (num == 51)
+        {//New model exception
+            newmodel.GetComponent<Animation>().Play("NM_break_yaw");
+        }
+        else if (num == 52)
+        {//New model exception
+            newmodel.GetComponent<Animation>().Play("NM_break_shaft_hold");
+        }
+        else if (num == 53)
+        {//New model exception
+            newmodel.GetComponent<Animation>().Play("NM_gear,shaft_stop");
         }
         yield break;
     }
 
-    IEnumerator Highlight_onoff(GameObject obj)
+    IEnumerator Highlight_onoff(GameObject obj, float time = 0f)
     {
+        yield return new WaitForSeconds(time);
         obj.GetComponent<HighlightEffect>().highlighted = true;
         yield return new WaitForSeconds(3.0f);
         obj.GetComponent<HighlightEffect>().highlighted = false;
         yield break;
+        //3초마다 시간 바꿔주는거
     }
 
-    //애니메이션 재생하면서 오브젝트 물리엔진 일시정지 및 활성화
-    //void KineticDisable()
-    //{
-    //    Transform AllMetalball = Metalball.GetComponentInChildren<Transform>();
-    //    foreach (Transform child in AllMetalball)
-    //    {
-    //        child.GetComponent<Rigidbody>().isKinematic = true;
-    //    }
-    //}
-    //void KineticEnable()
-    //{
-    //    Transform AllMetalball = Metalball.GetComponentInChildren<Transform>();
-    //    foreach (Transform child in AllMetalball)
-    //    {
-    //        child.GetComponent<Rigidbody>().isKinematic = false;
-    //    }
-    //}
+    private void Object_Col_Off_ALL()
+    {
+        Object_1_blade1.GetComponent<MeshCollider>().enabled = false;
+        Object_1_blade2.GetComponent<MeshCollider>().enabled = false;
+        Object_1_blade3.GetComponent<MeshCollider>().enabled = false;
+        Object_4_Nacelle.GetComponent<MeshCollider>().enabled = false;
+        Object_5_Tower.GetComponent<MeshCollider>().enabled = false;
+        Object_6_Rotor.GetComponent<MeshCollider>().enabled = false;
+        Object_7_Shaft.GetComponent<MeshCollider>().enabled = false;
+        Object_8_Hub.GetComponent<MeshCollider>().enabled = false;
+        Object_9_Pitch_bearing.GetComponent<MeshCollider>().enabled = false;
+        Object_10_Spinner.GetComponent<MeshCollider>().enabled = false;
+        Object_11_Mainshaft.GetComponent<MeshCollider>().enabled = false;
+        Object_12_Yaw.GetComponent<MeshCollider>().enabled = false;
+        Object_13_Gearbox.GetComponent<MeshCollider>().enabled = false;
+        Object_14_Generator.GetComponent<MeshCollider>().enabled = false;
 
+        Object_9_1_Pitch_sytem_1.GetComponent<MeshCollider>().enabled = false;
+        Object_9_1_Pitch_sytem_2.GetComponent<MeshCollider>().enabled = false;
+        Object_9_1_Pitch_sytem_3.GetComponent<MeshCollider>().enabled = false;
+
+        Object_12_1_Yaw_system_1.GetComponent<MeshCollider>().enabled = false;
+        Object_12_1_Yaw_system_2.GetComponent<MeshCollider>().enabled = false;
+        Object_12_1_Yaw_system_3.GetComponent<MeshCollider>().enabled = false;
+        Object_12_1_Yaw_system_4.GetComponent<MeshCollider>().enabled = false;
+
+        Object_17_shaft_brake_disc.GetComponent<MeshCollider>().enabled = false;
+
+        Object_12_2_Yaw_bearing.GetComponent<MeshCollider>().enabled = false;
+        Object_12_3_Yaw_Gearing.GetComponent<MeshCollider>().enabled = false;
+        Object_12_4_Brake_disc.GetComponent<MeshCollider>().enabled = false;
+        Object_12_5_Brake_cal.GetComponent<MeshCollider>().enabled = false;
+        Object_12_6_Brake_cal_2.GetComponent<MeshCollider>().enabled = false;
+        Object_22_brake_shaft.GetComponent<MeshCollider>().enabled = false;
+        Object_21_shaft_brake_pad.GetComponent<MeshCollider>().enabled = false;
+    }
+    private void Object_Highlight_Off_ALL()
+    {
+        Object_1_blade1.GetComponent<HighlightEffect>().highlighted = false;
+        Object_1_blade2.GetComponent<HighlightEffect>().highlighted = false;
+        Object_1_blade3.GetComponent<HighlightEffect>().highlighted = false;
+        Object_4_Nacelle.GetComponent<HighlightEffect>().highlighted = false;
+        Object_5_Tower.GetComponent<HighlightEffect>().highlighted = false;
+        Object_6_Rotor.GetComponent<HighlightEffect>().highlighted = false;
+        Object_7_Shaft.GetComponent<HighlightEffect>().highlighted = false;
+        Object_8_Hub.GetComponent<HighlightEffect>().highlighted = false;
+        Object_9_Pitch_bearing.GetComponent<HighlightEffect>().highlighted = false;
+        Object_10_Spinner.GetComponent<HighlightEffect>().highlighted = false;
+        Object_11_Mainshaft.GetComponent<HighlightEffect>().highlighted = false;
+        Object_12_Yaw.GetComponent<HighlightEffect>().highlighted = false;
+        Object_13_Gearbox.GetComponent<HighlightEffect>().highlighted = false;
+        Object_14_Generator.GetComponent<HighlightEffect>().highlighted = false;
+
+        Object_9_1_Pitch_sytem_1.GetComponent<HighlightEffect>().highlighted = false;
+        Object_9_1_Pitch_sytem_2.GetComponent<HighlightEffect>().highlighted = false;
+        Object_9_1_Pitch_sytem_3.GetComponent<HighlightEffect>().highlighted = false;
+
+        Object_12_1_Yaw_system_1.GetComponent<HighlightEffect>().highlighted = false;
+        Object_12_1_Yaw_system_2.GetComponent<HighlightEffect>().highlighted = false;
+        Object_12_1_Yaw_system_3.GetComponent<HighlightEffect>().highlighted = false;
+        Object_12_1_Yaw_system_4.GetComponent<HighlightEffect>().highlighted = false;
+
+        Object_17_shaft_brake_disc.GetComponent<HighlightEffect>().highlighted = false;
+        Object_12_2_Yaw_bearing.GetComponent<HighlightEffect>().highlighted = false;
+        Object_12_3_Yaw_Gearing.GetComponent<HighlightEffect>().highlighted = false;
+        Object_12_4_Brake_disc.GetComponent<HighlightEffect>().highlighted = false;
+        Object_12_5_Brake_cal.GetComponent<HighlightEffect>().highlighted = false;
+        Object_12_6_Brake_cal_2.GetComponent<HighlightEffect>().highlighted = false;
+        Object_22_brake_shaft.GetComponent<HighlightEffect>().highlighted = false;
+        Object_21_shaft_brake_pad.GetComponent<HighlightEffect>().highlighted = false;
+    }
 }
 

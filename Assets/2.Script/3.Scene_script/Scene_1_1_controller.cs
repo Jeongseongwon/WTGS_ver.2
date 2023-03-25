@@ -173,8 +173,8 @@ public class Scene_1_1_controller : MonoBehaviour
             Object_Col_On(Object_11_Mainshaft);
 
             //하이라이트 효과
-            StartCoroutine(Highlight_onoff(Object_6_Rotor));
-            StartCoroutine(Highlight_onoff(Object_11_Mainshaft));
+            StartCoroutine(Highlight_onoff(Object_6_Rotor,3f));
+            StartCoroutine(Highlight_onoff(Object_11_Mainshaft, 3f));
 
             //애니메이션
             StartCoroutine(Animation_play(6));
@@ -215,6 +215,7 @@ public class Scene_1_1_controller : MonoBehaviour
                 Object_5_Tower.gameObject.GetComponent<MeshRenderer>().material.color = c;
                 Prev_Status = false;
                 Camera.GetComponent<Camera_movement>().Change_position();
+                StartCoroutine(Animation_play(6.2));
             }
             Text_2.SetActive(false);
             Text_1.SetActive(false);
@@ -228,7 +229,6 @@ public class Scene_1_1_controller : MonoBehaviour
 
             //애니메이션
             Camera.GetComponent<Camera_movement>().act8();
-            StartCoroutine(Animation_play(6.2));
             Debug.Log("act7");
         }
         else if (count == 7)
@@ -239,10 +239,12 @@ public class Scene_1_1_controller : MonoBehaviour
             Object_5_Tower.gameObject.GetComponent<MeshRenderer>().material.color = c;
 
             Object_Col_On(Object_15_Power_grid);
+            Object_Col_On(Object_5_Tower);
 
             StartCoroutine(Highlight_onoff_line(Object_p_line));
             StartCoroutine(Highlight_onoff(Object_15_Power_grid));
             StartCoroutine(Highlight_onoff(Object_5_Tower));
+            StartCoroutine(Animation_play(6.2));
 
             Camera.GetComponent<Camera_movement>().Change_position_1();
 
@@ -461,13 +463,14 @@ public class Scene_1_1_controller : MonoBehaviour
         }
         yield break;
     }
-
-    IEnumerator Highlight_onoff(GameObject obj)
+    IEnumerator Highlight_onoff(GameObject obj, float time = 0f)
     {
+        yield return new WaitForSeconds(time);
         obj.GetComponent<HighlightEffect>().highlighted = true;
         yield return new WaitForSeconds(3.0f);
         obj.GetComponent<HighlightEffect>().highlighted = false;
         yield break;
+        //3초마다 시간 바꿔주는거
     }
     IEnumerator Highlight_onoff_line(GameObject obj)
     {

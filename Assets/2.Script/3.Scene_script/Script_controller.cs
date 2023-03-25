@@ -100,12 +100,8 @@ public class Script_controller : MonoBehaviour
         else
         {
             Invoke("InvokeAct", 0.2f);
-            //Debug.Log(btnCount);
-            //Debug.Log(textList[0]);
-            //Debug.Log("check_1");
         }
     }
-   
     void Timer_set()
     {
         script_time_now = Time_limit;
@@ -113,7 +109,9 @@ public class Script_controller : MonoBehaviour
     }
      void Read_txt()
     {
-        StreamReader sr = new StreamReader(Application.dataPath + "/10.Study_script/"+ Scene_number+".txt");
+        //TextAsset Script_file = Resources.Load(Scene_number) as TextAsset;
+        TextAsset Script_file = Resources.Load<TextAsset>(Scene_number);
+        StringReader sr = new StringReader(Script_file.text);
         textList.Clear();
 
         bool endOfFile = false;

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Scene_controller
   - Tooltip
+  - SettingsText
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - Highlight_object
   - None_highlight_object
-  - 
+  - Help_page
   - 
   - 
   - 

@@ -24,23 +24,18 @@ public class Help_page : MonoBehaviour
     {
         if (num == 1)
         {
-            texthover.text = "메인화면 및 훈련보조도구";
             page1();
         }
         else if (num == 2)
         {
-            texthover.text = "훈련화면";
             page2();
         }
         else if (num == 3)
         {
-
-            texthover.text = "환경설정";
             page3();
         }
         else if (num == 4)
         {
-            texthover.text = "4번내용";
             page4();
         }
     }

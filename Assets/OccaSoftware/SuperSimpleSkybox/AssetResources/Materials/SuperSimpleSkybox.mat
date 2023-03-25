@@ -193,7 +193,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _GroundEnabled: 1
-    - _GroundFadeAmount: 0.16
+    - _GroundFadeAmount: 0.225
     - _Ground_Fade: -0.01
     - _HorizonSaturationAmount: 0.023
     - _HorizonSaturationFalloff: 3.22
@@ -219,7 +219,7 @@ Material:
     - _StarSpeed: 0.25
     - _Star_Saturation: 1
     - _SunAngularDiameter: 2
-    - _SunFalloff: 3.19
+    - _SunFalloff: 12.42
     - _SunFalloffIntensity: 0.1
     - _SunSize: 0.38
     - _SunSkyLightingEnabled: 1
@@ -259,10 +259,10 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.06480328, g: 0.1441285, b: 0.06301003, a: 0}
-    - _HorizonColorDay: {r: 0.31212172, g: 0.48579425, b: 0.5943396, a: 1}
+    - _HorizonColorDay: {r: 0.16420433, g: 0.5827252, b: 0.8490566, a: 1}
     - _HorizonColorNight: {r: 0.08736077, g: 0.07843138, b: 0.1333333, a: 0}
     - _MoonColor: {r: 0.67058825, g: 0.7254902, b: 0.7490196, a: 0}
-    - _SkyColorDay: {r: 0.19959651, g: 0.2620816, b: 0.5471698, a: 0}
+    - _SkyColorDay: {r: 0.1745283, g: 0.32292768, b: 1, a: 0}
     - _SkyColorNight: {r: 0.1037736, g: 0.01507654, b: 0.1037736, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SunColorHorizon: {r: 131.44095, g: 41.5523, b: 0, a: 0}

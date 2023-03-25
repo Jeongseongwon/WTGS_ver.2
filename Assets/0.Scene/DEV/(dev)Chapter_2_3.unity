@@ -32543,10 +32543,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AudioFiles:
-  - {fileID: 8300000, guid: 4481e10a68219d64286c35e3c0667c62, type: 3}
-  - {fileID: 8300000, guid: 412ef2109523b894c9cbcdc5b137e5f7, type: 3}
-  - {fileID: 8300000, guid: ce50da13f6fdde6448992e65e23e53f7, type: 3}
-  - {fileID: 8300000, guid: ec10c70979799594eafa0ab5905685e7, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   FirstNarrationDelay: 0
   Audio: {fileID: 0}
 --- !u!4 &954909845
