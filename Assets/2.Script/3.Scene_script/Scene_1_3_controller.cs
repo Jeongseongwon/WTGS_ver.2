@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using HighlightPlus;
 
 public class Scene_1_3_controller : MonoBehaviour
 {
@@ -11,16 +12,20 @@ public class Scene_1_3_controller : MonoBehaviour
     public GameObject Scriptbox;
 
     //1-3 Gameobject
-    //[Header("===== Gameobject =====")]
-    //public GameObject Wind_particle;
-    //public GameObject Blade_1;
-    //public GameObject Blade_2;
-    //public GameObject Blade_3;
-    //public GameObject Nacelle;
-    //public GameObject Arrow;
-    //public GameObject WTGS_Panel;
-    //public GameObject Camera;
-    //public GameObject Subcamera;
+    //블레이드, 로터, 허브, 주축, 증속기, 피치 드라이브, 요드라이브, 발전기, 컨버터
+    [Header("===== Gameobject =====")]
+    public GameObject Main_object;
+    public GameObject Object_1_blade1;
+    public GameObject Object_1_blade2;
+    public GameObject Object_1_blade3;
+    public GameObject Object_2_Rotor;
+    public GameObject Object_3_Shaft;
+    public GameObject Object_4_Hub;
+    public GameObject Object_5_Pitch_bearing;
+    public GameObject Object_6_Yaw;
+    public GameObject Object_7_Gearbox;
+    public GameObject Object_8_Generator;
+    public GameObject Object_9_Converter;
 
     //2-3 Text
     //Evaluation 찾고, child 0 : correct, child 1 : wrong 메시지 배치
@@ -43,16 +48,16 @@ public class Scene_1_3_controller : MonoBehaviour
     private bool Clicked_question;
     private bool Answer;
     private int Answer_count = 0;
+    private Animation Anim;
 
     //총 3문항
     private GameObject Question_panel_0;
     private GameObject Question_panel_1;
     private GameObject Question_panel_2;
     private GameObject Question_panel_3;
-    //private GameObject Question_panel_3;
 
 
-    private int BtnCount = 0;
+    public int BtnCount = 0;
 
     private int Question_num=0;
 
@@ -74,11 +79,19 @@ public class Scene_1_3_controller : MonoBehaviour
         Question_panel_3 = Question.GetComponent<Transform>().GetChild(3).gameObject;
 
 
+        Anim = Main_object.GetComponent<Animation>();
         //문제 갯수 만큼 점수 배열 초기화
         Question_num = Question.gameObject.GetComponent<Transform>().childCount;
         for (int i = 0; i< Question_num; i++)
         {
             Score[i] = 0;
+        }
+
+        //xAPI
+        if (GameObject.Find("xAPIObject"))
+        {
+            XAPIApplication.current.SendInitStatement("0");
+            XAPIApplication.current.LessonManagerInit("0");
         }
     }
 
@@ -112,6 +125,7 @@ public class Scene_1_3_controller : MonoBehaviour
                 {
                     Panel_button_inactive.SetActive(false);
                     Question_panel_0.SetActive(true);
+                    Anim.Play("Ch1_3_WTG_decompos");
                 }
             }
             else if (BtnCount == 2)
@@ -123,6 +137,7 @@ public class Scene_1_3_controller : MonoBehaviour
                     Panel_button_inactive.SetActive(false);
                     Question_panel_1.SetActive(true);
                     Question_panel_0.SetActive(false);
+                    Anim.Play("Ch1_3_WTG_compos");
                 }
             }
             else if (BtnCount == 3)
@@ -141,7 +156,7 @@ public class Scene_1_3_controller : MonoBehaviour
                     Panel_button_inactive.SetActive(false);
                     Question_panel_3.SetActive(true);
                     Question_panel_2.SetActive(false);
-
+                    Anim.Play("Ch1_3_WTG_decompos");
                 }
             }
             else if (BtnCount == 5)
@@ -162,9 +177,6 @@ public class Scene_1_3_controller : MonoBehaviour
     {
         for (int i = 0; i < Question_num; i++)
         {
-            Debug.Log("check_result"+ Score[i]);
-            //오답일 경우 해당 번호 이미지 활성화
-            //result_icon내 위치를 직접 맞춰준 다음에 아래 순서 조절함
             if (Score[i] == 0)
             {
                 Result_icon.transform.GetChild(i + 5).gameObject.SetActive(true);
@@ -186,10 +198,9 @@ public class Scene_1_3_controller : MonoBehaviour
         }
         else
         {
-            //Debug.Log(Score_total);
-        }
 
-        //End_XAPI();
+        }
+        XAPIApplication.current.SendTerminateStatement("0", Score_total, true);
 
     }
 
@@ -197,29 +208,29 @@ public class Scene_1_3_controller : MonoBehaviour
     {
         if (Answer == true)
         {
-            //정답
             Panel_button_inactive.SetActive(true);
            // Score_add();
-            StartCoroutine(Message(true));
+            Message(true);
             Text_Answer[BtnCount-1].SetActive(true);
             Score[BtnCount-1] = 1;
             Score_total += 1;
             Answer_count = 0;           //정답시 초기화
-           
+            Send_Correct_statement();
         }
         else if (Answer == false)
         {
-            //오답
-            StartCoroutine(Message(false));
+            Message(false);
             Answer_count++;
         }
+
         if (Answer_count == 3)
         {
             Panel_button_inactive.SetActive(true);
             Text_Answer[BtnCount-1].SetActive(true);
             Answer_count = 0;
             Answer = true;
-           
+            //오답 choice statement 전송
+            Send_Incorrect_statement();
         }
     }
 
@@ -241,24 +252,19 @@ public class Scene_1_3_controller : MonoBehaviour
         return Answer;
     }
 
-    IEnumerator Message(bool msg)
+
+    void Message(bool msg)
     {
-        //true - correct, false - incorrect
         if (msg == true)
         {
-            Correct_answer_message.SetActive(true);
-            yield return new WaitForSeconds(2.0f);
-            Correct_answer_message.SetActive(false);
-            yield break;
+            Correct_answer_message.GetComponent<Animation>().Play();
         }
         else if (msg == false)
         {
-            Incorrect_answer_message.SetActive(true);
-            yield return new WaitForSeconds(2.0f);
-            Incorrect_answer_message.SetActive(false);
-            yield break;
+            Incorrect_answer_message.GetComponent<Animation>().Play();
         }
     }
+
     IEnumerator Startact()
     {
         Manager_audio.instance.Get_intro();
@@ -269,4 +275,164 @@ public class Scene_1_3_controller : MonoBehaviour
         yield break;
     }
 
+    private void Object_Highlight_Off_ALL()
+    {
+        Object_1_blade1.GetComponent<HighlightEffect>().highlighted = false;
+        Object_1_blade2.GetComponent<HighlightEffect>().highlighted = false;
+        Object_1_blade3.GetComponent<HighlightEffect>().highlighted = false;
+        Object_2_Rotor.GetComponent<HighlightEffect>().highlighted = false;
+        Object_3_Shaft.GetComponent<HighlightEffect>().highlighted = false;
+        Object_4_Hub.GetComponent<HighlightEffect>().highlighted = false;
+        Object_5_Pitch_bearing.GetComponent<HighlightEffect>().highlighted = false;
+        Object_6_Yaw.GetComponent<HighlightEffect>().highlighted = false;
+        Object_7_Gearbox.GetComponent<HighlightEffect>().highlighted = false;
+        Object_8_Generator.GetComponent<HighlightEffect>().highlighted = false;
+        Object_9_Converter.GetComponent<HighlightEffect>().highlighted = false;
+    }
+    //문제 풀 때는 애니멩션 하지 말고 끝나고 나면 애니멩션 하느 ㄴ걸로
+    public void Q_hover_animation_1()
+    {
+        Object_Highlight_Off_ALL();
+        StopAllCoroutines();
+        StartCoroutine(Highlight_onoff(Object_1_blade1, 0f));
+        StartCoroutine(Highlight_onoff(Object_1_blade2, 0f));
+        StartCoroutine(Highlight_onoff(Object_1_blade3, 0f));
+    }
+    public void Q_hover_animation_2()
+    {
+        Object_Highlight_Off_ALL();
+        StopAllCoroutines();
+        StartCoroutine(Highlight_onoff(Object_3_Shaft, 0f));
+    }
+    public void Q_hover_animation_3()
+    {
+        Object_Highlight_Off_ALL();
+        StopAllCoroutines();
+        StartCoroutine(Highlight_onoff(Object_4_Hub, 0f));
+    }
+    public void Q_hover_animation_4()
+    {
+        Object_Highlight_Off_ALL();
+        StopAllCoroutines();
+        StartCoroutine(Highlight_onoff(Object_5_Pitch_bearing, 0f));
+    }
+    public void Q_hover_animation_2_1()
+    {
+        //로터, 주축, 증속기, 발전기, 컨버터
+        Object_Highlight_Off_ALL();
+        StopAllCoroutines();
+        StartCoroutine(Highlight_onoff(Object_2_Rotor, 0f));
+        StartCoroutine(Highlight_onoff(Object_3_Shaft, 1f));
+        StartCoroutine(Highlight_onoff(Object_7_Gearbox, 2f));
+        StartCoroutine(Highlight_onoff(Object_8_Generator, 3f));
+        StartCoroutine(Highlight_onoff(Object_9_Converter, 4f));
+    }
+    public void Q_hover_animation_2_2()
+    {
+        //블레이드 로터 피치 요 발전기
+        Object_Highlight_Off_ALL();
+        StopAllCoroutines();
+        StartCoroutine(Highlight_onoff(Object_1_blade1, 0f));
+        StartCoroutine(Highlight_onoff(Object_1_blade2, 0f));
+        StartCoroutine(Highlight_onoff(Object_1_blade3, 0f));
+        StartCoroutine(Highlight_onoff(Object_2_Rotor, 1f));
+        StartCoroutine(Highlight_onoff(Object_5_Pitch_bearing, 2f));
+        StartCoroutine(Highlight_onoff(Object_6_Yaw, 3f));
+        StartCoroutine(Highlight_onoff(Object_8_Generator, 4f));
+    }
+    public void Q_hover_animation_2_3()
+    {
+        //블레이드 로터 주축 증속기 발전기
+        Object_Highlight_Off_ALL();
+        StopAllCoroutines();
+        StartCoroutine(Highlight_onoff(Object_1_blade1, 0f));
+        StartCoroutine(Highlight_onoff(Object_1_blade2, 0f));
+        StartCoroutine(Highlight_onoff(Object_1_blade3, 0f));
+        StartCoroutine(Highlight_onoff(Object_2_Rotor, 1f));
+        StartCoroutine(Highlight_onoff(Object_3_Shaft, 2f));
+        StartCoroutine(Highlight_onoff(Object_7_Gearbox, 3f));
+        StartCoroutine(Highlight_onoff(Object_8_Generator, 4f));
+    }
+    public void Q_hover_animation_2_4()
+    {
+        //로터 주축 피치 요 발전기
+        Object_Highlight_Off_ALL();
+        StopAllCoroutines();
+        StartCoroutine(Highlight_onoff(Object_2_Rotor, 0f));
+        StartCoroutine(Highlight_onoff(Object_3_Shaft, 1f));
+        StartCoroutine(Highlight_onoff(Object_5_Pitch_bearing, 2f));
+        StartCoroutine(Highlight_onoff(Object_6_Yaw, 3f));
+        StartCoroutine(Highlight_onoff(Object_8_Generator, 4f));
+    }
+    public void Q_hover_animation_2_5()
+    {
+        //블레이드 주축 피치 증속기 컨버터
+        Object_Highlight_Off_ALL();
+        StopAllCoroutines();
+        StartCoroutine(Highlight_onoff(Object_1_blade1, 0f));
+        StartCoroutine(Highlight_onoff(Object_1_blade2, 0f));
+        StartCoroutine(Highlight_onoff(Object_1_blade3, 0f));
+        StartCoroutine(Highlight_onoff(Object_3_Shaft, 1f));
+        StartCoroutine(Highlight_onoff(Object_5_Pitch_bearing, 2f));
+        StartCoroutine(Highlight_onoff(Object_7_Gearbox, 3f));
+        StartCoroutine(Highlight_onoff(Object_9_Converter, 4f));
+    }
+
+    IEnumerator Highlight_onoff(GameObject obj, float time = 0f)
+    {
+        yield return new WaitForSeconds(time);
+        obj.GetComponent<HighlightEffect>().highlighted = true;
+        yield return new WaitForSeconds(3.0f);
+        obj.GetComponent<HighlightEffect>().highlighted = false;
+        yield break;
+        //3초마다 시간 바꿔주는거
+    }
+
+    /// <summary>
+    /// xAPI
+    /// </summary>
+
+    void Send_Correct_statement()
+    {
+        if (BtnCount == 1)
+        {
+            XAPIApplication.current.SendChoiceStatement("0", "풍력발전_구조", "1", true);
+        }else if (BtnCount == 2)
+        {
+            XAPIApplication.current.SendChoiceStatement("0", "증속기이해", "2", true);
+        }
+        else if (BtnCount == 3)
+        {
+            XAPIApplication.current.SendChoiceStatement("0", "피치시스템이해", "3", true);
+        }
+        else if (BtnCount == 4)
+        {
+            XAPIApplication.current.SendChoiceStatement("0", "에너지전달순서이해", "4", true);
+        }
+    }
+
+    void Send_Incorrect_statement()
+    {
+        if (BtnCount == 1)
+        {
+            XAPIApplication.current.SendChoiceStatement("0", "풍력발전_구조", "1", false);
+        }
+        else if (BtnCount == 2)
+        {
+            XAPIApplication.current.SendChoiceStatement("0", "증속기이해", "2", false);
+        }
+        else if (BtnCount == 3)
+        {
+            XAPIApplication.current.SendChoiceStatement("0", "피치시스템이해", "3", false);
+        }
+        else if (BtnCount == 4)
+        {
+            XAPIApplication.current.SendChoiceStatement("0", "에너지전달순서이해", "4", false);
+        }
+    }
+
+    public void Send_Terminated_statement_unfinished()
+    {
+        XAPIApplication.current.SendTerminateStatement("0", Score_total, false);
+    }
 }

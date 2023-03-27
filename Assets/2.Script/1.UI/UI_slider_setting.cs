@@ -23,26 +23,26 @@ public class UI_slider_setting : MonoBehaviour
     void Start()
     {
         volume_slider = this.gameObject.GetComponent<Slider>();
-        //volume = volume_slider.value;
-        //if (tmp_volume != volume)
-        //{
-        //    if (All_sound == true)
-        //    {
-        //        Manager_audio.instance.Set_all_sound_volume(volume_slider.value);
-        //    }
-        //    else if (Effect == true)
-        //    {
-        //        Manager_audio.instance.Set_effect_sound_volume(volume_slider.value);
-        //    }
-        //    else if (Narration == true)
-        //    {
-        //        Manager_audio.instance.Set_narration_volume(volume_slider.value);
-        //    }
-        //    else if (BGM == true)
-        //    {
-        //        Manager_audio.instance.Set_BGM_volume(volume_slider.value);
-        //    }
-        //}
+        volume = volume_slider.value;
+        if (tmp_volume != volume)
+        {
+            if (All_sound == true)
+            {
+                volume_slider.value = Manager_audio.instance.Get_all_volume();
+            }
+            else if (Effect == true)
+            {
+                volume_slider.value = Manager_audio.instance.Get_Effect_volume();
+            }
+            else if (Narration == true)
+            {
+                volume_slider.value = Manager_audio.instance.Get_Narr_volume();
+            }
+            else if (BGM == true)
+            {
+                volume_slider.value = Manager_audio.instance.Get_BGM_volume();
+            }
+        }
         //초기 값을 가져오는게 필요할 듯?
     }
     private void OnLevelWasLoaded(int level)

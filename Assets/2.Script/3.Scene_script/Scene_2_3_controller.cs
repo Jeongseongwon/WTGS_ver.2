@@ -10,6 +10,8 @@ public class Scene_2_3_controller : MonoBehaviour
     public GameObject Scriptbox;
     public GameObject Top_navigation;
     public GameObject[] Seq_array;
+    public GameObject[] Hihglight;
+    
 
     //2-3 Gameobject
     [Header("===== Gameobject =====")]
@@ -45,6 +47,8 @@ public class Scene_2_3_controller : MonoBehaviour
     public GameObject Reduce_button_p;
     public GameObject Add_button_y;
     public GameObject Reduce_button_y;
+    public GameObject brake_button_1;
+    public GameObject brake_button_2;
 
 
     //2-3 Text
@@ -71,10 +75,10 @@ public class Scene_2_3_controller : MonoBehaviour
     private int Limit_angle_y = 0;
     private int init_angle_limit_y = 0;
 
-    //2-3 Text
+    //2-3 Evaluation
     [Header("===== Evaluation =====")]
     public GameObject Question;
-    public GameObject[] Text_Answer;
+    //public GameObject[] Text_Answer;
     public GameObject Result_panel;
     public GameObject Result_description;
     public GameObject Result_icon;
@@ -83,6 +87,7 @@ public class Scene_2_3_controller : MonoBehaviour
 
     private GameObject Correct_answer_message;
     private GameObject Incorrect_answer_message;
+    private GameObject Retry_answer_message;
     private int Score_total;
     private int[] Score = new int[5];
     private bool Clicked_question;
@@ -105,6 +110,7 @@ public class Scene_2_3_controller : MonoBehaviour
     bool Prev_Status = false;
     private bool flag_p = false;
     private bool flag_y = false;
+    private bool Check_finished = false;
 
     // Start is called before the first frame update
     void Start()
@@ -112,6 +118,7 @@ public class Scene_2_3_controller : MonoBehaviour
         GameObject Msg = GameObject.Find("Message");
         Correct_answer_message = Msg.transform.GetChild(0).gameObject;
         Incorrect_answer_message = Msg.transform.GetChild(1).gameObject;
+        Retry_answer_message = Msg.transform.GetChild(2).gameObject;
         Question_panel_0 = Question.GetComponent<Transform>().GetChild(0).gameObject;
         Question_panel_1 = Question.GetComponent<Transform>().GetChild(1).gameObject;
         Question_num = Question.gameObject.GetComponent<Transform>().childCount;
@@ -121,11 +128,23 @@ public class Scene_2_3_controller : MonoBehaviour
         Value_Angle_pitch_target = 0;
         Value_Velocity_wind = 100;
         Value_Power = 100;
+        //xAPI
+        if (GameObject.Find("xAPIObject"))
+        {
+            XAPIApplication.current.SendInitStatement("1");
+            XAPIApplication.current.LessonManagerInit("1");
+        }
 
     }
     // Update is called once per frame
     void Update()
     {
+
+        if (Clicked_question == true && BtnCount==2)
+        {
+            Set_score();
+            Clicked_question = false;
+        }
         BtnCount = gameObject.GetComponent<Script_controller>().btnCount;   //이 부분 대체 필요
 
         
@@ -136,30 +155,10 @@ public class Scene_2_3_controller : MonoBehaviour
 
         if (flag == true)
         {
-            //if (BtnCount == 1)
-            //{
-            //    Debug.Log("btncount1");
-            //    if (Question_panel_0 != null)
-            //    {
-            //        Panel_button_inactive.SetActive(false);
-            //        Question_panel_0.SetActive(true);
-            //    }
-            //}
-            //else if (BtnCount == 2)
-            //{
-            //    Debug.Log("btncount2");
-
-            //    if (Question_panel_1 != null)
-            //    {
-
-            //        Panel_button_inactive.SetActive(false);
-            //        Question_panel_1.SetActive(true);
-            //        Question_panel_0.SetActive(false);
-            //    }
-            //}
             if (BtnCount == 0)
             {
                 StartCoroutine(Startact());
+                Button_All_active_off();
             }
             if (BtnCount == 1)
             {
@@ -189,17 +188,16 @@ public class Scene_2_3_controller : MonoBehaviour
             else if (BtnCount == 3)
             {
 
-                Seq_array[0].SetActive(true);
+                Hihglight[0].SetActive(false);
                 Emergency.SetActive(true);
                 //시작 버튼 활성화, 브레이크 버튼 클릭유도
 
             }
             else if (BtnCount == 4)
             {
-
-                Seq_array[1].SetActive(true);
-                Score[0] = 1;
-                Score_total += 1;
+                Button_All_active_on();
+                Hihglight[1].SetActive(false);
+                Seq_array[0].SetActive(true);
                 Manager_audio.instance.Get_Low_wind();
 
                 Limit_angle_p = 0;
@@ -219,12 +217,15 @@ public class Scene_2_3_controller : MonoBehaviour
                 StartCoroutine(Alert_value_p());
 
                 Wind_velocity_for_rot = 1;
+
+
             }
             else if (BtnCount == 5)
             {
+                Hihglight[1].SetActive(false);
                 Manager_audio.instance.Stop_Low_wind();
                 Manager_audio.instance.Get_Strong_wind();
-                Seq_array[2].SetActive(true);
+                Seq_array[1].SetActive(true);
                 Wind_velocity_for_rot = 11;
 
                 Limit_angle_p = 35;
@@ -234,13 +235,14 @@ public class Scene_2_3_controller : MonoBehaviour
                 Value_Power = 2500 - ((Value_Angle_pitch - 45) / 45) * 400;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(90, 'p');
+                Change_graph_number(Data_velocity, 25);
                 StartCoroutine(Alert_value_p());
             }
             else if (BtnCount == 6)
             {
                 Manager_audio.instance.Stop_Strong_wind();
                 Manager_audio.instance.Get_Low_wind();
-                Seq_array[3].SetActive(true);
+                Seq_array[2].SetActive(true);
                 Wind_velocity_for_rot = 2;
 
                 Limit_angle_p = 100;
@@ -252,11 +254,12 @@ public class Scene_2_3_controller : MonoBehaviour
                 Value_Power = 600;
                 Change_graph_number(Data_power, Value_Power);
                 Change_value(45, 'p');
+                Change_graph_number(Data_velocity, 12);
                 Change_value(270, 'y');
             }
             else if (BtnCount == 7)
             {
-                Seq_array[4].SetActive(true);
+                Seq_array[3].SetActive(true);
                 Wind_velocity_for_rot = 2;
 
                 Limit_angle_p = 55;
@@ -267,14 +270,16 @@ public class Scene_2_3_controller : MonoBehaviour
                 //풍속 변경
                 Value_Power = 600;
                 Change_graph_number(Data_power, Value_Power);
+                Change_graph_number(Data_velocity, 9);
                 Change_value(30, 'p');
                 Change_value(10, 'y');
             }
             else if (BtnCount == 8)
             {
-                Seq_array[5].SetActive(true);
+                Seq_array[4].SetActive(true);
                 Result_panel.SetActive(true);
                 SetResult();
+                XAPIApplication.current.SendTerminateStatement("1", Score_total, true);
             }
             PostCount = BtnCount;
             flag = false;
@@ -288,9 +293,7 @@ public class Scene_2_3_controller : MonoBehaviour
 
         Change_angle_value();
 
-
     }
-
     void Change_angle_value()
     {
         if (flag_num_y == true)
@@ -325,6 +328,7 @@ public class Scene_2_3_controller : MonoBehaviour
                 }
             }
         }
+
     }
 
     IEnumerator Rotate_turbine()
@@ -342,65 +346,69 @@ public class Scene_2_3_controller : MonoBehaviour
     {
         for (int i = 0; i < Question_num; i++)
         {
-            Debug.Log("check_result" + Score[i]);
-            //오답일 경우 해당 번호 이미지 활성화
-            //result_icon내 위치를 직접 맞춰준 다음에 아래 순서 조절함
             if (Score[i] == 0)
             {
                 Result_icon.transform.GetChild(i + 4).gameObject.SetActive(true);
             }
+
         }
+        Debug.Log("check_result" + Score_total);
         //범위 재설정 필요
         //0 : 미흡, 1 : 보통, 2 : 우수
-        if (Score_total == 0)
+        if (Score_total <3)
         {
             Result_description.transform.GetChild(0).gameObject.SetActive(true);
         }
-        else if (Score_total == 1)
+        else if (Score_total == 3 || Score_total == 3)
         {
             Result_description.transform.GetChild(1).gameObject.SetActive(true);
         }
-        else if (Score_total == 2)
+        else if (Score_total == 5)
         {
             Result_description.transform.GetChild(2).gameObject.SetActive(true);
         }
         else
         {
-            Debug.Log(Score_total);
-        }
-        Debug.Log("check_result");
 
-        //End_XAPI();
+        }
 
     }
-
     void Set_score()
     {
-        Debug.Log("Setscore");
+
         if (Answer == true)
         {
             //정답
             Panel_button_inactive.SetActive(true);
-            StartCoroutine(Message(true));
-            Text_Answer[BtnCount - 1].SetActive(true);
+            //Text_Answer[BtnCount - 1].SetActive(true);
             Score[BtnCount - 1] = 1;
             Score_total += 1;
             Answer_count = 0;           //정답시 초기화
-            Debug.Log("RIGHT ANSWER");
+
+            Send_Correct_statement();
         }
         else if (Answer == false)
         {
             //오답
-            StartCoroutine(Message(false));
+            Message(false);
             Answer_count++;
         }
+
         if (Answer_count == 3)
         {
+            if (BtnCount==2)
+            {
+                Hihglight[BtnCount-2].SetActive(true);
+            }else if (BtnCount == 3)
+            {
+                Hihglight[BtnCount-2].SetActive(true);
+            }
+
             Panel_button_inactive.SetActive(true);
-            Text_Answer[BtnCount - 1].SetActive(true);
+           // Text_Answer[BtnCount - 1].SetActive(true);
             Answer_count = 0;
             Answer = true;
-            Debug.Log("ENOUGH WRONG TRY");
+            Send_Incorrect_statement();
         }
     }
     public void BtnCount_add()
@@ -413,30 +421,23 @@ public class Scene_2_3_controller : MonoBehaviour
     }
     public void Clicked(bool ans)
     {
+        Debug.Log("answer"+BtnCount);
         Answer = ans;
         Clicked_question = true;
-        //Debug.Log("Clicked");
     }
     public bool Get_status_answer()
     {
         return Answer;
     }
-    IEnumerator Message(bool msg)
+    void Message(bool msg)
     {
-        //true - correct, false - incorrect
         if (msg == true)
         {
-            Correct_answer_message.SetActive(true);
-            yield return new WaitForSeconds(2.0f);
-            Correct_answer_message.SetActive(false);
-            yield break;
+
         }
         else if (msg == false)
         {
-            Incorrect_answer_message.SetActive(true);
-            yield return new WaitForSeconds(2.0f);
-            Incorrect_answer_message.SetActive(false);
-            yield break;
+            Retry_answer_message.GetComponent<Animation>().Play();
         }
     }
 
@@ -486,9 +487,6 @@ public class Scene_2_3_controller : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1.0f);
-            Debug.Log("coroutine run");
-            //5초 정도 시간이 지나고 나면, 타이머 설정, 타이머 리셋
-            //변경하지 않고 바꾸게 되면 다음으로 넘어가지 못 하도록?
             if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) > 20)
             {
                 Alert_message_caution.SetActive(false);
@@ -501,8 +499,6 @@ public class Scene_2_3_controller : MonoBehaviour
             }
             else if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3)
             {
-                //제한 시간 내에 할 경우 잘 하셨습니다.
-                //제한 시간 내에 통과 못 하면 에러 메시지 이후 다음 시퀀스 진행
                 //gameObject.GetComponent<Script_controller>().NextBtn();
                 Alert_message_caution.SetActive(false);
                 Alert_message_danger.SetActive(false);
@@ -552,11 +548,11 @@ public class Scene_2_3_controller : MonoBehaviour
     }
     public void Rotate_yaw_up()
     {
-        Nacelle.GetComponent<Transform>().Rotate(new Vector3(0, 10, 0));
+        Nacelle.GetComponent<Transform>().Rotate(new Vector3(0, 5, 0));
     }
     public void Rotate_yaw_down()
     {
-        Nacelle.GetComponent<Transform>().Rotate(new Vector3(0, -10, 0));
+        Nacelle.GetComponent<Transform>().Rotate(new Vector3(0, -5, 0));
     }
     IEnumerator Refresh_text_value()
     {
@@ -583,10 +579,8 @@ public class Scene_2_3_controller : MonoBehaviour
     {
         if (mode == 'p')
         {
-            //+가 비정상
             if (Limit_angle_p > init_angle_limit_p)
             {
-                Debug.Log("+ 클릭 비정상");
                 if (Value_Angle_pitch < Limit_angle_p)
                 {
                     Value_Angle_pitch += 5;
@@ -595,9 +589,9 @@ public class Scene_2_3_controller : MonoBehaviour
                 else if (Value_Angle_pitch < Limit_angle_p)
                 {
                     Debug.Log(" 제어 각도를 확인해주세요 메시지");
-                    //사운드 재생
+                    
                 }
-            }//+가 정상
+            }
             else if (Limit_angle_p <= init_angle_limit_p)
             {
                 Value_Angle_pitch += 5;
@@ -606,10 +600,10 @@ public class Scene_2_3_controller : MonoBehaviour
         }
         else if (mode == 'y')
         {
-            //+가 비정상
+            
             if (Limit_angle_y > init_angle_limit_y)
             {
-                Debug.Log("+ 클릭 비정상");
+                
                 if (Value_Angle_yaw < Limit_angle_y)
                 {
                     Value_Angle_yaw += 10;
@@ -618,9 +612,9 @@ public class Scene_2_3_controller : MonoBehaviour
                 else if (Value_Angle_yaw < Limit_angle_y)
                 {
                     Debug.Log(" 제어 각도를 확인해주세요 메시지");
-                    //사운드 재생
+                    
                 }
-            }//+가 정상
+            }
             else if (Limit_angle_y <= init_angle_limit_y)
             {
                 Value_Angle_yaw += 10;
@@ -642,7 +636,6 @@ public class Scene_2_3_controller : MonoBehaviour
             }
             else if (Limit_angle_p <= init_angle_limit_p)
             {
-                Debug.Log("- 클릭 비정상");
                 if (Value_Angle_pitch > Limit_angle_p)
                 {
                     Value_Angle_pitch -= 5;
@@ -729,9 +722,10 @@ public class Scene_2_3_controller : MonoBehaviour
         if ((Mathf.Abs(Value_Angle_pitch_target - Value_Angle_pitch) <= 3 && Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) <= 3))
         {
             gameObject.GetComponent<Script_controller>().NextBtn();
-
+            Send_Correct_statement();
             Score[BtnCount - 4] = 1;
             Score_total += 1;
+
         }
     }
     public void Stop()
@@ -756,4 +750,88 @@ public class Scene_2_3_controller : MonoBehaviour
         Graph_power.SetActive(true);
     }
 
+    private void Button_All_active_off()
+    {
+        Add_button_p.GetComponent<UI_button_2_1>().enabled = false;
+        Reduce_button_p.GetComponent<UI_button_2_1>().enabled = false;
+        Add_button_y.GetComponent<UI_button_2_2>().enabled = false;
+        Reduce_button_y.GetComponent<UI_button_2_2>().enabled = false;
+        brake_button_1.GetComponent<UI_button_next>().enabled = false;
+        brake_button_2.GetComponent<UI_button_next>().enabled = false;
+    }
+    private void Button_All_active_on()
+    {
+        Add_button_p.GetComponent<UI_button_2_1>().enabled = true;
+        Reduce_button_p.GetComponent<UI_button_2_1>().enabled = true;
+        Add_button_y.GetComponent<UI_button_2_2>().enabled = true;
+        Reduce_button_y.GetComponent<UI_button_2_2>().enabled = true;
+        brake_button_1.GetComponent<UI_button_next>().enabled = true;
+        brake_button_2.GetComponent<UI_button_next>().enabled = true;
+    }
+    private void Button_active_off(GameObject obj)
+    {
+        obj.GetComponent<UI_button_2_1>().enabled = false;
+        //obj.GetComponent<UI_button_audio>().enabled = false;
+    }
+    private void Button_active_on(GameObject obj)
+    {
+        obj.GetComponent<UI_button_2_1>().enabled = true;
+        //obj.GetComponent<UI_button_audio>().enabled = false;
+    }
+
+    /// <summary>
+    /// xAPI
+    /// </summary>
+    void Send_Correct_statement()
+    {
+        //2_3은 구조상 기능들을 이안에 포함시킴
+        if (BtnCount == 3)
+        {
+            XAPIApplication.current.SendChoiceStatement("1", "풍력발전기가동", "1", true);
+        }
+        else if (BtnCount == 4)
+        {
+            XAPIApplication.current.SendChoiceStatement("1", "블레이드피치제어_정격", "2", true);
+        }
+        else if (BtnCount == 5)
+        {
+            XAPIApplication.current.SendChoiceStatement("1", "블레이드피치제어_강풍", "3", true);
+        }
+        else if (BtnCount == 6)
+        {
+            XAPIApplication.current.SendChoiceStatement("1", "피치요제어_정격", "4", true);
+        }
+        else if (BtnCount == 7)
+        {
+            XAPIApplication.current.SendChoiceStatement("1", "블레이드피치제어_시동", "5", true);
+        }
+    }
+    void Send_Incorrect_statement()
+    {
+        if (BtnCount == 3)
+        {
+            XAPIApplication.current.SendChoiceStatement("1", "풍력발전기가동", "1", false);
+        }
+        else if (BtnCount == 4)
+        {
+            XAPIApplication.current.SendChoiceStatement("1", "블레이드피치제어_정격", "2", false);
+        }
+        else if (BtnCount == 5)
+        {
+            XAPIApplication.current.SendChoiceStatement("1", "블레이드피치제어_강풍", "3", false);
+        }
+        else if (BtnCount == 6)
+        {
+            XAPIApplication.current.SendChoiceStatement("1", "피치요제어_정격", "4", false);
+        }
+        else if (BtnCount == 7)
+        {
+            XAPIApplication.current.SendChoiceStatement("1", "블레이드피치제어_시동", "5", false);
+        }
+    }
+
+    public void Send_Terminated_statement_unfinished()
+    {
+        XAPIApplication.current.SendTerminateStatement("1", Score_total, false);
+    }
 }

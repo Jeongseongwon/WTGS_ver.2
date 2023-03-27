@@ -151,6 +151,7 @@ public class Scene_1_2_controller : MonoBehaviour
     }
     void Act(int count)
     {
+        Scriptbox.GetComponent<Animation>().Play("banner_o");
         var ps = windspeed.main;
         var emmisions = windspeed.emission;
         if (count == 1)
@@ -420,7 +421,7 @@ public class Scene_1_2_controller : MonoBehaviour
         }
         else if (count == 13)
         {
-
+            Object_Col_Off_ALL();
         }
         else if (count == 14)
         {
@@ -575,6 +576,7 @@ public class Scene_1_2_controller : MonoBehaviour
                 Prev_Status = false;
             }
             Camera.GetComponent<Camera_movement>().act22();
+            Object_17_shaft_brake_disc.GetComponent<Object_mouseover_withouthighlight>().Tooltip_text = "주축용 브레이크 디스크";
             Object_Col_Off_ALL();
             Object_Col_On(Object_22_brake_shaft);
             Object_Col_On(Object_17_shaft_brake_disc);

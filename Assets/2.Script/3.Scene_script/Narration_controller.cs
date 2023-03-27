@@ -43,16 +43,18 @@ public class Narration_controller : MonoBehaviour
             {
                 EffectReset();
                 Audio.clip = AudioFiles[BtnCount];
-                Audio.PlayDelayed(1f);
+                if(Audio.clip!=null)
+                {
+                    Audio.PlayDelayed(1f);
 
-                NarrationEnd.PlayDelayed(Audio.clip.length + 1f);
-                Invoke("NextBtnEffect", Audio.clip.length + 1f);
-                Prev_Status = true;
+                    NarrationEnd.PlayDelayed(Audio.clip.length + 1f);
+                    Invoke("NextBtnEffect", Audio.clip.length + 1f);
+                    Prev_Status = true;
+
+                }
             }
         }
         PostCount = BtnCount;
-
-
     }
     public void EffectReset()// Reset All Effect and Delay
     {

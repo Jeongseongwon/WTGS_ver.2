@@ -25,7 +25,9 @@ public class Script_controller : MonoBehaviour
 
     public List<string> textList = new List<string>();
     public GameObject scene_controller;
-    
+
+    //평가하기 나레이션 삭제시 true
+    public bool check_Narration_controller = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,7 @@ public class Script_controller : MonoBehaviour
 
         status_UI_script_auto = false;
         
-        Time_limit = 10f;
+        Time_limit = 15f;
         script_time_now = Time_limit;
 
         //if (Manager_audio.instance != null) , BGM �κ�
@@ -67,7 +69,11 @@ public class Script_controller : MonoBehaviour
         }
         btnCount++;
         ScriptCount();
-        this.GetComponent<Narration_controller>().EffectReset();    //next button 이펙트 추가용
+
+        if (check_Narration_controller == false)
+        {
+            this.GetComponent<Narration_controller>().EffectReset();
+        }
         
        
     }

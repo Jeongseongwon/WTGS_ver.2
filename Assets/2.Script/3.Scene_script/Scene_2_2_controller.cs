@@ -91,13 +91,11 @@ public class Scene_2_2_controller : MonoBehaviour
             }
             PC_Image_Array[PostCount].gameObject.SetActive(false);
             flag = true;
-            Debug.Log("TRUE");
         }
-        //for (int i = 0; i < PC_Image_Array.Length; i++)
-        //{
-        //}
+
         if (flag == true)
         {
+            Scriptbox.GetComponent<Animation>().Play("banner_o");
             if (BtnCount == 0)
             {
 
@@ -109,7 +107,6 @@ public class Scene_2_2_controller : MonoBehaviour
                 {
                     Subcamera.SetActive(false);
                     WTGS_Panel.SetActive(false);
-                    Debug.Log("check_2");
                     StopCoroutine(Refresh_text_value());
                     Prev_Status = false;
                 }
@@ -117,17 +114,15 @@ public class Scene_2_2_controller : MonoBehaviour
             }
             else if (BtnCount == 2)
             {
-                //카메라 움직이는거, 옆에 패널 애니메이션 추가
                 Camera.GetComponent<Animation>().Play("Camera_move(intro,2_1)");
                 Button_active_off(Add_button);
                 Button_active_off(Reduce_button);
                 Subcamera.SetActive(true);
                 WTGS_Panel.SetActive(true);
-                Debug.Log("check_2");
                 StartCoroutine(Refresh_text_value());
                 Subcamera.SetActive(false);
             }
-            else if (BtnCount == 6)
+            else if (BtnCount == 7)
             {
                 if (Prev_Status == true)
                 {
@@ -142,7 +137,7 @@ public class Scene_2_2_controller : MonoBehaviour
                 Subcamera_frame.SetActive(true);
 
             }
-            else if (BtnCount == 7)
+            else if (BtnCount == 8)
             {
                 if (Prev_Status == true)
                 {
@@ -165,7 +160,7 @@ public class Scene_2_2_controller : MonoBehaviour
                 Manager_audio.instance.Get_Low_wind();
 
             }
-            else if (BtnCount == 8)
+            else if (BtnCount == 9)
             {
                 Wind_velocity_for_rot = 7;
                 if (Prev_Status == true)
@@ -193,10 +188,9 @@ public class Scene_2_2_controller : MonoBehaviour
                 Graph_power.SetActive(true);
                 Value_Power = 1800;
                 Change_graph_number(Data_power, Value_Power);
-                //StartCoroutine(Refresh_pin_value());
 
             }
-            else if (BtnCount == 9)
+            else if (BtnCount == 10)
             {
                 Limit_angle = 0;
                 init_angle_limit = 0;
@@ -219,13 +213,12 @@ public class Scene_2_2_controller : MonoBehaviour
                 Change_value(30);
                 StartCoroutine(Alert_value());
             }
-            else if (BtnCount == 10)
+            else if (BtnCount == 11)
             {
                 Wind_velocity_for_rot = 6;
                 if (Prev_Status == true)
                 {
                     //object 복구
-                   
                     StopCoroutine(Alert_value());
 
                     //value 복구
@@ -243,7 +236,7 @@ public class Scene_2_2_controller : MonoBehaviour
                 Change_graph_number(Data_power, Value_Power);
                 StopCoroutine(Alert_value());
             }
-            else if (BtnCount == 11)
+            else if (BtnCount == 12)
             {
 
                 Limit_angle = 20;
@@ -264,7 +257,7 @@ public class Scene_2_2_controller : MonoBehaviour
                 Change_value(120);
                 StartCoroutine(Alert_value());
             }
-            else if (BtnCount == 12)
+            else if (BtnCount == 13)
             {
                 Wind_velocity_for_rot = 2;
                 if (Prev_Status == true)
@@ -288,7 +281,7 @@ public class Scene_2_2_controller : MonoBehaviour
                 Value_Power = 1500 + ((Value_Angle_yaw - 30) / 90) * 600;
                 Change_graph_number(Data_power, Value_Power);
             }
-            else if (BtnCount == 13)
+            else if (BtnCount == 14)
             {
                 //여기서 프로그램 죽음
 
@@ -310,7 +303,7 @@ public class Scene_2_2_controller : MonoBehaviour
                 Change_value(270);
                 StartCoroutine(Alert_value());
             }
-            else if (BtnCount == 14)
+            else if (BtnCount == 15)
             {
                 Wind_velocity_for_rot = 4;
                 if (Prev_Status == true)
@@ -334,7 +327,7 @@ public class Scene_2_2_controller : MonoBehaviour
                 Value_Power = 600 + ((Value_Angle_yaw - 120) / 150) * 1500;
                 Change_graph_number(Data_power, Value_Power);
             }
-            else if (BtnCount == 15)
+            else if (BtnCount == 16)
             {
 
                 Limit_angle = 280;
@@ -353,7 +346,7 @@ public class Scene_2_2_controller : MonoBehaviour
                 Change_value(0);
                 StartCoroutine(Alert_value());
             }
-            else if (BtnCount == 16)
+            else if (BtnCount == 17)
             {
 
                 //value 변경
@@ -367,7 +360,6 @@ public class Scene_2_2_controller : MonoBehaviour
             PC_Image_Array[BtnCount].SetActive(true);
             PostCount = BtnCount;
             flag = false;
-            Debug.Log("FALSE");
         }
 
 
@@ -386,9 +378,7 @@ public class Scene_2_2_controller : MonoBehaviour
                 //Debug.Log("Done");
                 flag_num = false;
             }
-
         }
-
         //데이터 전용 타이머?
     }
 
@@ -435,9 +425,6 @@ public class Scene_2_2_controller : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1.0f);
-            Debug.Log("coroutine run");
-            //5초 정도 시간이 지나고 나면, 타이머 설정, 타이머 리셋
-            //변경하지 않고 바꾸게 되면 다음으로 넘어가지 못 하도록?
             if (Mathf.Abs(Value_Angle_yaw_target - Value_Angle_yaw) > 20)
             {
                 Alert_message_caution.SetActive(false);
@@ -487,12 +474,10 @@ public class Scene_2_2_controller : MonoBehaviour
     }
     IEnumerator Rotate_turbine()
     {
-        //블레이드 회전, 1,2,3 일경우 해당 값 만큼 빠르게 회전
         while (true)
         {
             yield return new WaitForSeconds(0.03f);
             Object_2_blade_rotation.GetComponent<Transform>().Rotate(new Vector3(10 * Wind_velocity_for_rot * Time.deltaTime, 0, 0));
-            Debug.Log("코루틴");
         }
         yield break;
     }
@@ -519,9 +504,8 @@ public class Scene_2_2_controller : MonoBehaviour
             else if (Value_Angle_yaw < Limit_angle)
             {
                 Debug.Log(" 제어 각도를 확인해주세요 메시지");
-                //사운드 재생
             }
-        }//+가 정상
+        }
         else if (Limit_angle <= init_angle_limit)
         {
             Value_Angle_yaw += 10;
@@ -532,7 +516,6 @@ public class Scene_2_2_controller : MonoBehaviour
 
     public void Set_reduce_pitch()
     {
-        //-가 정상
         if (Limit_angle > init_angle_limit)
         {
             Value_Angle_yaw -= 10;
@@ -540,7 +523,6 @@ public class Scene_2_2_controller : MonoBehaviour
         }
         else if (Limit_angle <= init_angle_limit)
         {
-            Debug.Log("- 클릭 비정상");
             if (Value_Angle_yaw > Limit_angle)
             {
                 Value_Angle_yaw -= 10;
@@ -619,12 +601,10 @@ public class Scene_2_2_controller : MonoBehaviour
         Data_velocity.GetComponent<StreamingGraph>().min = 0;
         Data_velocity.GetComponent<StreamingGraph>().max = 0;
     }
-
     public void START()
     {
         Wind_particle.SetActive(true);
         Graph_velocity.SetActive(true);
         Graph_power.SetActive(true);
     }
-
 }

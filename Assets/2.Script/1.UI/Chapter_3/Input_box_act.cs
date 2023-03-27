@@ -21,17 +21,9 @@ public class Input_box_act : MonoBehaviour
             SceneController.GetComponent<Script_controller>().NextBtn();
         else
         {
-            StartCoroutine(Message());
-            Manager_audio.instance.Error.PlayDelayed(0.5f);
 
+            ErrorMsg.GetComponent<Animation>().Play();
+            Manager_audio.instance.Error.PlayDelayed(0.5f);
         }
-        //Debug.Log("Wrong");
-    }
-    IEnumerator Message(int num = 0)
-    {
-        ErrorMsg.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        ErrorMsg.SetActive(false);
-        yield break;
     }
 }

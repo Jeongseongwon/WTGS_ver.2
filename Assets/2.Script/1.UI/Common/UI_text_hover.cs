@@ -16,6 +16,7 @@ public class UI_text_hover : MonoBehaviour, IPointerClickHandler, IPointerEnterH
 
     public bool Answer;
     private string Scene_name;
+    public int Q_num=0;
     public void OnPointerClick(PointerEventData eventData)
     {
         if (Answer == true)
@@ -29,6 +30,7 @@ public class UI_text_hover : MonoBehaviour, IPointerClickHandler, IPointerEnterH
             {
                 SceneController.GetComponent<Scene_2_3_controller>().Clicked(true);
             }
+            Manager_audio.instance.Get_Correct_answer();
             this.GetComponent<Text>().fontStyle = FontStyle.Bold;
             this.GetComponent<Text>().color = Color.yellow;
             Debug.Log("정답 클릭");
@@ -40,11 +42,28 @@ public class UI_text_hover : MonoBehaviour, IPointerClickHandler, IPointerEnterH
             if (Scene_name == "(dev)Chapter_1_3")
             {
                 SceneController.GetComponent<Scene_1_3_controller>().Clicked(false);
+                if(Q_num == 1)
+                {
+                    SceneController.GetComponent<Scene_1_3_controller>().Q_hover_animation_1();
+                }
+                else if (Q_num == 2)
+                {
+                    SceneController.GetComponent<Scene_1_3_controller>().Q_hover_animation_2();
+                }
+                else if (Q_num == 3)
+                {
+                    SceneController.GetComponent<Scene_1_3_controller>().Q_hover_animation_3();
+                }
+                else if (Q_num == 4)
+                {
+                    SceneController.GetComponent<Scene_1_3_controller>().Q_hover_animation_4();
+                }
             }
             else if (Scene_name == "(dev)Chapter_2_3")
             {
                 SceneController.GetComponent<Scene_2_3_controller>().Clicked(false);
             }
+            Manager_audio.instance.Get_Wrong_answer();
 
         }
     }
@@ -53,6 +72,29 @@ public class UI_text_hover : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     {
         this.GetComponent<Text>().fontStyle = FontStyle.Bold;
         this.GetComponent<Text>().color = Color.yellow;
+        if (Scene_name == "(dev)Chapter_1_3")
+        {
+            if (Q_num == 11)
+            {
+                SceneController.GetComponent<Scene_1_3_controller>().Q_hover_animation_2_1();
+            }
+            else if (Q_num == 12)
+            {
+                SceneController.GetComponent<Scene_1_3_controller>().Q_hover_animation_2_2();
+            }
+            else if (Q_num == 13)
+            {
+                SceneController.GetComponent<Scene_1_3_controller>().Q_hover_animation_2_3();
+            }
+            else if (Q_num == 14)
+            {
+                SceneController.GetComponent<Scene_1_3_controller>().Q_hover_animation_2_4();
+            }
+            else if (Q_num == 15)
+            {
+                SceneController.GetComponent<Scene_1_3_controller>().Q_hover_animation_2_5();
+            }
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)

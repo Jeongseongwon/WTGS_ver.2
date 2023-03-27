@@ -113,6 +113,7 @@ public class Scene_2_1_controller : MonoBehaviour
         //}
         if (flag == true)
         {
+            Scriptbox.GetComponent<Animation>().Play("banner_o");
             if (BtnCount == 0)
             {
 

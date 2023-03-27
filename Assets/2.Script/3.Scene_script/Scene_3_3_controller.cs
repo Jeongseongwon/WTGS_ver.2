@@ -23,9 +23,7 @@ public class Scene_3_3_controller : MonoBehaviour
     public GameObject Result_icon;
 
 
-    private GameObject Correct_answer_message;
-    private GameObject Incorrect_answer_message;
-    private GameObject Retry_answer_message;
+    public GameObject Retry_answer_message;
     private int Score_total;
     private int[] Score = new int[4];
     private bool Clicked_question;
@@ -39,23 +37,21 @@ public class Scene_3_3_controller : MonoBehaviour
     {
         PostCount = -1;
         camera = GameObject.FindGameObjectWithTag("MainCamera");
-        GameObject Msg = GameObject.Find("Message");
-        Correct_answer_message = Msg.transform.GetChild(0).gameObject;
-        Incorrect_answer_message = Msg.transform.GetChild(1).gameObject;
-        Retry_answer_message = Msg.transform.GetChild(2).gameObject;
 
         Score_total = 0;
 
-        //문제 갯수 만큼 점수 배열 초기화
         Question_num = 4;
         for (int i = 0; i < Question_num; i++)
         {
             Score[i] = 0;
         }
+        //xAPI
+        if (GameObject.Find("xAPIObject"))
+        {
+            XAPIApplication.current.SendInitStatement("2");
+            XAPIApplication.current.LessonManagerInit("2");
+        }
     }
-    //수정사항
-    //3번째에서 시간 지나면 텍스트 바뀌게끔
-
 
     IEnumerator Startact()
     {
@@ -118,8 +114,9 @@ public class Scene_3_3_controller : MonoBehaviour
                 StartCoroutine(Act_16());
                 SetResult();
                 Seq_array[3].SetActive(true);
+                XAPIApplication.current.SendTerminateStatement("2", Score_total, true);
             }
-            if (BtnCount > 0)
+            if (BtnCount > 0 && BtnCount < 14)
             {
                 PC_Image_Array.transform.GetChild(BtnCount - 1).gameObject.SetActive(false);
                 PC_Image_Array.transform.GetChild(BtnCount).gameObject.SetActive(true);
@@ -132,36 +129,13 @@ public class Scene_3_3_controller : MonoBehaviour
     {
         if (Answer == true)
         {
-            // Score_add();
-           // StartCoroutine(Message(true));
             Answer_count = 0;           //정답시 초기화
 
-            if (BtnCount == 1)
-            {
-                Score[0] = 1;
-                Score_total += 1;
-            }
-            else if (BtnCount == 5)
-            {
-                Score[1] = 1;
-                Score_total += 1;
-            }
-            else if (BtnCount == 11)
-            {
-                Score[2] = 1;
-                Score_total += 1;
-            }
-            else if (BtnCount == 14)
-            {
-                Score[3] = 1;
-                Score_total += 1;
-            }
+            Send_Correct_statement();
         }
         else if (Answer == false)
         {
-            //오답
             Message(false);
-            //메시지
             Answer_count++;
         }
         if (Answer_count == 3)
@@ -170,6 +144,7 @@ public class Scene_3_3_controller : MonoBehaviour
             //Answer = true;
             Hihglight[BtnCount].SetActive(true);
             Answer_count = 0;
+            Send_Incorrect_statement();
         }
     }
     public void Clicked(bool ans)
@@ -181,9 +156,7 @@ public class Scene_3_3_controller : MonoBehaviour
     {
         for (int i = 0; i < Question_num; i++)
         {
-            Debug.Log("check_result" + Score[i]);
-            //오답일 경우 해당 번호 이미지 활성화
-            //result_icon내 위치를 직접 맞춰준 다음에 아래 순서 조절함
+           // Debug.Log("check_result" + Score[i]);
             if (Score[i] == 0)
             {
                 Result_icon.transform.GetChild(i + 5).gameObject.SetActive(true);
@@ -191,24 +164,22 @@ public class Scene_3_3_controller : MonoBehaviour
         }
 
         //0 : 미흡, 1 : 보통, 2 : 우수
-        if (Score_total == 0)
+        if (Score_total == 0 || Score_total == 1)
         {
             Result_description.transform.GetChild(0).gameObject.SetActive(true);
         }
-        else if (Score_total <= 2)
+        else if (Score_total == 2 || Score_total == 3)
         {
             Result_description.transform.GetChild(1).gameObject.SetActive(true);
         }
-        else if (Score_total == 3)
+        else if (Score_total == 4)
         {
             Result_description.transform.GetChild(2).gameObject.SetActive(true);
         }
         else
         {
-            //Debug.Log(Score_total);
         }
 
-        //End_XAPI();
 
     }
     void Message(bool msg)
@@ -221,4 +192,60 @@ public class Scene_3_3_controller : MonoBehaviour
             Retry_answer_message.GetComponent<Animation>().Play();
         }
     }
+
+    /// <summary>
+    /// xAPI
+    /// </summary>
+    void Send_Correct_statement()
+    {
+        if (BtnCount == 1)
+        {
+            Score[1] = 1;
+            Score_total += 1;
+            XAPIApplication.current.SendChoiceStatement("2", "풍력발전상태확인", "1", true);
+        }
+        else if (BtnCount == 5)
+        {
+            Score[1] = 1;
+            Score_total += 1;
+            XAPIApplication.current.SendChoiceStatement("2", "비상정지", "2", true);
+        }
+        else if (BtnCount == 11)
+        {
+            Score[1] = 1;
+            Score_total += 1;
+            XAPIApplication.current.SendChoiceStatement("2", "유지보수입력", "3", true);
+        }
+        else if (BtnCount == 14)
+        {
+            Score[1] = 1;
+            Score_total += 1;
+            XAPIApplication.current.SendChoiceStatement("2", "풍력발전출력설정", "4", true);
+        }
+    }
+    void Send_Incorrect_statement()
+    {
+        if (BtnCount == 1)
+        {
+            XAPIApplication.current.SendChoiceStatement("2", "풍력발전상태확인", "1", false);
+        }
+        else if (BtnCount == 5)
+        {
+            XAPIApplication.current.SendChoiceStatement("2", "비상정지", "2", false);
+        }
+        else if (BtnCount == 11)
+        {
+            XAPIApplication.current.SendChoiceStatement("2", "유지보수입력", "3", false);
+        }
+        else if (BtnCount == 14)
+        {
+            XAPIApplication.current.SendChoiceStatement("2", "풍력발전출력설정", "4", false);
+        }
+    }
+
+    public void Send_Terminated_statement_unfinished()
+    {
+        XAPIApplication.current.SendTerminateStatement("2", Score_total, false);
+    }
+
 }

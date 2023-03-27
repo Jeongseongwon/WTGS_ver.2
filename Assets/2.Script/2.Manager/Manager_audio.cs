@@ -15,7 +15,8 @@ public class Manager_audio : MonoBehaviour
     private AudioSource Correct_answer;
     private AudioSource strong_wind;
     private AudioSource low_wind;
-        
+    private AudioSource Wrong_answer;
+
     private GameObject Scenecontroller;
     // Start is called before the first frame update
     // 각 볼륨 값 정의하고
@@ -24,10 +25,10 @@ public class Manager_audio : MonoBehaviour
     //각 사운드의 볼륨을 일괄적으로 지정해주고 그것에 맞춰서 될지 한 번 확인해보자
 
 
-    private float All_volume=0f;
-    private float Effect_volume = 0f;
-    private float Narr_volume = 0f;
-    private float BGM_volume = 0f;
+    private float All_volume = 0.3f;
+    private float Effect_volume = 0.5f;
+    private float Narr_volume = 0.5f;
+    private float BGM_volume = 0.1f;
 
     private void Awake()
     {
@@ -45,22 +46,7 @@ public class Manager_audio : MonoBehaviour
 
     void Start()
     {
-        if (GameObject.FindGameObjectWithTag("Scene_controller")!=null)
-        {
-            Scenecontroller = GameObject.FindGameObjectWithTag("Scene_controller");
-            Narration = Scenecontroller.GetComponent<AudioSource>();
-        }
-        Hover = this.transform.GetChild(0).gameObject.GetComponent<AudioSource>();
-        Click = this.transform.GetChild(1).gameObject.GetComponent<AudioSource>();
-        BGM = this.transform.GetChild(2).gameObject.GetComponent<AudioSource>();
-        Intro = this.transform.GetChild(3).gameObject.GetComponent<AudioSource>();
-
-        Narration_End = this.transform.GetChild(5).gameObject.GetComponent<AudioSource>();
-        Error = this.transform.GetChild(6).gameObject.GetComponent<AudioSource>();
-        Correct_answer = this.transform.GetChild(7).gameObject.GetComponent<AudioSource>();
-        strong_wind = this.transform.GetChild(8).gameObject.GetComponent<AudioSource>();
-        low_wind = this.transform.GetChild(9).gameObject.GetComponent<AudioSource>();
-
+        Init_sound();
     }
 
     public float Get_all_volume()
@@ -120,6 +106,11 @@ public class Manager_audio : MonoBehaviour
         //Debug.Log("click");
     }
 
+    public void Get_Wrong_answer()
+    {
+        Wrong_answer.Play();
+        //Debug.Log("click");
+    }
     public void Get_Strong_wind()
     {
         strong_wind.Play();
@@ -142,11 +133,16 @@ public class Manager_audio : MonoBehaviour
     }
     private void OnLevelWasLoaded(int level)
     {
+        Init_sound();
+    }
+    private void Init_sound()
+    {
         if (GameObject.FindGameObjectWithTag("Scene_controller") != null)
         {
             Scenecontroller = GameObject.FindGameObjectWithTag("Scene_controller");
             Narration = Scenecontroller.GetComponent<AudioSource>();
         }
+
         Hover = this.transform.GetChild(0).gameObject.GetComponent<AudioSource>();
         Click = this.transform.GetChild(1).gameObject.GetComponent<AudioSource>();
         BGM = this.transform.GetChild(2).gameObject.GetComponent<AudioSource>();
@@ -157,7 +153,13 @@ public class Manager_audio : MonoBehaviour
         Correct_answer = this.transform.GetChild(7).gameObject.GetComponent<AudioSource>();
         strong_wind = this.transform.GetChild(8).gameObject.GetComponent<AudioSource>();
         low_wind = this.transform.GetChild(9).gameObject.GetComponent<AudioSource>();
-        Debug.Log("씬 전환시 호출 확인");
+
+        Wrong_answer = this.transform.GetChild(10).gameObject.GetComponent<AudioSource>();
+        
+        Set_effect_sound_volume(Effect_volume);
+        Set_narration_volume(Narr_volume);
+
+        Set_BGM_volume(BGM_volume);
     }
     public void Set_all_sound_volume(float volume)
     {
@@ -171,6 +173,7 @@ public class Manager_audio : MonoBehaviour
         Intro.volume = volume;
         Error.volume = volume;
         Correct_answer.volume = volume;
+        Wrong_answer.volume = volume;
         strong_wind.volume = volume;
         low_wind.volume = volume;
         Narration_End.volume = volume;
@@ -184,6 +187,7 @@ public class Manager_audio : MonoBehaviour
         Intro.volume = volume;
         Error.volume = volume;
         Correct_answer.volume = volume;
+        Wrong_answer.volume = volume;
         strong_wind.volume = volume;
         low_wind.volume = volume;
         Narration_End.volume = volume;

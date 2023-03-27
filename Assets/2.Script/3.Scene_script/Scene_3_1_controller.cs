@@ -48,6 +48,7 @@ public class Scene_3_1_controller : MonoBehaviour
         if (flag == true)
         {
 
+            Scriptbox.GetComponent<Animation>().Play("banner_o");
             if (BtnCount == 0)
             {
                 StartCoroutine(Startact());

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 26f55ddef4057d341bb944e97b32d31c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.2987197, g: 0.35218012, b: 0.5014215, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -24298,6 +24298,7 @@ MonoBehaviour:
   FadeOut: 0
   textList: []
   scene_controller: {fileID: 0}
+  check_Narration_controller: 0
 --- !u!114 &729756305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24323,6 +24324,7 @@ MonoBehaviour:
   - {fileID: 1371139669}
   - {fileID: 1312862263}
   - {fileID: 934543799}
+  Hihglight: []
   Wind_particle: {fileID: 1598949396}
   Blade_1: {fileID: 930307454}
   Blade_2: {fileID: 368890034}
@@ -24352,6 +24354,8 @@ MonoBehaviour:
   Reduce_button_p: {fileID: 671343984}
   Add_button_y: {fileID: 671343983}
   Reduce_button_y: {fileID: 671343982}
+  brake_button_1: {fileID: 0}
+  brake_button_2: {fileID: 0}
   Angle_yaw_target: {fileID: 671343987}
   Angle_yaw: {fileID: 671343986}
   Angle_pitch_target: {fileID: 671343989}
@@ -24359,9 +24363,6 @@ MonoBehaviour:
   Velocity_wind: {fileID: 671343975}
   Power: {fileID: 671343972}
   Question: {fileID: 671343965}
-  Text_Answer:
-  - {fileID: 851961350}
-  - {fileID: 1627241289}
   Result_panel: {fileID: 671343963}
   Result_description: {fileID: 671343961}
   Result_icon: {fileID: 671343962}
@@ -28353,11 +28354,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850089330}
   m_Mesh: {fileID: 7994466955388734981, guid: 6bddf732136bc5f4abbfc2883e778467, type: 3}
---- !u!1 &851961350 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6570238880963753244, guid: 73d1aff0e2eb5bb4694d81166195aa18, type: 3}
-  m_PrefabInstance: {fileID: 671343960}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &871358286
 GameObject:
   m_ObjectHideFlags: 0
@@ -60650,11 +60646,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621548149}
   m_Mesh: {fileID: -179330964507660252, guid: 6bddf732136bc5f4abbfc2883e778467, type: 3}
---- !u!1 &1627241289 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 617325407932921382, guid: 73d1aff0e2eb5bb4694d81166195aa18, type: 3}
-  m_PrefabInstance: {fileID: 671343960}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1627353028
 GameObject:
   m_ObjectHideFlags: 0

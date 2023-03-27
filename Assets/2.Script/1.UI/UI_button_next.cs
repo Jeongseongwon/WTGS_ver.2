@@ -29,6 +29,5 @@ public class UI_button_next : MonoBehaviour, IPointerClickHandler
     public void BtnAct()
     {
         SceneController.GetComponent<Script_controller>().NextBtn();
-        Debug.Log("next button click");
     }
 }

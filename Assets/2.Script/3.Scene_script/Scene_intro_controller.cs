@@ -30,6 +30,12 @@ public class Scene_intro_controller : MonoBehaviour
     void Start()
     {
         Reset_Loading();
+        if (GameObject.Find("xAPIObject"))
+        {
+            XAPIApplication.current.Init();
+            XAPIApplication.current.SendLoginStatement(XAPIApplication.current.tempUserName);
+            Debug.Log("xAPI_init");
+        }
     }
 
     void Update()

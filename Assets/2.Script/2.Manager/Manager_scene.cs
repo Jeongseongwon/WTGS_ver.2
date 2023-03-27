@@ -10,12 +10,11 @@ public class Manager_scene : MonoBehaviour
     //씬에서 씬 사이에서 유지되어야하는 변수
     //추후 기능이 많이 없을 경우 setting으로 합칠 것
 
-    static float Check_fullscreen;
-    static bool Check_script_hide;  //스크립트 하이드 했을 때 변수
-    static bool Check_script_auto_over; //스크립트 자동진행 변수
-    static bool Check_menu;
+    private float Check_fullscreen;
+    private bool Check_script_hide;  //스크립트 하이드 했을 때 변수
+    private bool Check_script_auto_over; //스크립트 자동진행 변수
+    private bool Check_menu;
 
-    public Slider Fullscreen_slider;
 
     public static Manager_scene instance = null;
     // Start is called before the first frame update
@@ -36,7 +35,7 @@ public class Manager_scene : MonoBehaviour
     void Start()
     {
         Check_script_auto_over = false;
-        Check_fullscreen = 0;
+        Check_fullscreen = 0f;
         Check_script_hide = false;
         Check_menu = false;
     }
@@ -46,30 +45,15 @@ public class Manager_scene : MonoBehaviour
     //{
 
     //}
-
-    public void Change_Check_fullscreen()
+    public float Get_Check_fullscreen()
     {
-        float slider_value;
-        Fullscreen_slider = GameObject.Find("전체화면 모드").transform.GetChild(0).GetComponent<Slider>();
-        Check_fullscreen = Fullscreen_slider.value;
         Debug.Log(Check_fullscreen);
+        return Check_fullscreen;
     }
-
-    public void Checkvalue_Check_fullscreen()
+    public void Set_Check_fullscreen(float num)
     {
-        Fullscreen_slider = GameObject.Find("전체화면 모드").transform.GetChild(0).GetComponent<Slider>();
-        Fullscreen_slider.value = Check_fullscreen;
-        Debug.Log(Fullscreen_slider.value);
+        Check_fullscreen = num;
     }
-
-    public void Checkvalue_Check_UI_hide()
-    {
-        GameObject UI_title = GameObject.Find("Study_UI");
-        UI_title.transform.GetChild(0).GetComponent<Animator>().enabled = false;
-        UI_title.transform.GetChild(0).GetComponent<Animation>().Stop();
-
-    }
-
     public void Change_check_menu_true()
     {
         Check_menu = true;

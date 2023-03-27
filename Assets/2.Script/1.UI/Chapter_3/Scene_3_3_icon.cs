@@ -16,6 +16,7 @@ public class Scene_3_3_icon : MonoBehaviour, IPointerClickHandler
             SceneController.GetComponent<Script_controller>().NextBtn();
             SceneController.GetComponent<Scene_3_3_controller>().Clicked(true);
             Debug.Log("Á¤´ä");
+
         }
         else if (Answer == false)
         {

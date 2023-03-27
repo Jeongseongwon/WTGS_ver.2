@@ -41,6 +41,9 @@ public class Scene_1_1_controller : MonoBehaviour
     public GameObject Object_14_Generator;
     public GameObject Object_15_Power_grid;
 
+    public GameObject newmodel;
+    public GameObject newmodel_brake_pad;
+
     public GameObject Object_p_line;
 
     public GameObject Text_1;
@@ -156,7 +159,7 @@ public class Scene_1_1_controller : MonoBehaviour
             //하이라이트 효과
             Object_Col_Off_ALL();
             Object_Col_On(Object_6_Rotor);
-            StartCoroutine(Highlight_onoff(Object_6_Rotor));
+            StartCoroutine(Highlight_onoff(Object_6_Rotor,4f));
 
             //애니메이션
             Wind_velocity_for_rot = 4f;
@@ -176,6 +179,8 @@ public class Scene_1_1_controller : MonoBehaviour
             StartCoroutine(Highlight_onoff(Object_6_Rotor,3f));
             StartCoroutine(Highlight_onoff(Object_11_Mainshaft, 3f));
 
+
+
             //애니메이션
             StartCoroutine(Animation_play(6));
             StartCoroutine(Mainshaft_turbine(4));
@@ -190,19 +195,24 @@ public class Scene_1_1_controller : MonoBehaviour
             Object_Col_Off_ALL();
             Object_Col_On(Object_13_Gearbox);
             Object_Col_On(Object_11_Mainshaft);
+            Object_Col_On(newmodel_brake_pad);
 
             //하이라이트 효과
-            StartCoroutine(Highlight_onoff(Object_13_Gearbox));
-            StartCoroutine(Highlight_onoff(Object_11_Mainshaft));
+            //StartCoroutine(Highlight_onoff(Object_13_Gearbox));
+            StartCoroutine(Highlight_onoff(Object_11_Mainshaft,3f));
+            StartCoroutine(Highlight_onoff(newmodel_brake_pad, 6f));
 
+
+            Object_11_Mainshaft.GetComponent<Object_mouseover_withouthighlight>().Tooltip_text = "저속-고토크 출력동력";
+            newmodel.GetComponent<Animation>().Play("NM_gear,shaft_rotation");
 
             //애니메이션
             StartCoroutine(Animation_play(11));
             Camera.GetComponent<Camera_movement>().act5();
 
             //텍스트 추가 
-            Text_1.SetActive(true);
-            Text_2.SetActive(true);
+           // Text_1.SetActive(true);
+           // Text_2.SetActive(true);
             Debug.Log("act5");
         }
         else if (count == 6)
@@ -308,7 +318,7 @@ public class Scene_1_1_controller : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.03f);
-            Object_7_Shaft.GetComponent<Transform>().Rotate(new Vector3(10 * num * Time.deltaTime, 0, 0));
+            Object_11_Mainshaft.GetComponent<Transform>().Rotate(new Vector3(10 * num * Time.deltaTime, 0, 0));
 
             if (num == 3)
             {
@@ -332,6 +342,7 @@ public class Scene_1_1_controller : MonoBehaviour
 
         Object_13_Gearbox.GetComponent<MeshCollider>().enabled = false;
         Object_14_Generator.GetComponent<MeshCollider>().enabled = false;
+        newmodel_brake_pad.GetComponent<MeshCollider>().enabled = false;
 
     }
 
@@ -354,7 +365,8 @@ public class Scene_1_1_controller : MonoBehaviour
                     tower_material.color = tower_alpha;
                     yield break;
                 }
-            }else if (num == 255)
+            }
+            else if (num == 255)
             {
                 Value_alpha = Mathf.Lerp(Value_alpha, 255, 1.5f * Time.deltaTime);
                 //Change_graph_number(Data_power, Value_Power);

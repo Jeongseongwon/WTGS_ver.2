@@ -7549,7 +7549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &157041505
 Transform:
   m_ObjectHideFlags: 0
@@ -49764,7 +49764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1185080375
 Transform:
   m_ObjectHideFlags: 0
@@ -63006,6 +63006,7 @@ MonoBehaviour:
   textList:
   - 
   scene_controller: {fileID: 0}
+  check_Narration_controller: 0
 --- !u!114 &1529803925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69744,7 +69745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1756923809
 Transform:
   m_ObjectHideFlags: 0
@@ -82790,7 +82791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2083149162
 Transform:
   m_ObjectHideFlags: 0
