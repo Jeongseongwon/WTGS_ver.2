@@ -31,6 +31,10 @@ public class Scene_3_3_controller : MonoBehaviour
     private int Answer_count = 0;
     private int Question_num = 0;
 
+    private bool Check_xAPI = false;
+
+    private List <Dictionary<string,string>> Result_list;
+    private new Dictionary<string, string> Result_dictionary;
     // Start is called before the first frame update
 
     void Start()
@@ -50,6 +54,7 @@ public class Scene_3_3_controller : MonoBehaviour
         {
             XAPIApplication.current.SendInitStatement("2");
             XAPIApplication.current.LessonManagerInit("2");
+            Check_xAPI = true;
         }
     }
 
@@ -114,7 +119,10 @@ public class Scene_3_3_controller : MonoBehaviour
                 StartCoroutine(Act_16());
                 SetResult();
                 Seq_array[3].SetActive(true);
-                XAPIApplication.current.SendTerminateStatement("2", Score_total, true);
+                if (Check_xAPI == true)
+                {
+                    XAPIApplication.current.SendTerminateStatement("2", Result_list, Score_total, true);
+                }
             }
             if (BtnCount > 0 && BtnCount < 14)
             {
@@ -130,8 +138,10 @@ public class Scene_3_3_controller : MonoBehaviour
         if (Answer == true)
         {
             Answer_count = 0;           //정답시 초기화
-
-            Send_Correct_statement();
+            if (Check_xAPI == true)
+            {
+                Send_Correct_statement();
+            }
         }
         else if (Answer == false)
         {
@@ -144,7 +154,10 @@ public class Scene_3_3_controller : MonoBehaviour
             //Answer = true;
             Hihglight[BtnCount].SetActive(true);
             Answer_count = 0;
-            Send_Incorrect_statement();
+            if (Check_xAPI == true)
+            {
+                Send_Incorrect_statement();
+            }
         }
     }
     public void Clicked(bool ans)
@@ -203,24 +216,28 @@ public class Scene_3_3_controller : MonoBehaviour
             Score[1] = 1;
             Score_total += 1;
             XAPIApplication.current.SendChoiceStatement("2", "풍력발전상태확인", "1", true);
+            Result_dictionary.Add("풍력발전상태확인", "1");
         }
         else if (BtnCount == 5)
         {
             Score[1] = 1;
             Score_total += 1;
             XAPIApplication.current.SendChoiceStatement("2", "비상정지", "2", true);
+            Result_dictionary.Add("비상정지", "1");
         }
         else if (BtnCount == 11)
         {
             Score[1] = 1;
             Score_total += 1;
             XAPIApplication.current.SendChoiceStatement("2", "유지보수입력", "3", true);
+            Result_dictionary.Add("유지보수입력", "1");
         }
         else if (BtnCount == 14)
         {
             Score[1] = 1;
             Score_total += 1;
             XAPIApplication.current.SendChoiceStatement("2", "풍력발전출력설정", "4", true);
+            Result_dictionary.Add("풍력발전출력설정", "1");
         }
     }
     void Send_Incorrect_statement()
@@ -228,24 +245,29 @@ public class Scene_3_3_controller : MonoBehaviour
         if (BtnCount == 1)
         {
             XAPIApplication.current.SendChoiceStatement("2", "풍력발전상태확인", "1", false);
+            Result_dictionary.Add("풍력발전상태확인", "0");
         }
         else if (BtnCount == 5)
         {
             XAPIApplication.current.SendChoiceStatement("2", "비상정지", "2", false);
+            Result_dictionary.Add("비상정지", "0");
         }
         else if (BtnCount == 11)
         {
             XAPIApplication.current.SendChoiceStatement("2", "유지보수입력", "3", false);
+            Result_dictionary.Add("유지보수입력", "0");
         }
         else if (BtnCount == 14)
         {
             XAPIApplication.current.SendChoiceStatement("2", "풍력발전출력설정", "4", false);
+            Result_dictionary.Add("풍력발전출력설정", "0");
         }
     }
 
     public void Send_Terminated_statement_unfinished()
     {
-        XAPIApplication.current.SendTerminateStatement("2", Score_total, false);
+        Result_list.Add(Result_dictionary);
+        XAPIApplication.current.SendTerminateStatement("2", Result_list, Score_total, false);
     }
 
 }

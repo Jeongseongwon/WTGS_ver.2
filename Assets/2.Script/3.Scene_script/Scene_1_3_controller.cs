@@ -65,6 +65,15 @@ public class Scene_1_3_controller : MonoBehaviour
     private bool flag = true;
     private bool flag_num = false;
     bool Prev_Status = false;
+    private bool Check_xAPI = false;
+
+    private List<Dictionary<string, string>> Result_list = new List<Dictionary<string, string>>();
+    private Dictionary<string, string> Result_1 = new Dictionary<string, string>();
+    private Dictionary<string, string> Result_2 = new Dictionary<string, string>();
+    private Dictionary<string, string> Result_3 = new Dictionary<string, string>();
+    private Dictionary<string, string> Result_4 = new Dictionary<string, string>();
+    //0: name, 1: score
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,6 +101,7 @@ public class Scene_1_3_controller : MonoBehaviour
         {
             XAPIApplication.current.SendInitStatement("0");
             XAPIApplication.current.LessonManagerInit("0");
+            Check_xAPI = true;
         }
     }
 
@@ -200,7 +210,10 @@ public class Scene_1_3_controller : MonoBehaviour
         {
 
         }
-        XAPIApplication.current.SendTerminateStatement("0", Score_total, true);
+        if (Check_xAPI == true)
+        {
+            XAPIApplication.current.SendTerminateStatement("0", Result_list, Score_total, true);
+        }
 
     }
 
@@ -215,7 +228,10 @@ public class Scene_1_3_controller : MonoBehaviour
             Score[BtnCount-1] = 1;
             Score_total += 1;
             Answer_count = 0;           //정답시 초기화
-            Send_Correct_statement();
+            if (Check_xAPI == true)
+            {
+                Send_Correct_statement();
+            }
         }
         else if (Answer == false)
         {
@@ -230,7 +246,10 @@ public class Scene_1_3_controller : MonoBehaviour
             Answer_count = 0;
             Answer = true;
             //오답 choice statement 전송
-            Send_Incorrect_statement();
+            if (Check_xAPI == true)
+            {
+                Send_Incorrect_statement();
+            }
         }
     }
 
@@ -397,17 +416,30 @@ public class Scene_1_3_controller : MonoBehaviour
         if (BtnCount == 1)
         {
             XAPIApplication.current.SendChoiceStatement("0", "풍력발전_구조", "1", true);
-        }else if (BtnCount == 2)
+            Result_1.Add("evaluation-item", "풍력발전_구조");
+            Result_1.Add("evaluation-score", "1");
+            Result_list.Add(Result_1);
+        }
+        else if (BtnCount == 2)
         {
             XAPIApplication.current.SendChoiceStatement("0", "증속기이해", "2", true);
+            Result_2.Add("evaluation-item", "증속기이해");
+            Result_2.Add("evaluation-score", "1");
+            Result_list.Add(Result_2);
         }
         else if (BtnCount == 3)
         {
             XAPIApplication.current.SendChoiceStatement("0", "피치시스템이해", "3", true);
+            Result_3.Add("evaluation-item", "피치시스템이해");
+            Result_3.Add("evaluation-score", "1");
+            Result_list.Add(Result_3);
         }
         else if (BtnCount == 4)
         {
             XAPIApplication.current.SendChoiceStatement("0", "에너지전달순서이해", "4", true);
+            Result_4.Add("evaluation-item", "에너지전달순서이해");
+            Result_4.Add("evaluation-score", "1");
+            Result_list.Add(Result_4);
         }
     }
 
@@ -416,23 +448,35 @@ public class Scene_1_3_controller : MonoBehaviour
         if (BtnCount == 1)
         {
             XAPIApplication.current.SendChoiceStatement("0", "풍력발전_구조", "1", false);
+            Result_1.Add("evaluation-item", "풍력발전_구조");
+            Result_1.Add("evaluation-score", "0");
+            Result_list.Add(Result_1);
         }
         else if (BtnCount == 2)
         {
             XAPIApplication.current.SendChoiceStatement("0", "증속기이해", "2", false);
+            Result_2.Add("evaluation-item", "증속기이해");
+            Result_2.Add("evaluation-score", "0");
+            Result_list.Add(Result_2);
         }
         else if (BtnCount == 3)
         {
             XAPIApplication.current.SendChoiceStatement("0", "피치시스템이해", "3", false);
+            Result_3.Add("evaluation-item", "피치시스템이해");
+            Result_3.Add("evaluation-score", "0");
+            Result_list.Add(Result_3);
         }
         else if (BtnCount == 4)
         {
             XAPIApplication.current.SendChoiceStatement("0", "에너지전달순서이해", "4", false);
+            Result_4.Add("evaluation-item", "에너지전달순서이해");
+            Result_4.Add("evaluation-score", "0");
+            Result_list.Add(Result_4);
         }
     }
 
     public void Send_Terminated_statement_unfinished()
     {
-        XAPIApplication.current.SendTerminateStatement("0", Score_total, false);
+        XAPIApplication.current.SendTerminateStatement("0", Result_list, Score_total, false);
     }
 }

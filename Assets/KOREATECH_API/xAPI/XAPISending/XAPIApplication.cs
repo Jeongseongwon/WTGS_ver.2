@@ -136,13 +136,13 @@ public class XAPIApplication : MonoBehaviour
     }
 
     //이부분 어떤 데이터 보낼지 선택해야한다
-    public void SendTerminateStatement(string chapterName, int score, bool complete)
+    public void SendTerminateStatement(string chapterName, List<Dictionary<string,string>> results, int score, bool complete)
     {
         if (!SelectActiveLesson(chapterName))
         {
             return;
         }
-        activeLesson.UpdateResultStatement( score, complete);
+        activeLesson.UpdateResultStatement(results, score, complete);
         activeLesson.ChangeNewStatement("Terminate");
         SendIMRStatement(chapterName, "Terminate");
         terminatied = true;
@@ -156,7 +156,7 @@ public class XAPIApplication : MonoBehaviour
         }
 
         activeLesson.UpdateChoice(item, step, success);
-        SendIMRStatement(chapterName, "Choice");
+        SendIMRStatement(chapterName, "Choice", item);
     }
     
     public bool SelectActiveLesson(string chapterName)
@@ -175,7 +175,7 @@ public class XAPIApplication : MonoBehaviour
         return true;
     }
     
-    public bool SendIMRStatement(string chapterName, string name)
+    public bool SendIMRStatement(string chapterName, string name, string item = null)
     {
         if (!SelectActiveLesson(chapterName))
         {
@@ -187,7 +187,7 @@ public class XAPIApplication : MonoBehaviour
         lrs_res = lrs.SaveStatement(imr_statement.GetStatement());
         if (lrs_res.success) //Success
         {
-            activeLesson.ChangeNewStatement(name);
+            activeLesson.ChangeNewStatement(name, item);
             Debug.Log("Save statement2: " + lrs_res.content.id);
             return true;
         }

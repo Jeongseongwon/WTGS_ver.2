@@ -442,8 +442,7 @@ public class LoginNetworkManager : LoginNetworkSingleton<LoginNetworkManager>
 		//로그인 성공 시 xapi 전송
 		LoginSceneControl loginSceneControl = GameObject.Find("LoginSceneControl").GetComponent<LoginSceneControl>();
 
-		//XAPIApplication.current.tempUserName = loginSceneControl.m_Id.text;
-		XAPIApplication.current.tempUserName = "vtstd09@test.com";
+		XAPIApplication.current.tempUserName = loginSceneControl.m_Id.text;
 
 		SceneManager.LoadScene(m_NextSceneLevel);
 	}

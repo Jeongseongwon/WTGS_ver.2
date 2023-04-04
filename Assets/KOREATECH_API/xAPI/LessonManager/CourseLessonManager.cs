@@ -33,10 +33,10 @@ public class CourseLessonManager : Lesson
         statement_dictionary.Add("Terminate", terminateStatement);
     }
 
-    public void SetObject()
+    public void SetObject(string item = null)
     {
         initStatement.SetActivity(COURSE_NAME + "/" + lessonName);
-        choiceStatement.SetActivity(COURSE_NAME + "/" + lessonName + "/selection");
+        choiceStatement.SetActivity(COURSE_NAME + "/" + lessonName + "/" + item + "/selection");
         terminateStatement.SetActivity(COURSE_NAME + "/" + lessonName);
         
         terminateStatement.SetResultExtensionFromResultStatements(resultStatement, lessonName);
@@ -49,7 +49,7 @@ public class CourseLessonManager : Lesson
         terminateStatement.SetScore(_score);
     }
 
-    public sealed override void ChangeNewStatement(string name)
+    public sealed override void ChangeNewStatement(string name, string item = null)
     {
         switch(name)
         {
@@ -61,7 +61,7 @@ public class CourseLessonManager : Lesson
             case "Choice":
                 choiceStatement = new ChoiceStatement();
                 statement_dictionary[name] = choiceStatement;
-                SetObject();
+                SetObject(item);
                 break;
             case "Terminate":
                 terminateStatement = new TerminateStatement();
@@ -72,20 +72,18 @@ public class CourseLessonManager : Lesson
         }
     }
 
-    public sealed override void UpdateResultStatement(int score, bool complete)
+    public sealed override void UpdateResultStatement(List<Dictionary<string,string>> results, int score, bool complete)
     {
         resultStatement.Clear();
 
-        //추가 내용 전부 삭제
-        //foreach(var v in results)
-        //{
-        //    resultStatement.Add(v);
-        //}
+        foreach (var v in results)
+        {
+            resultStatement.Add(v);
+        }
 
         _score = score;
         _completion = complete;
     }
-    //(생략), total score, true(중간에 나가면 false, 정상종료 하면 true)
 
     public sealed override void UpdateChoice(string item, string step, bool success)
     {
@@ -98,5 +96,8 @@ public class CourseLessonManager : Lesson
         choiceStatement.SetResultExtensions(resultExtension);
         choiceStatement.SetSuccess(success);
     }
-    //1, 이론_xxxx, true or false 
+
+    //*수정사항 0404
+    //setObject 관련 choicestatement item 추가를 위해 매개변수에 string item 모두 추가함
+    //Setobject 참조하는 모든 함수에 반영됨
 }

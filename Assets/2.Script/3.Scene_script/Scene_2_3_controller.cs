@@ -112,6 +112,10 @@ public class Scene_2_3_controller : MonoBehaviour
     private bool flag_y = false;
     private bool Check_finished = false;
 
+    private bool Check_xAPI=false;
+
+    private List<Dictionary<string, string>> Result_list;
+    private new Dictionary<string, string> Result_dictionary;
     // Start is called before the first frame update
     void Start()
     {
@@ -133,6 +137,7 @@ public class Scene_2_3_controller : MonoBehaviour
         {
             XAPIApplication.current.SendInitStatement("1");
             XAPIApplication.current.LessonManagerInit("1");
+            Check_xAPI = true;
         }
 
     }
@@ -279,7 +284,10 @@ public class Scene_2_3_controller : MonoBehaviour
                 Seq_array[4].SetActive(true);
                 Result_panel.SetActive(true);
                 SetResult();
-                XAPIApplication.current.SendTerminateStatement("1", Score_total, true);
+                if (Check_xAPI == true)
+                {
+                    XAPIApplication.current.SendTerminateStatement("1", Result_list, Score_total, true);
+                }
             }
             PostCount = BtnCount;
             flag = false;
@@ -384,8 +392,10 @@ public class Scene_2_3_controller : MonoBehaviour
             Score[BtnCount - 1] = 1;
             Score_total += 1;
             Answer_count = 0;           //정답시 초기화
-
-            Send_Correct_statement();
+            if (Check_xAPI == true)
+            {
+                Send_Correct_statement();
+            }
         }
         else if (Answer == false)
         {
@@ -408,7 +418,10 @@ public class Scene_2_3_controller : MonoBehaviour
            // Text_Answer[BtnCount - 1].SetActive(true);
             Answer_count = 0;
             Answer = true;
-            Send_Incorrect_statement();
+            if (Check_xAPI == true)
+            {
+                Send_Incorrect_statement();
+            }
         }
     }
     public void BtnCount_add()
@@ -832,6 +845,6 @@ public class Scene_2_3_controller : MonoBehaviour
 
     public void Send_Terminated_statement_unfinished()
     {
-        XAPIApplication.current.SendTerminateStatement("1", Score_total, false);
+        XAPIApplication.current.SendTerminateStatement("1",Result_list, Score_total, false);
     }
 }

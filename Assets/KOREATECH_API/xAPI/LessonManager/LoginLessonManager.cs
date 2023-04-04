@@ -26,7 +26,7 @@ public class LoginLessonManager : Lesson
         _login_statement.SetActivity(COURSE_NAME + "/logged-in");
     }
 
-    public override void ChangeNewStatement(string name)
+    public override void ChangeNewStatement(string name, string item = null)
     {
         switch (name)
         {

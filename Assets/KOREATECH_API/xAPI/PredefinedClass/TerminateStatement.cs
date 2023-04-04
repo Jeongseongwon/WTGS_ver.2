@@ -30,8 +30,8 @@ public class TerminateStatement : IMRStatement
         List<JObject> results = new List<JObject>();
         JObject tempObject = new JObject();
         JArray jArray = new JArray();
-        
-        /* Terminate 시 추가 정보 부분(콘텐츠에 맞게 편집)
+
+        //Terminate 시 추가 정보 부분(콘텐츠에 맞게 편집)
         for (int i = 0; i < resultStatements.Count; i++)
         {
             foreach (KeyValuePair<string, string> element in resultStatements[i])
@@ -46,7 +46,7 @@ public class TerminateStatement : IMRStatement
             }
             tempObject.Add("result" + (i < 9 ? "0" : "") + (i + 1).ToString(), results[i]);
         }
-        */
+
 
         resultExtension.Add(Lesson.BASE_URL + "/extension/" + lessonName + "/result", tempObject);
         SetResultExtensions(resultExtension);
