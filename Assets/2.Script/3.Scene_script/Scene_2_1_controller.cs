@@ -417,6 +417,7 @@ public class Scene_2_1_controller : MonoBehaviour
 
 
 
+            //이거 주석처리 잘 하기
             PC_Image_Array[BtnCount].SetActive(true);
             PostCount = BtnCount;
             flag = false;

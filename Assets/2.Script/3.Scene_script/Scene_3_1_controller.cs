@@ -68,7 +68,10 @@ public class Scene_3_1_controller : MonoBehaviour
             {
                 //첫 번째 이미지는 애니메이션 재생?
                 PC_Image_Array[BtnCount - 1].SetActive(false);
-                PC_Image_Array[BtnCount].SetActive(true);
+                if (BtnCount < PC_Image_Array.Length)
+                {
+                    PC_Image_Array[BtnCount].SetActive(true);
+                }
             }
             PostCount = BtnCount;
             flag = false;

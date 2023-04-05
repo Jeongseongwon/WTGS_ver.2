@@ -95,10 +95,6 @@ public class Scene_2_3_controller : MonoBehaviour
     private int Answer_count = 0;
     public float Wind_velocity_for_rot;
 
-    //ÃÑ 2¹®Ç×
-    private GameObject Question_panel_0;
-    private GameObject Question_panel_1;
-
     private int BtnCount = 0;
 
     private int Question_num = 0;
@@ -123,8 +119,6 @@ public class Scene_2_3_controller : MonoBehaviour
         Correct_answer_message = Msg.transform.GetChild(0).gameObject;
         Incorrect_answer_message = Msg.transform.GetChild(1).gameObject;
         Retry_answer_message = Msg.transform.GetChild(2).gameObject;
-        Question_panel_0 = Question.GetComponent<Transform>().GetChild(0).gameObject;
-        Question_panel_1 = Question.GetComponent<Transform>().GetChild(1).gameObject;
         Question_num = Question.gameObject.GetComponent<Transform>().childCount;
         Value_Angle_yaw = 0;
         Value_Angle_yaw_target = 0;
@@ -175,7 +169,6 @@ public class Scene_2_3_controller : MonoBehaviour
                 PC_Image_Array[1].SetActive(false);
                 Scriptbox.SetActive(true);
                 Panel_button_inactive.SetActive(false);
-                Question_panel_1.SetActive(false);
 
                 Camera.GetComponent<Animation>().Play("Camera_move(intro,2_1)");
                 Subcamera.SetActive(true);

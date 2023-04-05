@@ -83,7 +83,10 @@ public class Script_controller : MonoBehaviour
         {
             Timer_set();
         }
-        btnCount--;
+        if (btnCount > 0)
+        {
+            btnCount--;
+        }
         ScriptCount();
         
     }
@@ -101,7 +104,8 @@ public class Script_controller : MonoBehaviour
         }
         else if (btnCount < 0)
         {
-            this.GetComponent<Dual_scene_loader>().LoadPrevScene();
+            
+            //this.GetComponent<Dual_scene_loader>().LoadPrevScene();
         }
         else
         {

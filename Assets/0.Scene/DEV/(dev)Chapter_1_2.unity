@@ -11349,7 +11349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124684e038d483f43a989fea170b10c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tooltip_text: "\uC694 \uC81C\uC5B4 \uB4DC\uB77C\uC774"
+  Tooltip_text: "\uC694 \uC81C\uC5B4 \uB4DC\uB77C\uC774\uBE0C"
 --- !u!64 &277490478
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11855,7 +11855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124684e038d483f43a989fea170b10c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tooltip_text: "\uC694 \uC81C\uC5B4 \uB4DC\uB77C\uC774"
+  Tooltip_text: "\uC694 \uC81C\uC5B4 \uB4DC\uB77C\uC774\uBE0C"
 --- !u!64 &302677369
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15160,7 +15160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124684e038d483f43a989fea170b10c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tooltip_text: "\uC694 \uC81C\uC5B4 \uB4DC\uB77C\uC774"
+  Tooltip_text: "\uC694 \uC81C\uC5B4 \uB4DC\uB77C\uC774\uBE0C"
 --- !u!64 &373672380
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18112,7 +18112,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 4af540dd99e73c84f9bed3a1a6edad2e, type: 2}
   - {fileID: 7400000, guid: 211e3ff11e23d8c489efabfe5489738e, type: 2}
-  - {fileID: 7400000, guid: e5996ac0b966dd04583bf0a7ac56c581, type: 2}
+  - {fileID: 7400000, guid: 8414a0ab952122a43ae23a2a2f1c3ca9, type: 2}
   - {fileID: 7400000, guid: 54261f966e2e6fd4c9cfb21291582de2, type: 2}
   - {fileID: 7400000, guid: 5451d9457641fb2438bcc920eb71eab9, type: 2}
   - {fileID: 7400000, guid: 9bad2787f80eb7f4a91763cb7c6fd62d, type: 2}
@@ -71417,7 +71417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124684e038d483f43a989fea170b10c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tooltip_text: "\uC694 \uC81C\uC5B4 \uB4DC\uB77C\uC774"
+  Tooltip_text: "\uC694 \uC81C\uC5B4 \uB4DC\uB77C\uC774\uBE0C"
 --- !u!64 &1800350567
 MeshCollider:
   m_ObjectHideFlags: 0
