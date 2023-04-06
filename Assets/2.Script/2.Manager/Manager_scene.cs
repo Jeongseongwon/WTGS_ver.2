@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.EventSystems;
 
 public class Manager_scene : MonoBehaviour
@@ -14,7 +14,9 @@ public class Manager_scene : MonoBehaviour
     private bool Check_script_hide;  //스크립트 하이드 했을 때 변수
     private bool Check_script_auto_over; //스크립트 자동진행 변수
     private bool Check_menu;
-
+    
+    public bool IsFullScreen = true;
+    public float Fullscreen_value = 1f;
 
     public static Manager_scene instance = null;
     // Start is called before the first frame update
@@ -40,50 +42,43 @@ public class Manager_scene : MonoBehaviour
         Check_menu = false;
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-
-    //}
-    public float Get_Check_fullscreen()
+    //Update is called once per frame
+    void Update()
     {
-        Debug.Log(Check_fullscreen);
-        return Check_fullscreen;
+        if (Input.GetKey(KeyCode.LeftAlt)&& Input.GetKeyDown(KeyCode.Return))
+        {
+            Debug.Log("전체화면");
+            FullScreen();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("창화면");
+            WindowScreen();
+        }
     }
-    public void Set_Check_fullscreen(float num)
+    public void FullScreen()
     {
-        Check_fullscreen = num;
+        IsFullScreen = true;
+        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        Fullscreen_value = 1f;
     }
-    public void Change_check_menu_true()
+    public void WindowScreen()
     {
-        Check_menu = true;
+        IsFullScreen = false;
+        Screen.fullScreenMode = FullScreenMode.Windowed;
+        Fullscreen_value = 0f;
     }
-    public void Change_check_menu_false()
+    public void Paused_on()
     {
-        Check_menu = false;
+        Time.timeScale = 0f;
+        Debug.Log("PAUSED");
     }
-    public bool Status_check_menu_false()
+    public void Paused_off()
     {
-        return Check_menu;
+        Time.timeScale = 1f;
     }
-    public void Chage_Check_script_hide_true()
-    {
-        Check_script_hide = true;
-    }
-    public void Chage_Check_script_hide_false()
-    {
-        Check_script_hide = false;
-    }
-
-    public void Chage_script_auto_over_true()
-    {
-        Check_script_auto_over = true;
-    }
-    public void Chage_script_auto_over_false()
-    {
-        Check_script_auto_over = false;
-    }
-
+   
+   
     public bool Status_Check_script_hide()
     {
         return Check_script_hide;
@@ -94,30 +89,30 @@ public class Manager_scene : MonoBehaviour
         return Check_script_auto_over;
     }
 
-    public void Enabled_ui_button()
-    {
-        GameObject[] UI_buttons;
+    //public void Enabled_ui_button()
+    //{
+    //    GameObject[] UI_buttons;
 
-        UI_buttons = GameObject.FindGameObjectsWithTag("UI_button");
-        for (int i = 0; i < UI_buttons.Length; i++)
-        {
-            UI_buttons[i].GetComponent<Button>().enabled = true;
-            //UI_buttons[i].GetComponent<EventTrigger>().enabled = true;
-        }
-    }
+    //    UI_buttons = GameObject.FindGameObjectsWithTag("UI_button");
+    //    for (int i = 0; i < UI_buttons.Length; i++)
+    //    {
+    //        UI_buttons[i].GetComponent<Button>().enabled = true;
+    //        //UI_buttons[i].GetComponent<EventTrigger>().enabled = true;
+    //    }
+    //}
 
-    public void Disabled_ui_button()
-    {
-        GameObject[] UI_buttons;
+    //public void Disabled_ui_button()
+    //{
+    //    GameObject[] UI_buttons;
 
-        UI_buttons = GameObject.FindGameObjectsWithTag("UI_button");
-        for (int i = 0; i < UI_buttons.Length; i++)
-        {
-            UI_buttons[i].GetComponent<Button>().enabled = false;
+    //    UI_buttons = GameObject.FindGameObjectsWithTag("UI_button");
+    //    for (int i = 0; i < UI_buttons.Length; i++)
+    //    {
+    //        UI_buttons[i].GetComponent<Button>().enabled = false;
 
-            UI_buttons[i].GetComponent<EventTrigger>().enabled = false;
-            UI_buttons[i].SetActive(false);
-            UI_buttons[i].SetActive(true);
-        }
-    }
+    //        UI_buttons[i].GetComponent<EventTrigger>().enabled = false;
+    //        UI_buttons[i].SetActive(false);
+    //        UI_buttons[i].SetActive(true);
+    //    }
+    //}
 }

@@ -838,6 +838,7 @@ public class Scene_2_3_controller : MonoBehaviour
 
     public void Send_Terminated_statement_unfinished()
     {
+        Send_Incorrect_statement();
         XAPIApplication.current.SendTerminateStatement("1",Result_list, Score_total, false);
     }
 }

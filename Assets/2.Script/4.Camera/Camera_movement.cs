@@ -218,12 +218,12 @@ public class Camera_movement : MonoBehaviour
     public void check_meunu_enabled()
     {
         check_menu = true;
-        Debug.Log("check_menu : " + check_menu);
+        //Debug.Log("check_menu : " + check_menu);
     }
     public void check_meunu_disabled()
     {
         check_menu = false;
-        Debug.Log("check_menu : " + check_menu);
+        //Debug.Log("check_menu : " + check_menu);
     }
     /// <summary>
     /// target 오브젝트로 시점을 이동하는 함수

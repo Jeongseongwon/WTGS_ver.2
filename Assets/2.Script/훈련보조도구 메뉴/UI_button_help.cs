@@ -21,7 +21,7 @@ public class UI_button_help : MonoBehaviour, IPointerClickHandler
     {
 
         num = getscript.GetComponent<Help_page>().Get_num();
-        Debug.Log("CLICKED");
+        
         if (Object_name == "prev_btn")
         {
             if (num > 0)

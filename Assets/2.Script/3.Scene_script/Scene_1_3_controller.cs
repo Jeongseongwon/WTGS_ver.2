@@ -44,10 +44,11 @@ public class Scene_1_3_controller : MonoBehaviour
     private GameObject Correct_answer_message;
     private GameObject Incorrect_answer_message;
     private int Score_total;
-    private int[] Score = new int [4];
+    private int[] Score = new int[4];
     private bool Clicked_question;
     private bool Answer;
     private int Answer_count = 0;
+    private bool Check_wronganswer_for_xAPI = false;
     private Animation Anim;
 
     //총 3문항
@@ -59,7 +60,7 @@ public class Scene_1_3_controller : MonoBehaviour
 
     public int BtnCount = 0;
 
-    private int Question_num=0;
+    private int Question_num = 0;
 
     int PostCount;
     private bool flag = true;
@@ -91,7 +92,7 @@ public class Scene_1_3_controller : MonoBehaviour
         Anim = Main_object.GetComponent<Animation>();
         //문제 갯수 만큼 점수 배열 초기화
         Question_num = Question.gameObject.GetComponent<Transform>().childCount;
-        for (int i = 0; i< Question_num; i++)
+        for (int i = 0; i < Question_num; i++)
         {
             Score[i] = 0;
         }
@@ -133,6 +134,7 @@ public class Scene_1_3_controller : MonoBehaviour
             {
                 if (Question_panel_0 != null)
                 {
+                    Check_wronganswer_for_xAPI = true;
                     Panel_button_inactive.SetActive(false);
                     Question_panel_0.SetActive(true);
                     Anim.Play("Ch1_3_WTG_decompos");
@@ -143,7 +145,7 @@ public class Scene_1_3_controller : MonoBehaviour
 
                 if (Question_panel_1 != null)
                 {
-
+                    Check_wronganswer_for_xAPI = true;
                     Panel_button_inactive.SetActive(false);
                     Question_panel_1.SetActive(true);
                     Question_panel_0.SetActive(false);
@@ -154,6 +156,7 @@ public class Scene_1_3_controller : MonoBehaviour
             {
                 if (Question_panel_2 != null)
                 {
+                    Check_wronganswer_for_xAPI = true;
                     Panel_button_inactive.SetActive(false);
                     Question_panel_2.SetActive(true);
                     Question_panel_1.SetActive(false);
@@ -163,6 +166,7 @@ public class Scene_1_3_controller : MonoBehaviour
             {
                 if (Question_panel_3 != null)
                 {
+                    Check_wronganswer_for_xAPI = true;
                     Panel_button_inactive.SetActive(false);
                     Question_panel_3.SetActive(true);
                     Question_panel_2.SetActive(false);
@@ -178,7 +182,7 @@ public class Scene_1_3_controller : MonoBehaviour
 
             PostCount = BtnCount;
             flag = false;
-            
+
         }
 
     }
@@ -198,11 +202,11 @@ public class Scene_1_3_controller : MonoBehaviour
         {
             Result_description.transform.GetChild(0).gameObject.SetActive(true);
         }
-        else if (Score_total<=2)
+        else if (Score_total <= 2)
         {
             Result_description.transform.GetChild(1).gameObject.SetActive(true);
         }
-        else if (Score_total==3)
+        else if (Score_total == 3)
         {
             Result_description.transform.GetChild(2).gameObject.SetActive(true);
         }
@@ -222,34 +226,38 @@ public class Scene_1_3_controller : MonoBehaviour
         if (Answer == true)
         {
             Panel_button_inactive.SetActive(true);
-           // Score_add();
+            // Score_add();
             Message(true);
-            Text_Answer[BtnCount-1].SetActive(true);
-            Score[BtnCount-1] = 1;
-            Score_total += 1;
-            Answer_count = 0;           //정답시 초기화
-            if (Check_xAPI == true)
+            Text_Answer[BtnCount - 1].SetActive(true);
+            Answer_count = 0;
+            if(Check_wronganswer_for_xAPI == true)
             {
-                Send_Correct_statement();
+                Score[BtnCount - 1] = 1;
+                Score_total += 1;
+                if (Check_xAPI == true)
+                {
+                    Send_Correct_statement();
+                }
             }
         }
         else if (Answer == false)
         {
             Message(false);
             Answer_count++;
+            if (Check_xAPI == true && Check_wronganswer_for_xAPI == true)
+            {
+                //오답 choice statement 전송
+                Send_Incorrect_statement();
+                Check_wronganswer_for_xAPI = false;
+            }
         }
 
         if (Answer_count == 3)
         {
             Panel_button_inactive.SetActive(true);
-            Text_Answer[BtnCount-1].SetActive(true);
+            Text_Answer[BtnCount - 1].SetActive(true);
             Answer_count = 0;
             Answer = true;
-            //오답 choice statement 전송
-            if (Check_xAPI == true)
-            {
-                Send_Incorrect_statement();
-            }
         }
     }
 
@@ -477,6 +485,7 @@ public class Scene_1_3_controller : MonoBehaviour
 
     public void Send_Terminated_statement_unfinished()
     {
+        Send_Incorrect_statement();
         XAPIApplication.current.SendTerminateStatement("0", Result_list, Score_total, false);
     }
 }

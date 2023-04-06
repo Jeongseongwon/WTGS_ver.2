@@ -12,7 +12,7 @@ public class btnrollover : MonoBehaviour,  IPointerEnterHandler, IPointerExitHan
 
     void Start()
     {
-        Debug.Log(this.GetComponent<Transform>().childCount);
+        //Debug.Log(this.GetComponent<Transform>().childCount);
         if(this.GetComponent<Transform>().childCount != 0)
         {
             tooltip_text = this.GetComponent<Transform>().GetChild(0).gameObject;

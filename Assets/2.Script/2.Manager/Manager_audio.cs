@@ -25,7 +25,7 @@ public class Manager_audio : MonoBehaviour
     //각 사운드의 볼륨을 일괄적으로 지정해주고 그것에 맞춰서 될지 한 번 확인해보자
 
 
-    private float All_volume = 0.3f;
+    private float All_volume = 1f;
     private float Effect_volume = 0.5f;
     private float Narr_volume = 0.5f;
     private float BGM_volume = 0.1f;
@@ -163,20 +163,42 @@ public class Manager_audio : MonoBehaviour
     }
     public void Set_all_sound_volume(float volume)
     {
-        Hover.volume = volume;
-        Click.volume = volume;
-        BGM.volume = volume;
-        if (Scenecontroller != null)
+        if(volume == 0)
         {
-            Narration.volume = volume;
+            Hover.mute = true;
+            Click.mute = true;
+            BGM.mute = true;
+            Intro.mute = true;
+            Error.mute = true;
+            Correct_answer.mute = true;
+            Wrong_answer.mute = true;
+            strong_wind.mute = true;
+            low_wind.mute = true;
+            Narration_End.mute = true;
+
+            if (Scenecontroller != null)
+            {
+                Narration.mute = true;
+            }
         }
-        Intro.volume = volume;
-        Error.volume = volume;
-        Correct_answer.volume = volume;
-        Wrong_answer.volume = volume;
-        strong_wind.volume = volume;
-        low_wind.volume = volume;
-        Narration_End.volume = volume;
+        else if(volume == 1)
+        {
+            Hover.mute = false;
+            Click.mute = false;
+            BGM.mute = false;
+            Intro.mute = false;
+            Error.mute = false;
+            Correct_answer.mute = false;
+            Wrong_answer.mute = false;
+            strong_wind.mute = false;
+            low_wind.mute = false;
+            Narration_End.mute = false;
+
+            if (Scenecontroller != null)
+            {
+                Narration.mute = false;
+            }
+        }
     }
 
     public void Set_effect_sound_volume(float volume)

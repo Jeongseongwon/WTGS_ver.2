@@ -25,13 +25,13 @@ public class ui_callup_down : MonoBehaviour, IPointerClickHandler, IPointerEnter
     public void OnPointerExit(PointerEventData eventData)
     {
         animator.SetBool("uion", false);
-        Debug.Log("up");
+        //Debug.Log("up");
         animator.SetBool("uioff", true);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
         animator.SetBool("uion", true);
-        Debug.Log("down");
+        //Debug.Log("down");
         animator.SetBool("uioff", false);
 
     }

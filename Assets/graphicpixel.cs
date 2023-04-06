@@ -7,69 +7,64 @@ using UnityEngine.UI;
 
 public class graphicpixel : MonoBehaviour
 {
-    FullScreenMode screenmode;
-    public GameObject[] quality;
-    bool windowstate = false;
+    public GameObject Dial;
     private Slider Screen_slider;
-
 
     private float tmp_value;
     private float value;
+    private bool IsFullScreen;
     // Start is called before the first frame update
 
     void Start()
     {
-        Screen_slider = this.gameObject.GetComponent<Slider>();
-        Screen_slider.value = Manager_scene.instance.Get_Check_fullscreen();
+           value = Manager_scene.instance.Fullscreen_value;
+           this.gameObject.GetComponent<Slider>().value = value;
+           Screen_slider = this.gameObject.GetComponent<Slider>();
     }
     void Update()
     {
-        value = Screen_slider.value;
+        IsFullScreen = Manager_scene.instance.IsFullScreen;
+        value = this.gameObject.GetComponent<Slider>().value;
         if (tmp_value != value)
         {
             if (value == 0)
             {
-                screenmode = FullScreenMode.Windowed;
-                Screen.SetResolution(1920, 1080, screenmode);
-
-                windowstate = true;
-                Debug.Log("window");
-
-            }else if (value == 1)
-            {
-
-                screenmode = FullScreenMode.FullScreenWindow;
-                windowstate = false;
-                Debug.Log("full");
+                IsFullScreen = false;
+                Screen.fullScreenMode = FullScreenMode.Windowed;
+                Manager_scene.instance.Fullscreen_value = value;
+                Manager_scene.instance.IsFullScreen = IsFullScreen;
+                //Screen.SetResolution(1920, 1080, screenmode);
             }
-            Manager_scene.instance.Set_Check_fullscreen(Screen_slider.value);
+            else if (value == 1)
+            {
+                IsFullScreen = true;
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+                Manager_scene.instance.Fullscreen_value = value;
+                Manager_scene.instance.IsFullScreen = IsFullScreen; 
+            }
         }
         tmp_value = value;
     }
 
     public void stat1()
     {
-        Screen.SetResolution(1280, 720, screenmode);
-
+        Dial.transform.rotation = Quaternion.Euler(0, 0, -70);
+        Screen.SetResolution(1280, 720, IsFullScreen);
     }
     public void stat2()
     {
-        Screen.SetResolution(1280, 1024, screenmode);
-
+        Dial.transform.rotation = Quaternion.Euler(0, 0, -180);
+        Screen.SetResolution(1280, 1024, IsFullScreen);
     }
     public void stat3()
     {
-        Screen.SetResolution(1920, 1080, screenmode);
-
+        Dial.transform.rotation = Quaternion.Euler(0, 0, 0);
+        Screen.SetResolution(1920, 1080, IsFullScreen);
     }
     public void stat4()
     {
-        Screen.SetResolution(2560, 1440, screenmode);
-
+        Dial.transform.rotation = Quaternion.Euler(0, 0, -250);
+        Screen.SetResolution(2560, 1440, IsFullScreen);
     }
    
-    public void full()
-    {
-        screenmode = FullScreenMode.FullScreenWindow;
-    }
 }

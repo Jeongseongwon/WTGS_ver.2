@@ -61616,11 +61616,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2376419412794862640, guid: a536d57f8aae2bc4288cb57ae40e2d7c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4140753718876252231, guid: a536d57f8aae2bc4288cb57ae40e2d7c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4390144918744548799, guid: a536d57f8aae2bc4288cb57ae40e2d7c, type: 3}
       propertyPath: m_RootOrder
