@@ -24,7 +24,7 @@ public class Scene_3_3_controller : MonoBehaviour
 
 
     public GameObject Retry_answer_message;
-    private int Score_total;
+    public int Score_total;
     private int[] Score = new int[4];
     private bool Clicked_question;
     private bool Answer;
@@ -32,6 +32,7 @@ public class Scene_3_3_controller : MonoBehaviour
     private int Question_num = 0;
 
     private bool Check_xAPI = false;
+    private bool Check_wronganswer_for_xAPI = false;
 
     private List <Dictionary<string,string>> Result_list;
     private new Dictionary<string, string> Result_dictionary;
@@ -102,29 +103,52 @@ public class Scene_3_3_controller : MonoBehaviour
             {
                 StartCoroutine(Startact());
             }
-            if (BtnCount == 2)
+            else if (BtnCount == 1)
+            {
+                Check_wronganswer_for_xAPI = true;
+            }
+            else if (BtnCount == 2)
             {
                 Seq_array[0].SetActive(true);
+            }
+            else if (BtnCount == 3)
+            {
+                Check_wronganswer_for_xAPI = true;
             }
             else if (BtnCount == 5)
             {
                 Seq_array[1].SetActive(true);
             }
+            else if (BtnCount == 9)
+            {
+                Check_wronganswer_for_xAPI = true;
+            }
             else if (BtnCount == 11)
             {
                 Seq_array[2].SetActive(true);
             }
-            if (BtnCount == 14)
+            else if (BtnCount == 13)
             {
+
+                Check_wronganswer_for_xAPI = true;
+            }
+            else if (BtnCount == 14)
+            {
+                Invoke("Func_onlyfor_14", 0.5f);
+            }
+            if (BtnCount == 15)
+            {
+                Check_wronganswer_for_xAPI = true;
                 StartCoroutine(Act_16());
                 SetResult();
                 Seq_array[3].SetActive(true);
+                Scriptbox.GetComponent<Animation>().Play("bannerdown");
                 if (Check_xAPI == true)
                 {
                     XAPIApplication.current.SendTerminateStatement("2", Result_list, Score_total, true);
                 }
             }
-            if (BtnCount > 0 && BtnCount < 14)
+            if (BtnCount > 0 && BtnCount < 15)
             {
                 PC_Image_Array.transform.GetChild(BtnCount - 1).gameObject.SetActive(false);
                 PC_Image_Array.transform.GetChild(BtnCount).gameObject.SetActive(true);
@@ -133,20 +157,38 @@ public class Scene_3_3_controller : MonoBehaviour
             flag = false;
         }
     }
+    void Func_onlyfor_14()
+    {
+        this.GetComponent<Script_controller>().NextBtn();
+    }
+
     void Set_score()
     {
         if (Answer == true)
         {
             Answer_count = 0;           //정답시 초기화
-            if (Check_xAPI == true)
+            if (Check_wronganswer_for_xAPI == true)
             {
-                Send_Correct_statement();
+                Count_score();
+                if (Check_xAPI == true)
+                {
+                    Send_Correct_statement();
+                }
             }
         }
         else if (Answer == false)
         {
             Message(false);
             Answer_count++;
+            if (Check_xAPI == true)
+            {
+                //오답 choice statement 전송
+                Send_Incorrect_statement();
+            }
+            if (Check_wronganswer_for_xAPI == true)
+            {
+                Check_wronganswer_for_xAPI = false;
+            }
         }
         if (Answer_count == 3)
         {
@@ -169,7 +211,7 @@ public class Scene_3_3_controller : MonoBehaviour
     {
         for (int i = 0; i < Question_num; i++)
         {
-           // Debug.Log("check_result" + Score[i]);
+           // 다시 한 번 확인하기
             if (Score[i] == 0)
             {
                 Result_icon.transform.GetChild(i + 5).gameObject.SetActive(true);
@@ -205,7 +247,34 @@ public class Scene_3_3_controller : MonoBehaviour
             Retry_answer_message.GetComponent<Animation>().Play();
         }
     }
-
+    void Count_score()
+    {
+        Debug.Log(BtnCount);
+        if (BtnCount == 1)
+        {
+            Debug.Log("정답 3_3 1");
+            Score[0] = 1;
+            Score_total += 1;
+        }
+        else if (BtnCount == 3)
+        {
+            Debug.Log("정답 3_3 2");
+            Score[1] = 1;
+            Score_total += 1;
+        }
+        else if (BtnCount == 10)
+        {
+            Debug.Log("정답 3_3 3");
+            Score[2] = 1;
+            Score_total += 1;
+        }
+        else if (BtnCount == 13)
+        {
+            Debug.Log("정답 3_3 4");
+            Score[3] = 1;
+            Score_total += 1;
+        }
+    }
     /// <summary>
     /// xAPI
     /// </summary>
@@ -213,31 +282,23 @@ public class Scene_3_3_controller : MonoBehaviour
     {
         if (BtnCount == 1)
         {
-            Score[1] = 1;
-            Score_total += 1;
             XAPIApplication.current.SendChoiceStatement("2", "풍력발전상태확인", "1", true);
-            Result_dictionary.Add("풍력발전상태확인", "1");
+            //Result_dictionary.Add("풍력발전상태확인", "1");
         }
-        else if (BtnCount == 5)
+        else if (BtnCount == 4)
         {
-            Score[1] = 1;
-            Score_total += 1;
             XAPIApplication.current.SendChoiceStatement("2", "비상정지", "2", true);
-            Result_dictionary.Add("비상정지", "1");
+            //Result_dictionary.Add("비상정지", "1");
         }
-        else if (BtnCount == 11)
+        else if (BtnCount == 10)
         {
-            Score[1] = 1;
-            Score_total += 1;
             XAPIApplication.current.SendChoiceStatement("2", "유지보수입력", "3", true);
-            Result_dictionary.Add("유지보수입력", "1");
+            //Result_dictionary.Add("유지보수입력", "1");
         }
-        else if (BtnCount == 14)
+        else if (BtnCount == 13)
         {
-            Score[1] = 1;
-            Score_total += 1;
             XAPIApplication.current.SendChoiceStatement("2", "풍력발전출력설정", "4", true);
-            Result_dictionary.Add("풍력발전출력설정", "1");
+            //Result_dictionary.Add("풍력발전출력설정", "1");
         }
     }
     void Send_Incorrect_statement()
@@ -245,29 +306,29 @@ public class Scene_3_3_controller : MonoBehaviour
         if (BtnCount == 1)
         {
             XAPIApplication.current.SendChoiceStatement("2", "풍력발전상태확인", "1", false);
-            Result_dictionary.Add("풍력발전상태확인", "0");
+            //Result_dictionary.Add("풍력발전상태확인", "0");
         }
-        else if (BtnCount == 5)
+        else if (BtnCount == 4)
         {
             XAPIApplication.current.SendChoiceStatement("2", "비상정지", "2", false);
-            Result_dictionary.Add("비상정지", "0");
+            //Result_dictionary.Add("비상정지", "0");
         }
-        else if (BtnCount == 11)
+        else if (BtnCount == 10)
         {
             XAPIApplication.current.SendChoiceStatement("2", "유지보수입력", "3", false);
-            Result_dictionary.Add("유지보수입력", "0");
+            //Result_dictionary.Add("유지보수입력", "0");
         }
         else if (BtnCount == 14)
         {
             XAPIApplication.current.SendChoiceStatement("2", "풍력발전출력설정", "4", false);
-            Result_dictionary.Add("풍력발전출력설정", "0");
+            //Result_dictionary.Add("풍력발전출력설정", "0");
         }
     }
 
     public void Send_Terminated_statement_unfinished()
     {
         Send_Incorrect_statement();
-        Result_list.Add(Result_dictionary);
+        //Result_list.Add(Result_dictionary);
         XAPIApplication.current.SendTerminateStatement("2", Result_list, Score_total, false);
     }
 

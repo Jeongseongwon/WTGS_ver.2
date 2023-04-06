@@ -14,11 +14,13 @@ public class Script_controller : MonoBehaviour
 
     public bool FadeOut = false;
     GameObject Fader;
+
+
+
     float script_time_now;
-
-
     private float Time_limit;
     private bool status_UI_script_auto;
+
 
     private int Max_num_script=0;
     private int Num_script;
@@ -38,13 +40,10 @@ public class Script_controller : MonoBehaviour
         }
 
         status_UI_script_auto = false;
-        
+
         Time_limit = 15f;
         script_time_now = Time_limit;
 
-        //if (Manager_audio.instance != null) , BGM �κ�
-
-        //Fader = GameObject.Find("Fader");   
     }
 
     // Update is called once per frame

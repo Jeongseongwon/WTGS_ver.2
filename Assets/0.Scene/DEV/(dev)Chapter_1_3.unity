@@ -3554,7 +3554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867575659482686962, guid: 73d1aff0e2eb5bb4694d81166195aa18, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7949723602395598671, guid: 73d1aff0e2eb5bb4694d81166195aa18, type: 3}
       propertyPath: m_IsActive
@@ -20026,6 +20026,7 @@ MonoBehaviour:
   Result_description: {fileID: 1055286298}
   Result_icon: {fileID: 100996094}
   Panel_button_inactive: {fileID: 2107999377}
+  Score_total: 0
   BtnCount: 0
 --- !u!114 &862095516
 MonoBehaviour:

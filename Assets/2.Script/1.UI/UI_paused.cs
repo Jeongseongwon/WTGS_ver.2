@@ -33,7 +33,7 @@ public class UI_paused : MonoBehaviour, IPointerClickHandler
             {
                 if (Closed == true)
                 {
-                    Debug.Log("카메라 마우스 다시 활성화");
+                    //Debug.Log("카메라 마우스 다시 활성화");
                     camera.GetComponent<Camera_movement>().check_meunu_disabled();
                 }else if (Closed == false)
                 {//카메라 마우스 비활성화

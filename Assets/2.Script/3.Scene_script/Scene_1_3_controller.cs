@@ -43,7 +43,7 @@ public class Scene_1_3_controller : MonoBehaviour
 
     private GameObject Correct_answer_message;
     private GameObject Incorrect_answer_message;
-    private int Score_total;
+    public int Score_total;
     private int[] Score = new int[4];
     private bool Clicked_question;
     private bool Answer;
@@ -210,9 +210,9 @@ public class Scene_1_3_controller : MonoBehaviour
         {
             Result_description.transform.GetChild(2).gameObject.SetActive(true);
         }
-        else
+        else if (Score_total == 4)
         {
-
+            Result_description.transform.GetChild(2).gameObject.SetActive(true);
         }
         if (Check_xAPI == true)
         {
@@ -236,6 +236,7 @@ public class Scene_1_3_controller : MonoBehaviour
                 Score_total += 1;
                 if (Check_xAPI == true)
                 {
+                    Debug.Log("correct 전송");
                     Send_Correct_statement();
                 }
             }
@@ -244,11 +245,14 @@ public class Scene_1_3_controller : MonoBehaviour
         {
             Message(false);
             Answer_count++;
-            if (Check_xAPI == true && Check_wronganswer_for_xAPI == true)
+            if (Check_xAPI == true)
             {
-                //오답 choice statement 전송
-                Send_Incorrect_statement();
-                Check_wronganswer_for_xAPI = false;
+                if (Check_wronganswer_for_xAPI == true)
+                {
+                    Debug.Log("incorrect 전송");
+                    Send_Incorrect_statement();
+                    Check_wronganswer_for_xAPI = false;
+                }
             }
         }
 
@@ -424,30 +428,49 @@ public class Scene_1_3_controller : MonoBehaviour
         if (BtnCount == 1)
         {
             XAPIApplication.current.SendChoiceStatement("0", "풍력발전_구조", "1", true);
-            Result_1.Add("evaluation-item", "풍력발전_구조");
-            Result_1.Add("evaluation-score", "1");
-            Result_list.Add(Result_1);
+            //Result_1.Add("evaluation-item", "풍력발전_구조");
+            //Result_1.Add("evaluation-score", "1");
+            Dictionary<string, string> newItem = new Dictionary<string, string>()
+            {
+                {"풍력발전_구조", "25"}
+            };
+            Result_list.Add(newItem);
         }
         else if (BtnCount == 2)
         {
             XAPIApplication.current.SendChoiceStatement("0", "증속기이해", "2", true);
-            Result_2.Add("evaluation-item", "증속기이해");
-            Result_2.Add("evaluation-score", "1");
-            Result_list.Add(Result_2);
+            //Result_2.Add("evaluation-item", "증속기이해");
+            //Result_2.Add("evaluation-score", "1");
+            //Result_list.Add(Result_2);
+            Dictionary<string, string> newItem = new Dictionary<string, string>()
+            {
+                {"증속기이해", "25"}
+            };
+            Result_list.Add(newItem);
         }
         else if (BtnCount == 3)
         {
             XAPIApplication.current.SendChoiceStatement("0", "피치시스템이해", "3", true);
-            Result_3.Add("evaluation-item", "피치시스템이해");
-            Result_3.Add("evaluation-score", "1");
-            Result_list.Add(Result_3);
+            //Result_3.Add("evaluation-item", "피치시스템이해");
+            //Result_3.Add("evaluation-score", "1");
+            //Result_list.Add(Result_3);
+            Dictionary<string, string> newItem = new Dictionary<string, string>()
+            {
+                {"피치시스템이해", "25"}
+            };
+            Result_list.Add(newItem);
         }
         else if (BtnCount == 4)
         {
             XAPIApplication.current.SendChoiceStatement("0", "에너지전달순서이해", "4", true);
-            Result_4.Add("evaluation-item", "에너지전달순서이해");
-            Result_4.Add("evaluation-score", "1");
-            Result_list.Add(Result_4);
+            //Result_4.Add("evaluation-item", "에너지전달순서이해");
+            //Result_4.Add("evaluation-score", "1");
+            //Result_list.Add(Result_4);
+            Dictionary<string, string> newItem = new Dictionary<string, string>()
+            {
+                {"에너지전달순서이해", "25"}
+            };
+            Result_list.Add(newItem);
         }
     }
 
@@ -456,30 +479,50 @@ public class Scene_1_3_controller : MonoBehaviour
         if (BtnCount == 1)
         {
             XAPIApplication.current.SendChoiceStatement("0", "풍력발전_구조", "1", false);
-            Result_1.Add("evaluation-item", "풍력발전_구조");
-            Result_1.Add("evaluation-score", "0");
-            Result_list.Add(Result_1);
+            //Result_1.Add("evaluation-item", "풍력발전_구조");
+            //Result_1.Add("evaluation-score", "0");
+            //Result_list.Add(Result_1);
+            Dictionary<string, string> newItem = new Dictionary<string, string>()
+            {
+                {"풍력발전_구조", "25"}
+            };
+            Result_list.Add(newItem);
         }
         else if (BtnCount == 2)
         {
             XAPIApplication.current.SendChoiceStatement("0", "증속기이해", "2", false);
-            Result_2.Add("evaluation-item", "증속기이해");
-            Result_2.Add("evaluation-score", "0");
-            Result_list.Add(Result_2);
+            //Result_2.Add("evaluation-item", "증속기이해");
+            //Result_2.Add("evaluation-score", "0");
+            //Result_list.Add(Result_2);
+            Dictionary<string, string> newItem = new Dictionary<string, string>()
+            {
+                {"증속기이해", "25"}
+            };
+            Result_list.Add(newItem);
         }
         else if (BtnCount == 3)
         {
             XAPIApplication.current.SendChoiceStatement("0", "피치시스템이해", "3", false);
-            Result_3.Add("evaluation-item", "피치시스템이해");
-            Result_3.Add("evaluation-score", "0");
-            Result_list.Add(Result_3);
+            //Result_3.Add("evaluation-item", "피치시스템이해");
+            //Result_3.Add("evaluation-score", "0");
+            //Result_list.Add(Result_3);
+            Dictionary<string, string> newItem = new Dictionary<string, string>()
+            {
+                {"피치시스템이해", "25"}
+            };
+            Result_list.Add(newItem);
         }
         else if (BtnCount == 4)
         {
             XAPIApplication.current.SendChoiceStatement("0", "에너지전달순서이해", "4", false);
-            Result_4.Add("evaluation-item", "에너지전달순서이해");
-            Result_4.Add("evaluation-score", "0");
-            Result_list.Add(Result_4);
+            //Result_4.Add("evaluation-item", "에너지전달순서이해");
+            //Result_4.Add("evaluation-score", "0");
+            //Result_list.Add(Result_4);
+            Dictionary<string, string> newItem = new Dictionary<string, string>()
+            {
+                {"에너지전달순서이해", "25"}
+            };
+            Result_list.Add(newItem);
         }
     }
 

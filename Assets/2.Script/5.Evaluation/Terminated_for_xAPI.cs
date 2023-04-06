@@ -46,7 +46,6 @@ public class Terminated_for_xAPI : MonoBehaviour, IPointerClickHandler
 
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         SceneController = GameObject.FindGameObjectWithTag("Scene_controller");
